@@ -1,0 +1,1 @@
+# mslearn-github-copilot-dev.ja-jp
