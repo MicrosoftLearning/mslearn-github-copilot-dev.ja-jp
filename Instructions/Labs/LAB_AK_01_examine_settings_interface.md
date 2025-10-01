@@ -19,7 +19,7 @@ Visual Studio Code は、開発者向けのシームレスかつカスタマイ�
 - Git 2.48 以降
 - .NET または Python のいずれか:
 
-    -  **.NET SDK 9.0** 以降と、**C# 開発キット**拡張機能をインストールした Visual Studio Code。
+    - **.NET SDK 9.0** 以降と、**C# 開発キット**拡張機能をインストールした Visual Studio Code。
     - **Python 3.10** 以降と、**Python** 拡張機能をインストールした Visual Studio Code
 
 - GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
@@ -32,25 +32,29 @@ Visual Studio Code は、開発者向けのシームレスかつカスタマイ�
 
 この演習に、ホストされたラボ環境をお使いの場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、次の URL をブラウザーのサイト ナビゲーション バーに貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーにで次の URL を貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
-- コマンド ターミナルを開き、次のコマンドを実行します。
+- パッケージのダウンロードと復元のソースとして公式の NuGet.org リポジトリを使用するように .NET SDK を確実に構成するには、次の手順を実行します。
 
-    Visual Studio Code が正しいバージョンの **.NET** を使用するように構成されていることを確認するには、次のコマンドを実行します。
+    コマンド ターミナルを開き、次のコマンドを実行します。
 
     ```bash
 
     dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 
     ```
-    
-    または
 
-    Visual Studio Code が正しいバージョンの Python を使用するように構成されていることを確認するには、Python インストールがバージョン 3.10 以降であることを確認します。
+- Python 用にホストされたラボ環境を構成するには、次の手順に従います。
 
-    ```bash
-    python --version
-    ```
+    1. ホスト環境にインストールされている Python のバージョンを確認するには、次のコマンドを実行します。
+
+        ```bash
+        python --version
+        ```
+
+        必要に応じて、次の URL にある手順を使用して Visual Studio Code で Python を構成します: <a href="https://code.visualstudio.com/docs/python/python-tutorial" target="_blank">VS Code での Python の概要</a>。
+
+    1. Visual Studio Code の [拡張機能] ビューを使用して Python 拡張機能をインストールします。
 
 ## 演習のシナリオ
 

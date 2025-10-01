@@ -14,7 +14,7 @@ GitHub Copilot は、説明やドキュメントを生成することで、コ�
 
 ## 開始する前に
 
-ラボ環境には次のものが必要です。Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のものが必要です: Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
 
 この演習のラボ環境としてローカル PC を使用している場合:
 
@@ -24,11 +24,11 @@ GitHub Copilot は、説明やドキュメントを生成することで、コ�
 
 この演習に、ホストされたラボ環境をお使いの場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、次の URL をブラウザーのサイト ナビゲーション バーに貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーにで次の URL を貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
-- コマンド ターミナルを開き、次のコマンドを実行します。
+- パッケージのダウンロードと復元のソースとして公式の NuGet.org リポジトリを使用するように .NET SDK を確実に構成するには、次の手順を実行します。
 
-    Visual Studio Code が正しいバージョンの .NET を使用するように構成されていることを確認するには、次のコマンドを実行します。
+    コマンド ターミナルを開き、次のコマンドを実行します。
 
     ```bash
 

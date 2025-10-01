@@ -16,7 +16,7 @@ lab:
 
 ## 開始する前に
 
-ラボ環境には次のものが必要です: Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能を備えた Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のものが必要です: Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
 
 ### ラボ環境を構成する
 
@@ -26,31 +26,17 @@ lab:
 
 - Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開いてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
-この演習に、ホストされたラボ環境を使用している場合:
+この演習に、ホストされたラボ環境をお使いの場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、次の URL をブラウザーのサイト ナビゲーション バーに貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーにで次の URL を貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
-- コマンド ターミナルを開き、次のコマンドを実行します。
+- パッケージのダウンロードと復元のソースとして公式の NuGet.org リポジトリを使用するように .NET SDK を確実に構成するには、次の手順を実行します。
 
-    Visual Studio Code が正しいバージョンの .NET を使用するように構成されていることを確認するには、次のコマンドを実行します。
+    コマンド ターミナルを開き、次のコマンドを実行します。
 
     ```bash
 
     dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
-
-    ```
-
-    Git が自分の名前とメール アドレスを使用するように構成されていることを確認するには、次のコマンドを自分の情報で更新してから、コマンドを実行します。
-
-    ```bash
-
-    git config --global user.name "John Doe"
-
-    ```
-
-    ```bash
-
-    git config --global user.email johndoe@example.com
 
     ```
 
@@ -70,7 +56,7 @@ lab:
 
     1. ラボ環境のダウンロード フォルダーに移動します。
 
-    1. *GHCopilotEx9LabApps.zip* を右クリックし、**[すべて展開]** を選択します。
+    1. **GHCopilotEx9LabApps.zip** を右クリックし、**[すべて展開]** を選択します。
 
     1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
 
