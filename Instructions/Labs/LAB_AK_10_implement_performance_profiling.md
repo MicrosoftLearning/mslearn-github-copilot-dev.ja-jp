@@ -1,8 +1,8 @@
-<!-- ---
+---
 lab:
-    title: 'Exercise - Implement performance profiling using GitHub Copilot'
-    description: 'Learn how to identify and address performance bottlenecks and code inefficiencies using GitHub Copilot tools.'
---- -->
+  title: 演習 - GitHub Copilot を使用してパフォーマンス プロファイリングを実装する
+  description: GitHub Copilot ツールを使用して、パフォーマンスのボトルネックとコードの非効率性を特定して対処する方法について学びます。
+---
 
 # GitHub Copilot を使用してパフォーマンス プロファイルを実装する
 
