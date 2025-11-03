@@ -10,7 +10,7 @@ Vibe コーディングとは、GitHub Copilot エージェントなどの AI �
 
 この演習では、Vibe コーディング プロセスと GitHub Copilot エージェントを使用して、オンライン ショッピング アプリのプロトタイプ バージョンを作成します。 このプロトタイプ アプリには、製品、製品の詳細、ショッピング カート、チェックアウトのページが含まれています。アプリには、ページ間の基本的なナビゲーションと、アプリの機能を説明するために役立つ限定的なデータセットが含まれています。 プロトタイプには、ユーザー認証、支払い処理、データベース統合などのバックエンド機能は含まれていません。
 
-この演習の所要時間は約 **30** 分です。
+この演習の所要時間は約**30** 分です。
 
 > **重要**:この演習を完了するには、自分の GitHub アカウントと GitHub Copilot サブスクリプションを用意する必要があります。 GitHub アカウントをお持ちでない場合は、無料の個人用アカウントに<a href="https://github.com/" target="_blank">サインアップ</a>し、GitHub Copilot Free プランを使用して演習を完了できます。 ラボ環境内から GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business、または GitHub Copilot Enterprise サブスクリプションにアクセスできる場合は、既存の GitHub Copilot サブスクリプションを使用してこの演習を完了できます。
 
@@ -23,13 +23,13 @@ Vibe コーディングとは、GitHub Copilot エージェントなどの AI �
 
 この演習のラボ環境としてローカル PC を使用している場合:
 
-- Visual Studio Code インストーラー ファイルは、次の URL からダウンロードできます: <a href="https://code.visualstudio.com/download" target="_blank">Visual Studio Code をダウンロードする</a>。
+- Visual Studio Code インストーラー ファイルは、次の URL からダウンロードできます:<a href="https://code.visualstudio.com/download" target="_blank">Visual Studio Code をダウンロードする</a>。
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 この演習をサポートするホスト ラボ環境を使用している場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーを開き、次の URL をサイト ナビゲーション バーに貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーを開き、次の URL をサイト ナビゲーション バーに貼り付けてください:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 ## 演習のシナリオ
 
@@ -308,7 +308,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
 以下の手順に従って、演習のこのセクションを完了します。
 
-1. Visual Studio Code で、VibeCoding-PrototypeApp フォルダー内に **ShoppingApp** という新しいフォルダーを作成します。
+1. Visual Studio Code で、VibeCoding-PrototypeApp フォルダー内に**ShoppingApp** という新しいフォルダーを作成します。
 
     GitHub Copilot エージェントには、新しいアプリ ファイルのワークスペースとして使用する空のフォルダーが必要です。
 
@@ -323,7 +323,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
         ├── wireframe-navigation.txt
         ├── wireframe-product-details.txt
         ├── wireframe-products.txt
-            ```└── wireframe-shopping-cart.txt
+        └── wireframe-shopping-cart.txt
     ```
 
 1. PRD とワイヤーフレーム図をチャット コンテキストに追加します。
@@ -332,7 +332,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
     チャット コンテキストにファイルを追加するには、エクスプローラー ビューからチャット ビューにファイルをドラッグ アンド ドロップするか、チャット ビューの左下にある **[コンテキストの追加]** ボタンを使用します。
 
-1. エクスプローラー ビューで **ShoppingApp** フォルダーを選択します。
+1. エクスプローラー ビューで**ShoppingApp** フォルダーを選択します。
 
 1. チャット ビューで、次のプロンプトを入力します。
 
@@ -349,7 +349,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
         - **index.html**:Web アプリケーションのエントリ ポイントとして機能し、基本構造を設定し、スタイルとスクリプトをリンクします。
         - **styles.css**:プロトタイプ Web アプリのビジュアル レイアウトとレスポンシブ デザインを指定します。
 
-    - エージェントにより、ワークスペースに **.github/copilot-instructions.md** ファイルが追加され、PRD ファイルとワイヤーフレーム ファイルの内容が **copilot-instructions.md** ファイルに追加されます。
+    - エージェントにより、ワークスペースに **.github/copilot-instructions.md** ファイルが追加され、PRD ファイルとワイヤーフレーム ファイルの内容が**copilot-instructions.md** ファイルに追加されます。
 
     > **ヒント**:カスタム指示は、ワークスペースまたはリポジトリの .github/copilot-instructions.md ファイルに保存できます。 カスタム指示を使用すると、共通のガイドラインや規則を記述し、特定のコーディング方法や技術スタックに合う応答を得ることができます。 すべてのチャット クエリにこのコンテキストを手動で含めるのではなく、カスタム指示を使用してこの情報をすべてのチャットリクエストに自動的に組み込むことができます。 このような指示は、ファイルが配置されているワークスペースにのみ適用されます。
 
@@ -380,7 +380,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
     時間に余裕がある場合は、GitHub Copilot に各ファイルの詳細な説明を生成するよう依頼することを検討してください。
 
-1. Visual Studio Code エディターで **index.html** ファイルを開きます。
+1. Visual Studio Code エディターで**index.html** ファイルを開きます。
 
 1. **[実行]** メニューの **[デバッグなしで実行]** を選択します。
 
@@ -489,7 +489,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
 1. [ファイル] メニューで、**[名前を付けてワークスペースを保存]** を選択します。
 
-1. ワークスペース構成ファイル (VibeCoding-PrototypeApp.code-workspace) を **VibeCoding-PrototypeApp** フォルダーに保存するには、**[保存]** を選択します。
+1. ワークスペース構成ファイル (VibeCoding-PrototypeApp.code-workspace) を**VibeCoding-PrototypeApp** フォルダーに保存するには、**[保存]** を選択します。
 
     このファイルを使用すると、同じフォルダー構造と設定でワークスペースを保存し、再度開くことができます。
 
@@ -499,4 +499,4 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
 ## クリーンアップ
 
-演習が完了したので、少し時間を取って、GitHub アカウントまたは GitHub Copilot サブスクリプションに保持したくない変更が加えられていないか確認します。 変更を加えた場合は、必要に応じて元に戻します。 ラボ環境としてローカル PC を使用している場合は、この演習用に作成したプロトタイプ アプリ フォルダーをアーカイブするか削除できます。
+演習が済んだので、少し時間を取って、GitHub アカウントまたは GitHub Copilot サブスクリプションに残しておきたくない変更を行っていないことを確認してください。 変更を加えた場合は、必要に応じて元に戻します。 ラボ環境としてローカル PC を使用している場合は、この演習用に作成したプロトタイプ アプリ フォルダーをアーカイブするか削除できます。
