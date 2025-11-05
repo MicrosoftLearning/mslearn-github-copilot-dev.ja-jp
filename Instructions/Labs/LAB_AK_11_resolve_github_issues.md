@@ -6,9 +6,9 @@ lab:
 
 # GitHub Copilot を使用して GitHub の issue を解決する
 
-GitHub の issue は、プロジェクトのバグ、機能強化、タスクを追跡するための強力な手段です。 この演習では、GitHub Copilot を使ってサンプル コードベースの issue を分析して解決する方法を学びます。
+GitHub の issue は、プロジェクトのバグ、機能強化、タスクを追跡するための強力な手段です。
 
-この演習では、ContosoShopEasy という名前のサンプルの eコマース アプリケーションの作業を行います。 このアプリケーションには、GitHub の issue としてログされたセキュリティの脆弱性がいくつか含まれます。 目標は、GitHub Copilot を使って、これらの issue の分析と解決を支援することです。
+この演習では、GitHub Copilot を使用して、eコマース アプリケーションのセキュリティの脆弱性に関連する GitHub の issue を分析して解決します。
 
 この演習の所要時間は約**40** 分です。
 
@@ -56,9 +56,9 @@ GitHub の issue は、プロジェクトのバグ、機能強化、タスクを
 
 ## 演習のシナリオ
 
-あなたは、コンサルティング会社で働くソフトウェア開発者です。 クライアントは、GitHub プロジェクトに対してログされた issue の解決に関する支援を必要としています。 あなたの目標は、Visual Studio Code で GitHub Copilot を使って、コード プロジェクトを更新するときのガイダンスとして issue を使うことです。 すべての issue に確実に対処してそれを解決する必要があります。 あなたには次のアプリが割り当てられています。
+あなたは、コンサルティング会社で働くソフトウェア開発者です。 顧客は、顧客は GitHub リポジトリの issue を解決するのに支援を必要としています。 あなたは、すべての issue が解決され、閉じられるようにする必要があります。 開発環境として Visual Studio Code と GitHub Copilot を使用します。 あなたには次のアプリが割り当てられています。
 
-- ContosoShopEasy:GitHub の issue としてログされた複数のセキュリティ脆弱性を含む現実的な eコマース アプリケーション。 このアプリケーションでは、機能する eコマース ワークフローを維持しながら、実際のアプリケーションで見られる一般的なセキュリティ上の問題が示されています。
+- ContosoShopEasy:ContosoShopEasy は eコマース アプリケーションであり、複数のセキュリティの脆弱性が含まれています。 これらの脆弱性は、実際のアプリケーションで見られる一般的なセキュリティの問題を表します。
 
 この演習には、次のタスクが含まれています。
 
@@ -70,9 +70,13 @@ GitHub の issue は、プロジェクトのバグ、機能強化、タスクを
 1. リファクタリング後のコードをテストして検証します。
 1. 変更をコミットして issue を閉じます。
 
+> **注**:このトレーニング演習では時間を節約するために、issue のグループを解決してテストし、1 回のコミットで更新をプッシュします。 issue をバッチ処理することは、推奨されるベスト プラクティスではありません。 Microsoft と GitHub では、バッチ処理ではなく、個別のコミットで各 issue を個別に解決することをお勧めします。 issue を個別に解決すると、追跡可能性が向上し、コード レビューが容易になり、問題が発生した場合にロールバック オプションの安全性が高くなります。
+
 ### ContosoShopEasy リポジトリをインポートする
 
-GitHub リポジトリのインポートを使うと、既存のリポジトリのコピーを独自の GitHub アカウントに作成できます。 このプロセスでは、インポートされるコピーをユーザーが完全に制御できる一方で、元のリポジトリの履歴が保持されます。 このタスクでは、ContosoShopEasy プロジェクトをインポートし、コードベースに存在するセキュリティの脆弱性を反映した GitHub の issue を作成します。
+GitHub Importer を使用すると、独自の GitHub アカウントに既存のリポジトリのコピーを作成し、インポートされたコピーを完全に制御できます。 GitHub Importer は、issue、PR、ディスカッションを移行しませんが、GitHub Actions ワークフローをインポートします。 インポートするリポジトリには、コードベースに関連する issue を作成する GitHub Actions ワークフローが含まれています。
+
+このタスクでは、ContosoShopEasy リポジトリをインポートし、ワークフローを実行して、コードベースに含まれているセキュリティの脆弱性に関する GitHub の issue を作成します。
 
 そのためには、以下の手順を実行してください。
 
@@ -80,93 +84,136 @@ GitHub リポジトリのインポートを使うと、既存のリポジトリ�
 
 1. GitHub アカウントにサインインします。
 
-1. **ContosoShopEasy** という名前の新しいリポジトリを作成します。
+1. [リポジトリ] タブを開きます。
 
-    新しいリポジトリを作成するには、GitHub の右上隅にある**+** アイコンを選んで、**[New repository]** を選びます。
+    右上隅にあるプロファイル アイコンをクリックし、**[リポジトリ]** を選択して、[リポジトリ] タブを開きます。
 
-1. ContosoShopEasy プロジェクト ファイルをローカル ラボ環境から新しいリポジトリにコピーします。
+1. [リポジトリ] タブで、**[新規]** ボタンを選択します。
 
-    GitHub の Web インターフェイスから直接ファイルをアップロードするのでも、空のリポジトリをクローンしてローカル コンピューターから ContosoShopEasy ファイルをプッシュするのでもかまいません。
+1. **[新しいリポジトリの作成]** セクションで、**[リポジトリのインポート]** を選択します。
 
-1. 次の GitHub issue を作成して、セキュリティの脆弱性を追跡します。
+    **[プロジェクトを GitHub にインポートする]** ページが表示されます。
 
-    - **SQL インジェクションの脆弱性**:製品検索機能は認可されていない入力を受け入れ、インジェクション攻撃に対して脆弱です。 `ProductService.cs` の`SearchProducts` メソッドは、適切なパラメーター化を行わず、ユーザーによる入力をシミュレートされた SQL クエリに直接組み込みます。
+1. [プロジェクトを GitHub にインポートする] ページの **[ソース リポジトリの詳細]** で、ソース リポジトリの次の URL を入力します。
 
-    - **脆弱なパスワード ハッシュ**:アプリケーションでパスワードの格納に使われている MD5 ハッシュは、暗号としては脆弱なものです。 `UserService.cs` の`GetMd5Hash` メソッドには、この脆弱なハッシュ アプローチが実装されています。
+    ```plaintext
+    https://github.com/MicrosoftLearning/resolve-github-issues-lab-project
+    ```
 
-    - **機密データの露出**:完全なクレジット カード番号、CVV コード、パスワードがプレーンテキストで記録されます。 `PaymentService.cs` の`ProcessPayment` メソッドと、`UserService.cs` の登録とログインのメソッドは、機密情報を公開します。
+1. **[新しいリポジトリの詳細]** セクションの **[所有者]** ドロップダウンで、GitHub ユーザー名を選択します。
 
-    - **ハードコーディングされた管理者の資格情報**:管理者のユーザー名とパスワードが`SecurityValidator.cs` クラスにハードコーディングされており、ソース コード アクセス権を持つすべてのユーザーがアクセスできます。
+1. **[リポジトリ名]** フィールドに「**ResolveGitHubIssues**」と入力し、**[インポートの開始]** を選択します。
 
-    - **入力検証の問題**:アプリケーションは、適切なサニタイズを行わずに潜在的に危険な文字を受け入れます。 `SecurityValidator.cs` の`ValidateInput` メソッドは警告をログしますが、それでも悪意のある入力を受け入れます。
+    GitHub により、ContosoShopEasy プロジェクト ファイルを含む新しいリポジトリがアカウントに作成されます。
 
-    - **情報漏えい**:デバッグ ログでは、機密性の高いシステム情報と構成の詳細が公開されます。 アプリケーション全体の複数のクラスで、デバッグのために機密データがログされます。
+    > **注**:リポジトリのインポートには 1 から 2 分かかる場合があります。
 
-    - **予測可能なセッション トークン**:セッション トークンは、ユーザー名とタイムスタンプに基づく予測可能なパターンに従っています。 `SecurityValidator.cs` の`GenerateSessionToken` メソッドは、簡単に推測できるトークンを作成します。
+1. インポート プロセスが完了するまで待ってから、新しいリポジトリを開きます。
 
-    - **ファイルのアップロードに関するセキュリティの問題**:アプリケーションは、危険なファイルの種類を適切な検証なしで受け入れます。 `SecurityValidator.cs` の`ValidateFileUpload` メソッドが提供する保護は、悪意のあるアップロードに対して十分ではありません。
+1. リポジトリの [アクション] タブを開きます。
+
+1. 左側の **[すべてのワークフロー]** で、**[ContosoShopEasy トレーニングの issue の作成]** ワークフローを選択し、**[ワークフローの実行]** を選択します。
+
+1. 表示されたワークフロー ダイアログで、「**作成**」と入力し、**[ワークフローの実行]** を選択します。
+
+1. 画面上でワークフローの進行状況を監視します。
+
+    しばらくすると、ページが更新され、進行状況バーが表示されます。 ワークフローは 1 分以内に正常に完了します。
+
+1. 続行する前に、ワークフローが正常に完了していることを確認します。
+
+    ワークフロー名の左側にある緑色の円で囲まれたチェックマークは、ワークフローが正常に実行されたことを示します。
+
+    ワークフロー名の左側に、赤い円で囲まれた X が表示されている場合は、ワークフローが失敗したことを意味します。 ワークフローが正常に実行されない場合は、リポジトリのインポート時にアカウントを選択し、そのアカウントに読み取りと書き込みのアクセス許可があることを確認します。 GitHub の**Copilot とチャット**機能を使用して、issue の診断に役立てることができます。
 
 ### GitHub で issue を確認する
 
 GitHub の issue は、バグ、セキュリティの脆弱性、機能強化要求の一元的な追跡システムとして機能します。 各 issue では、問題に関するコンテキスト、重大度、アプリケーションへの潜在的な影響が提供されます。 コードに進む前にこれらの issue を理解することは、優先順位を決めるのに役立ち、包括的な修復が保証されます。
 
-このタスクでは、ContosoShopEasy プロジェクトの未解決の issue を確認し、対処する必要があるセキュリティの脆弱性を理解します。
+このタスクでは、GitHub の issue を確認し、対処する必要があるセキュリティの脆弱性を調べます。
 
 そのためには、以下の手順を実行してください。
 
-1. GitHub で ContosoShopEasy リポジトリに移動します。
+1. リポジトリの **[Issues]** タブを選択し、少し時間を取って [Issues] ページを確認します。
 
-1. **[Issues]** タブを選んで、未解決のすべての issue を表示します。
+    10 件の issue が一覧表示されます。 issue はバグとして定義されており、優先度レベルが割り当てられていることに注意してください。
 
-1. 各 issue の説明を確認し、次のセキュリティ脆弱性カテゴリに注意します。
+1. 重大な issue のみを表示するには、**[ラベル]** ドロップダウンを選択し、**[重大]** ラベルを選択します。
 
-    **SQL インジェクション脆弱性**: ユーザーによる入力をデータベース クエリに直接組み込む製品検索機能により、悪意のある SQL インジェクション攻撃の機会が生まれます。
+    issue の一覧がフィルター処理されて重大な issue のみが表示されます。
 
-    **脆弱な暗号化プラクティス**: パスワード ストレージに対する MD5 ハッシュの使用。これは暗号的に脆弱と見なされ、パスワードのセキュリティに適しません。
+    - **🔐 クレジット カードのデータ保存違反を修正する**  
 
-    **機密データの露出**:クレジット カードの完全な番号、CVV コード、パスワード、およびプレーンテキストで保存またはログしてはいけない他の機密情報のログ。
+    - **🔐 ハードコーディングされた管理者資格情報を削除する**  
 
-    **ハードコーディングされた資格情報**: 管理者のユーザー名とパスワードがソース コードに直接埋め込まれており、リポジトリのアクセス権を持つユーザーであれば誰でもアクセスできます。
+1. 高優先度の issue のみを表示するには、**[ラベル]** ドロップダウンを選択し、**[重大]** の選択を解除してから、**[高優先度]** ラベルを選択します。
 
-    **入力検証エラー**: ユーザーによる入力の検証とサニタイズが不十分であり、悪意のある可能性のあるコンテンツをアプリケーションで処理できます。
+    issue の一覧がフィルター処理されて高優先度の issue のみが表示されます。
 
-    **情報漏えい**:機密性の高いシステム構成、内部プロセス、ユーザー データを公開するデバッグ ログ。
+    - **🔐 入力検証のセキュリティ バイパスを修正する**  
 
-    **脆弱なセッション管理**: 攻撃者がユーザー セッションをハイジャックできる可能性がある、予測可能なセッション トークンの生成。
+    - **🔐 デバッグ ログから機密データを削除する**  
 
-    **ファイルアップロードの脆弱性**: 悪意のあるコードの実行が許可される可能性がある、アップロードされたファイルの不十分な検証。
+    - **🔐 製品検索の SQL インジェクションの脆弱性を修正する**  
 
-1. これらの issue は実際のアプリケーションで見られる一般的なセキュリティの脆弱性を表しており、OWASP セキュリティ ガイドラインと一致することに注意してください。
+    - **🔐 MD5 パスワード ハッシュを安全な代替ハッシュに置き換える**  
+
+1. **[製品検索の SQL インジェクションの脆弱性を修正する]** issue を選択します。
+
+1. 少し時間を取って issue の詳細を確認します。
+
+    issue の詳細には、問題と予想される修正が説明されています。
+
+    > **注**:issue の生成に使用されるプロセス (手動プロセスと自動プロセスなど) は、issue の記述の全体的な品質と正確性に影響します。 このトレーニングに含まれる issue は、エージェントでコードベースを確認した後、GitHub Copilot のエージェント モードを使用して記述されたものです。 GitHub Copilot により、脆弱性、コードの場所、脆弱なコードの例、セキュリティ リスク、修正の受け入れ基準に関する非常に詳細な説明が生成されています。
+
+1. issue には誰も割り当てられていないことに注意してください。
+
+1. [issue] タブに戻り、フィルターをクリアします。
+
+1. すべての issue を選択し、**[割り当て]** ドロップダウンを使用して自分に割り当てます。
+
+    issue を自分に割り当てると、修復プロセスを進める際に進行状況を追跡するのに役立ちます。
 
 ### リポジトリをクローンしてコードベースを確認する
 
 セキュリティの修正を実装する前に、既存のコードベースの構造と機能を理解することが不可欠です。 ContosoShopEasy アプリケーションはエンタープライズ アプリケーションに典型的な階層構造のアーキテクチャに従っており、モデル、サービス、データ アクセス、セキュリティ コンポーネントが明確に分離されています。 コードの構造をレビューしてアプリケーションを実行すると、セキュリティ改善を実装した後のテストのためのベースラインを確立するのに役立ちます。
 
-このタスクでは、ContosoShopEasy リポジトリをクローンし、プロジェクトの構造を調べて、アプリケーションの現在の動作を確認します。
+このタスクでは、ContosoShopEasy リポジトリをクローンし、プロジェクト構造を調べ、アプリケーションの現在の動作を観察し、セキュリティの脆弱性を確認します。
 
 そのためには、以下の手順を実行してください。
 
-1. ContosoShopEasy リポジトリをローカル開発環境にクローンします。
+1. リポジトリの [コード] タブを開きます。
 
-    ターミナル ウィンドウを開いて、次のコマンドを実行します。`your-username` はご自分の GitHub ユーザー名に置き換えます。
+1. ResolveGitHubIssues リポジトリをローカル開発環境にクローンします。
+
+    たとえば、Git CLI を使用してリポジトリをクローンするには、次の手順を使用できます。
+
+    1. **[コード]** ボタンを選択し、HTTPS URL をコピーして、リポジトリの URL をコピーします。
+
+    1. ターミナル ウィンドウを開き、リポジトリをクローンするディレクトリに移動し、次のコマンドを実行します (**your-username** を自分の GitHub ユーザー名に置き換えます)。
 
     ```bash
-    git clone https://github.com/your-username/ContosoShopEasy.git
+    git clone https://github.com/your-username/ResolveGitHubIssues.git
     ```
 
 1. クローンしたリポジトリを Visual Studio Code で開きます。
 
     リポジトリ フォルダーに移動し、それを Visual Studio Code で開きます。 GitHub Copilot と GitHub Copilot Chat 拡張機能がインストールされ、有効になっていることを確認します。
 
-1. ソリューション エクスプローラーでプロジェクトの構造を確認します。
+1. エクスプローラー ビューでプロジェクト構造を確認します。
 
     ContosoShopEasy アプリケーションは、次のコンポーネントを含む階層構造のアーキテクチャに従いっています。
 
-    - **Models/**:`Product.cs`、`User.cs`、`Order.cs`、`Category.cs` のデータ モデルが含まれます
-    - **Services/**:`ProductService.cs`、`UserService.cs`、`PaymentService.cs`、`OrderService.cs` にビジネス ロジックが含まれます
-    - **Data/**:`ProductRepository.cs`、`UserRepository.cs`、`OrderRepository.cs` にデータ リポジトリが含まれます
-    - **Security/**:`SecurityValidator.cs` にセキュリティ検証ロジックが含まれます
+    - **Models/**:**Category.cs**、**Order.cs**、**Product.cs**、**User.cs** のデータ モデルが含まれています。
+
+    - **Services/**:**OrderService.cs**、**PaymentService.cs**、**ProductService.cs**、**UserService.cs** のビジネス ロジックが含まれています。
+
+    - **Data/**:**OrderRepository.cs**、**ProductRepository.cs**、**UserRepository.cs** のデータ リポジトリが含まれています。
+
+    - **Security/**:**SecurityValidator.cs** のセキュリティ検証ロジックが含まれています
+
     - **Program.cs**依存関係インジェクションのセットアップが含まれるメイン アプリケーション エントリ ポイント
+
     - **README.md**: アプリケーションの目的と脆弱性が説明されているドキュメント
 
 1. アプリケーションをビルドして実行し、現在の動作を確認します。
@@ -179,115 +226,279 @@ GitHub の issue は、バグ、セキュリティの脆弱性、機能強化要
     dotnet run
     ```
 
-    アプリケーションでは、意図的な脆弱性を明らかにするセキュリティ監査を含む、eコマース機能の包括的なデモンストレーションが表示されます。
+    アプリケーションは、eコマース ワークフロー シミュレーションを実行して、詳細なコンソール ログを通じてセキュリティの脆弱性を顕在化します。
 
-1. コンソール出力を確認して、セキュリティ関連のログを特定します。
+1. コンソール出力を確認します。
 
     アプリケーションにより、パスワード、クレジット カード番号、管理者資格情報、内部システムの詳細などの機密情報がログされることに注意してください。 この出力は、対処する必要があるセキュリティの問題の明確な証拠を提供します。
 
-1. 各セキュリティ脆弱性に関連付けられている特定のファイルとメソッドを確認します。
+    > **注**:このアプリのコード ロジックとログは、セキュリティの脆弱性を顕在化するように設計されています。 実装は不自然ですが、ログでは、実際のアプリケーションで一般的なセキュリティ上の問題が浮き彫りになります。
 
-    - **SQL インジェクション**:`ProductService.cs` -`SearchProducts` メソッド
-    - **脆弱なパスワード ハッシュ**:`UserService.cs` -`GetMd5Hash` メソッド
-    - **機密データの露出**:`PaymentService.cs` -`ProcessPayment` メソッドと`UserService.cs` - 登録/ログイン メソッド
-    - **ハードコーディングされた資格情報**:`SecurityValidator.cs` - 管理者資格情報の定数
-    - **入力検証**:`SecurityValidator.cs` -`ValidateInput` メソッド
-    - **情報漏えい**:デバッグ ログを含む複数のクラス
-    - **予測可能なトークン**:`SecurityValidator.cs` -`GenerateSessionToken` メソッド
-    - **ファイル アップロードの問題**:`SecurityValidator.cs` -`ValidateFileUpload` メソッド
+1. コードベースのセキュリティの脆弱性を特定するレビュー プロセスを開始するには、**Models** フォルダーを展開し、**Order.cs** ファイルを開きます。
+
+1. 下方向にスクロールして、**PaymentInfo** クラスを見つけます。
+
+    CardNumber プロパティと CVV プロパティに関するコメントに注目してください。 このコードは、"クレジット カードのデータ保存違反を修正する" issue に関連しています。
+
+1. **Security** フォルダーを展開し、**SecurityValidator.cs** ファイルを開きます。
+
+1. 少し時間を取って、次のセキュリティ上の問題を見つけます。
+
+    - ファイルの先頭付近で、管理者資格情報定数 (7 から 9 行目) に関連するコメントに注目してください。 このコードは、"ハードコーディングされた管理者資格情報を削除する" issue に関連しています。
+
+    - ValidateInput メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"入力検証セキュリティ バイパスを修正する" issue に関連しています。
+
+    - ValidateEmail メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"電子メール検証のセキュリティを強化する" issue に関連しています。
+
+    - ValidatePasswordStrength メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"パスワードのセキュリティ要件を強化する" issue に関連しています。
+
+    - GenerateSessionToken メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"予測可能なセッション トークンの生成を修正する" issue に関連しています。
+
+    - RunSecurityAudit メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"エラー メッセージでの情報漏えいを削減する" issue に関連しています。
+
+1. **Services** フォルダーを展開し、**UserService.cs** ファイルを開きます。
+
+1. 少し時間を取って、次のセキュリティ上の問題を見つけます。
+
+    - RegisterUser、LoginUser、ValidateUserInput の各メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"デバッグ ログから機密データを削除する" issue に関連しています。
+    - GetMd5Hash メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"MD5 パスワード ハッシュを安全な代替ハッシュに置き換える" issue に関連しています。
+
+1. **PaymentService.cs** ファイルを開きます。
+
+1. 少し時間を取って、セキュリティの脆弱性を説明するコメントを確認します。
+
+    このコードは、"デバッグ ログから機密データを削除する" issue に関連しています。
+
+1. **ProductService.cs** ファイルを開きます。
+
+1. 少し時間を取って、SearchProducts メソッドを確認します。
+
+    このコードは、"製品検索の SQL インジェクションの脆弱性を修正する" issue に関連しています。
 
 ### GitHub Copilot の質問モードを使って issue を分析する
 
 GitHub Copilot の質問モードが備えるインテリジェントなコード分析機能は、セキュリティの脆弱性を明らかにし、潜在的な影響を理解し、修復戦略を提案するのに役立ちます。 各セキュリティの問題を体系的に分析すると、修正を実装する前に、問題の包括的な理解を深めることができます。 このアプローチにより、解決策では単なる症状ではなく根本原因に対処できます。
 
-このタスクでは、GitHub Copilot の質問モードを使って、ContosoShopEasy アプリケーションの各セキュリティ脆弱性を体系的に分析します。
+このタスクでは、GitHub Copilot の Ask モードを使用して、セキュリティの脆弱性を体系的に分析します。
 
 そのためには、以下の手順を実行してください。
 
 1. GitHub Copilot Chat ビューを開き、質問モードが選ばれていることを確認します。
 
-    チャット ビューをまだ開いていない場合は、Visual Studio Code ウィンドウの上部にある **[チャット]** アイコンを選びます。 チャット モードが **[Ask]** に設定されており、複雑なセキュリティ分析用の**GPT-4.1** モデルを使っていることを確認します。
+    チャット ビューをまだ開いていない場合は、Visual Studio Code ウィンドウの上部にある **[チャット]** アイコンを選びます。 チャット モードが **[Ask]** に設定されており、**GPT-4.1** モデルを使用していることを確認します。
 
-1. SQL インジェクションの脆弱性の分析から始めます。
+1. **ProductService.cs** ファイルを開き、**SearchProducts** メソッドを見つけます。
 
-    `ProductService.cs` ファイルを開いて`SearchProducts` メソッドを見つけます。 メソッド全体を選び、ドラッグ アンド ドロップを使うか、右クリックして **[Add to Chat]** 選んで、チャット コンテキストに追加します。
+1. コード エディターで、**SearchProducts** メソッド全体を選択します。
 
-1. SQL インジェクションの脆弱性を分析するよう GitHub Copilot に指示します。
+    エディターでコードを選択すると、チャット コンテキストがフォーカスされます。 GitHub Copilot では、選択したコードを使用して、関連する分析と推奨事項が提供されます。
 
-    セキュリティの問題を分析するには、次のプロンプトを送信します。
+1. GitHub Copilot に、SQL インジェクションの脆弱性のコードを分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
 
     ```text
     Analyze the SearchProducts method for security vulnerabilities. What makes this code susceptible to SQL injection attacks, and what are the potential consequences if an attacker exploits this vulnerability?
     ```
 
-1. GitHub Copilot の分析を確認して、具体的な修復ガイダンスを求めます。
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
 
-    最初の分析を確認した後、具体的な修正を求めます。
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
 
     ```text
     How can I modify this method to prevent SQL injection attacks? What secure coding practices should I implement to safely handle user input in database queries?
     ```
 
-1. 脆弱なパスワード ハッシュの脆弱性を分析します。
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
-    `UserService.cs` ファイルを開いて`GetMd5Hash` メソッドを見つけます。 このメソッドをチャット コンテキストに追加し、次のプロンプトを送信します。
+1. **UserService.cs** ファイルを開き、**GetMd5Hash** メソッドを見つけます。
+
+1. コード エディターで、**GetMd5Hash** メソッド全体を選択します。
+
+1. GitHub Copilot に、脆弱なパスワード ハッシュの脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
 
     ```text
     Why is MD5 hashing unsuitable for password storage? What are the security risks of using MD5 for passwords, and what stronger alternatives should I use instead?
     ```
 
-1. 安全なパスワード ハッシュの実装に関する具体的なガイダンスを求めます。
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
+
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
 
     ```text
     Show me how to implement secure password hashing using bcrypt or PBKDF2. What additional security measures should I implement for password handling?
     ```
 
-1. 機密データの露出に関する問題を分析します。
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
-    `PaymentService.cs` ファイルを開いて`ProcessPayment` メソッドを見つけます。 それをチャット コンテキストに追加して、次のように指示します。
+1. **UserService.cs** ファイルで、**RegisterUser** メソッドと**LoginUser** メソッドを見つけます。
+
+    これらのメソッドは、ユーザー情報をログします。 機密情報のログは、セキュリティの脆弱性です。
+
+1. コード エディターで、両方のメソッドを選択します。
+
+1. GitHub Copilot に、機密データのログの脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
 
     ```text
-    What sensitive information is being logged in this payment processing method? Why is logging full credit card numbers and CVV codes a security risk, and how should payment data be handled securely?
+    What sensitive information is being logged in the user registration and login methods? Why is logging passwords and user data a security risk?
     ```
 
-1. ハードコーディングされた資格情報の脆弱性を調べます。
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
 
-    `SecurityValidator.cs` ファイルを開いて、管理者資格情報の定数を見つけます。 関連するコードをチャット コンテキストに追加して、次のように指示します。
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
+
+    ```text
+    How can I modify these methods to prevent sensitive data logging? What secure logging practices should I implement to protect user information?
+    ```
+
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
+
+1. **PaymentService.cs** ファイルを開き、**ProcessPayment** メソッドを見つけます。
+
+1. コード エディターで、**ProcessPayment** メソッド全体を選択します。
+
+1. GitHub Copilot に、機密の支払いデータのログを分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    What sensitive payment information is being logged in this method? Why is logging credit card numbers and CVV codes a security risk?
+    ```
+
+1. **SecurityValidator.cs** ファイルを開き、ファイルの先頭付近にある管理者資格情報定数を見つけます。
+
+1. コード エディターで、ハードコーディングされた管理者資格情報定数を選択します。
+
+1. GitHub Copilot に、ハードコーディングされた資格情報の脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
 
     ```text
     What security risks are created by hardcoding admin credentials in source code? How should application credentials be managed securely in production environments?
     ```
 
-1. 入力検証の脆弱さを分析します。
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
 
-    `SecurityValidator.cs` の`ValidateInput` メソッドに焦点を当てて、次のように指示します。
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
 
     ```text
-    What makes this input validation method ineffective against malicious input? How can I implement proper input sanitization to prevent XSS and other injection attacks?
+    What are best practices for managing application credentials securely? How can I implement secure credential management in this application?
     ```
 
-1. 情報漏えいの問題を確認します。
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
-    さまざまなファイルでデバッグ ログを含む複数のメソッドを選んで、次のように指示します。
+1. **SecurityValidator.cs** ファイルで、**ValidateInput** メソッドを見つけます。
+
+1. コード エディターで、**ValidateInput** メソッド全体を選択します。
+
+1. GitHub Copilot に、入力検証バイパスの脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
 
     ```text
-    How does excessive debug logging create security vulnerabilities? What information should never be logged, and how can I implement secure logging practices?
+    What makes this input validation method ineffective? Why does it detect dangerous input but still return true, and how should proper input validation work?
     ```
 
-1. 予測可能なトークンの生成を調べます。
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
 
-    `GenerateSessionToken` メソッドに焦点を当てて、次のように指示します。
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
 
     ```text
-    Why are predictable session tokens a security risk? How should secure, unpredictable session tokens be generated to prevent session hijacking attacks?
+    How can I modify this method to implement effective input validation? What secure coding practices should I follow to prevent input validation bypass vulnerabilities?
     ```
 
-1. ファイル アップロードの検証の問題を分析します。
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
-    `ValidateFileUpload` メソッドを確認し、次のように指示します。
+1. **SecurityValidator.cs** ファイルで、**GenerateSessionToken** メソッドを見つけます。
+
+1. コード エディターで、**GenerateSessionToken** メソッド全体を選択します。
+
+1. GitHub Copilot に、予測可能なセッション トークンの生成の脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
 
     ```text
-    What makes this file upload validation insufficient for security? How can I implement comprehensive file upload security to prevent malicious file execution?
+    Why are predictable session tokens based on username and timestamp a security risk? How should secure, unpredictable session tokens be generated?
+    ```
+
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
+
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
+
+    ```text
+    How can I modify this method to generate secure, unpredictable session tokens? What cryptographic techniques should I use to enhance session token security?
+    ```
+
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
+
+1. **SecurityValidator.cs** ファイルで、**ValidateEmail** メソッドを見つけます。
+
+1. コード エディターで、**ValidateEmail** メソッド全体を選択します。
+
+1. GitHub Copilot に、弱い電子メール検証の脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    What makes this email validation insufficient? What are the security risks of weak email validation, and how should proper email validation be implemented?
+    ```
+
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
+
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
+
+    ```text
+    How can I modify this method to implement robust email validation? What techniques should I use to ensure email addresses are properly validated?
+    ```
+
+1. **SecurityValidator.cs** ファイルで、**ValidatePasswordStrength** メソッドを見つけます。
+
+1. コード エディターで、**ValidatePasswordStrength** メソッド全体を選択します。
+
+1. GitHub Copilot に、不十分なパスワード要件の脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    Why are these password requirements insufficient for security? What are proper password complexity requirements, and how should password strength be validated?
+    ```
+
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
+
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
+
+    ```text
+    How can I modify this method to enforce strong password requirements? What best practices should I follow for password strength validation?
+    ```
+
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
+
+1. **Models** フォルダーで、**Order.cs** ファイルを開き、**PaymentInfo** クラスを見つけます。
+
+1. コード エディターで、**PaymentInfo** クラス内の**CardNumber** プロパティと**CVV** プロパティを選択します。
+
+1. GitHub Copilot に、クレジット カードのデータ保存違反を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    Why is storing full credit card numbers and CVV codes a PCI DSS compliance violation? What are the proper ways to handle payment card data securely?
+    ```
+
+1. **SecurityValidator.cs** ファイルに戻り、**RunSecurityAudit** メソッドを見つけます。
+
+1. コード エディターで、**RunSecurityAudit** メソッド全体を選択します。
+
+1. GitHub Copilot に、情報漏えいの脆弱性を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    How does the security audit method create information disclosure vulnerabilities? What information should never be exposed in logs or error messages?
     ```
 
 1. 修復フェーズの間に参照できるよう、分析の結果を文書化します。
@@ -304,19 +515,67 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
 1. GitHub Copilot Chat をエージェント モードに切り替えます。
 
-    チャット ビューでモード セレクターを見つけて、**[Ask]** から **[Agent]** に変更します。 エージェント モードの GitHub Copilot は、ユーザーの指示に基づいてコードを直接変更できます。
+    エージェント モードの GitHub Copilot は、ユーザーの指示に基づいてコードを直接変更できます。 エージェント モードは、コードベース内の関連ファイルを確認して、適切なコンテキストを確立するために機能します。 エージェントが複雑なタスクを実行するために必要な情報を確実に得られるように、コンテキストにファイルとフォルダーを手動で追加できます。
 
-1. 最初に SQL インジェクションの脆弱性に対処します。
+1. 少し時間を取って、修復戦略を検討します。
 
-    `ProductService.cs` ファイルを開いて`SearchProducts` メソッドを見つけます。 次のプロンプトを使ってエージェントに指示します。
+    GitHub Copilot の Ask モードを使用した分析に基づいて、セキュリティの脆弱性に対処するためのアプローチを計画します。
+
+    GitHub の Issue は、最も重要なものから順に次のとおりです。
+
+    1. 🔐 製品検索の SQL インジェクションの脆弱性を修正する
+    1. 🔐 MD5 パスワード ハッシュを安全な代替ハッシュに置き換える
+    1. 🔐 デバッグ ログから機密データを削除する
+    1. 🔐 ハードコーディングされた管理者資格情報を削除する
+    1. 🔐 クレジット カードのデータ保存違反を修正する
+    1. 🔐 入力検証のセキュリティ バイパスを修正する
+    1. 🔐 予測可能なセッション トークンの生成を修正する
+    1. 🔐 電子メール検証のセキュリティを強化する
+    1. 🔐 パスワードのセキュリティ要件を強化する
+    1. 🔐 エラー メッセージの情報漏えいを削減する
+
+    これらの issue は、コードベース内の特定のファイルとメソッドに関連しています。 ファイルの関連付け別に整理すると、issue は次のようになります。
+
+    - **ProductService.cs**:issue #1
+    - **UserService.cs**:issues #2 および #3
+    - **PaymentService.cs**:issue #3
+    - **SecurityValidator.cs**:issue #4、#6、#7、#8、#9、#10
+    - **Models/Order.cs**:issue #5
+
+    修復戦略では、各問題に体系的に対処し、修正が正しくかつ一貫して実装されるようにする必要があります。
+
+1. コード エディターで開いているすべてのファイルを閉じて、クリーンなコンテキストで開始します。
+
+1. **ProductService.cs** ファイルをチャット コンテキストに追加します。
+
+    SQL インジェクションに関する issue は、ProductService.cs ファイル、特に SearchProducts メソッドに関連しています。
+
+1. まず、GitHub Copilot に、SQL インジェクションの脆弱性に対処するように依頼します。
+
+    GitHub Copilot の Ask モードを使用した分析により、このメソッドは、適切なサニタイズを行わないままユーザー入力を使用して SQL クエリを構築することが明らかになりました。
+
+    分析を使用すると、エージェントで脆弱性を修復するための明確な指示を作成できます。 たとえば、エージェントに次のタスクを割り当てることができます。
 
     ```text
     Fix the SQL injection vulnerability in the SearchProducts method. Remove the simulated SQL query logging that demonstrates the vulnerability, and implement proper input sanitization to safely handle search terms. Ensure the method still functions correctly for legitimate searches while preventing malicious input.
     ```
 
-1. エージェントの進行状況を監視し、提案された変更を検討します。
+1. エージェントの進行状況を監視します。
 
-    エージェントはコードを変更して脆弱なログを削除し、より安全な入力処理を実装します。 変更を確認し、それがセキュリティの問題に対処しながら機能を維持していることを確認します。
+    エージェントはコードを変更して脆弱なログを削除し、より安全な入力処理を実装します。
+
+1. 少し時間をかけて、提案された変更を確認し、[チャット] ビューで **[Keep]** を選択します。
+
+    コード エディターで GitHub Copilot の編集候補を常に確認します。 セキュリティ上の問題に対処しても機能が確実に維持されるようにします。
+
+    運用環境では、チームは次の issue に進む前に、次のチェックリストを完了する必要があります。
+
+    - コードに含まれていた脆弱性はなくなりました。
+    - アプリケーションは引き続き正しく機能します。
+    - セキュリティのベスト プラクティスが実装され、新しいセキュリティの問題は発生しません。
+    - 自動テスト (使用可能な場合) は正常に完了します。
+    - コードの更新は明確に文書化されています。
+    - 変更は、説明メッセージでコミットされ、issue をマージして閉じる前にピア レビューされます。
 
 1. 安全なパスワード ハッシュを実装します。
 
@@ -330,55 +589,71 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
     エージェントは、より強力なパスワード ハッシュを実装します。 アプリケーションを実行して変更をテストし、ユーザーの登録とログインがまだ正しく機能することを確認します。
 
-1. 支払い処理での機密データの露出に対処します。
+1. 機密データのログに対処します (Issue #3)。
 
-    `PaymentService.cs` ファイルを開き、エージェントに次のように指示します。
+    `PaymentService.cs` ファイルと`UserService.cs` ファイルに注目し、エージェントに次のように指示します。
 
     ```text
-    Fix sensitive data logging in the ProcessPayment method. Remove logging of full credit card numbers, CVV codes, and other sensitive payment information. Implement secure logging that masks sensitive data while maintaining useful operational information.
+    Fix sensitive data logging throughout the application. Remove logging of passwords, full credit card numbers, CVV codes, and other sensitive information. Implement secure logging that masks sensitive data while maintaining useful operational information.
     ```
 
-1. ハードコーディングされた管理者の資格情報を削除します。
+1. ハードコーディングされた管理者資格情報を削除します (Issue #4)。
 
     `SecurityValidator.cs` ファイルに注目して、次のプロンプトを使います。
 
     ```text
-    Remove hardcoded admin credentials and replace them with a secure configuration approach. Implement environment variable or configuration file-based credential management while maintaining the functionality for educational demonstration purposes.
+    Remove hardcoded admin credentials from the SecurityValidator class. Replace the hardcoded ADMIN_USERNAME and ADMIN_PASSWORD constants with a secure configuration approach using environment variables while maintaining the functionality for educational demonstration purposes.
     ```
 
-1. 適切な入力検証を実装します。
+1. クレジット カードのデータ保存違反を修正します (Issue #5)。
 
-    入力検証の脆弱性を修正するようエージェントに指示します。
+    `Models/Order.cs` ファイルに注目し、エージェントに次のように指示します。
 
     ```text
-    Strengthen the ValidateInput method to properly sanitize user input and prevent XSS attacks. Implement comprehensive input validation that rejects malicious content while allowing legitimate user input. Ensure the method returns false for truly dangerous input.
+    Fix PCI DSS compliance violations in the Order model. Remove or modify the CardNumber and CVV properties to avoid storing full credit card numbers and CVV codes. Implement secure payment data handling that stores only last 4 digits for display purposes.
     ```
 
-1. ログを通じた情報漏えいを減らします。
+1. 入力検証のバイパスを修正します (Issue #6)。
 
-    複数のファイルでのデバッグ ログの問題に対処します。
+    入力検証の脆弱性を修正するようにエージェントに指示します。
 
     ```text
-    Review all console logging throughout the application and remove or mask sensitive information. Implement secure logging practices that provide useful debugging information without exposing passwords, credit card data, or system internals.
+    Fix the ValidateInput method in SecurityValidator that currently always returns true despite detecting threats. Implement proper input validation that actually rejects dangerous content when SQL injection, XSS, or other malicious patterns are detected.
     ```
 
-1. 安全なセッション トークンの生成を実装します。
+1. セキュリティで保護されたセッション トークンの生成を実装します (Issue #7)。
 
     セッション トークンの脆弱性に焦点を当てます。
 
     ```text
-    Replace the predictable session token generation with a cryptographically secure random token generator. Ensure tokens are unpredictable and sufficiently long to prevent brute force attacks.
+    Replace the predictable session token generation in GenerateSessionToken method with a cryptographically secure random token generator. Remove the username and timestamp-based pattern and implement unpredictable tokens with sufficient entropy.
     ```
 
-1. ファイル アップロードの検証を強化します。
+1. 電子メール検証を強化します (Issue #8)。
 
-    ファイル アップロードのセキュリティの問題に対処します。
+    弱い電子メール検証に対処します。
 
     ```text
-    Implement comprehensive file upload validation that checks file types, sizes, and content. Reject dangerous file types and implement proper security controls to prevent malicious file uploads.
+    Fix the ValidateEmail method that only checks for '@' and '.' characters. Implement proper email format validation using regex or built-in validation methods. Remove email logging and add appropriate length restrictions.
     ```
 
-1. 大きな変更のたびにアプリケーションをテストします。
+1. パスワード要件を改善します (Issue #9)。
+
+    パスワード強度の検証に焦点を当てます。
+
+    ```text
+    Strengthen the ValidatePasswordStrength method that currently only requires 4 characters. Implement proper password complexity requirements including minimum 8 characters, uppercase, lowercase, numbers, and special characters. Remove password logging.
+    ```
+
+1. 情報漏えいを削減します (Issue #10)。
+
+    デバッグ ログとセキュリティ監査の問題に対処します。
+
+    ```text
+    Fix information disclosure vulnerabilities by removing or restricting the RunSecurityAudit method and reducing verbose error messages throughout the application. Remove sensitive system information from logs while maintaining useful debugging capabilities.
+    ```
+
+1. アプリケーションをテストします。
 
     エージェントが各脆弱性カテゴリの修正を実装した後、アプリケーションを実行して、機能が保たれていることを確認します。
 
@@ -419,41 +694,49 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
     出力を元のアプリケーション実行の記録と比較します。 ログの機密情報が大幅に減っているはずです。
 
-1. 製品検索機能を調べて、SQL インジェクションの修正をテストします。
+1. SQL インジェクションの修正をテストします (Issue #1)。
 
     `SearchProducts` メソッドが脆弱な SQL クエリをログしなくなったこと、および正当な検索語句に対して検索機能が正しく機能することを確認します。
 
-1. パスワードのセキュリティの改善を検証します。
+1. パスワード セキュリティの強化を確認します (Issue #2)。
 
     ユーザー登録とログイン プロセスでプレーンテキストのパスワードがログされなくなったことと、より強力なパスワード ハッシュが実装されていることを確認します。 アプリケーションによってユーザーの認証が引き続き正しく行われる必要があります。
 
-1. 支払い処理のセキュリティ向上を確認します。
+1. 機密データ ログの修正を確認します (Issue #3)。
 
-    支払い処理で、支払いを正常に処理する機能を維持しながら、クレジット カードの完全な番号または CVV コードがログされなくなったことを確認します。
+    トランザクションを正常に処理する機能を維持しながら、支払い処理とユーザー操作でパスワード、完全なクレジット カード番号、または CVV コードがログされないようにします。
 
-1. 管理者資格情報のセキュリティを検証します。
+1. ハードコーディングされた資格情報の削除を検証します (Issue #4)。
 
-    ハードコーディングされた管理者資格情報がログやセキュリティ監査に表示されなくなり、一方で管理機能には安全な手段で引き続きアクセスできることを検証します。
+    ハードコーディングされた管理者資格情報がログやセキュリティ監査に表示されなくなり、管理機能にはセキュリティで保護された構成を使用して引き続きアクセスできることを確認します。
 
-1. 入力検証の改善をテストします。
+1. クレジット カード保存のコンプライアンスをテストします (Issue #5)。
 
-    改善された入力検証で、通常のユーザー操作を損なうことなく、正当な入力と悪意の可能性がある入力の両方が適切に処理されることを確認します。
+    注文モデルで完全なクレジット カード番号または CVV コードが格納されなくなり、マスクされた支払い情報のみが表示目的で保持されることを確認します。
 
-1. 情報漏えいの修正を確認します。
+1. 入力検証の修正を確認します (Issue #6)。
 
-    コンソール出力をレビューし、機密性の高いシステム情報、構成の詳細、ユーザー データがデバッグ ログを通して公開されなくなったことを確認します。
+    改善された ValidateInput メソッドが、警告をログして true を返す代わりに、危険な入力を適切に拒否するようになったことを確認します。
 
-1. セッション トークンのセキュリティを確認します。
+1. セッション トークンのセキュリティを確認します (Issue #7)。
 
-    アプリケーションの実行中にセッション トークンが生成される場合は、以前のパターンに基づくアプローチに従うのではなく、ランダムで予測不可能に見えることを確認します。
+    アプリケーションの実行中にセッション トークンが生成された場合は、前のユーザー名タイムスタンプ パターンに従うのではなく、セッション トークンがランダムで予測不可能に見えるかどうかを確認します。
 
-1. ファイル アップロードのセキュリティの改善を検証します。
+1. 電子メール検証の改善をテストします (Issue #8)。
 
-    ファイル アップロードの検証の改善をテストして、危険なファイルの種類が正しく拒否される一方で、正当なファイルが受け入れられることを確認します。
+    電子メールの検証で、"@" and "" 文字を含む文字列を受け入れる代わりに、無効な電子メール形式が適切に拒否されることを確認します。
 
-1. セキュリティ監査の出力を元のバージョンと比べます。
+1. パスワード要件の機能強化を検証します (Issue #9)。
 
-    セキュリティ監査機能を実行し、結果を最初の観察と比べます。 監査では、教育的価値を維持しながら、セキュリティ態勢が改善されたことが示される必要があります。
+    パスワード検証で、4 文字の文字列を受け入れるのではなく、適切な複雑さの要件が適用されるようになったことをテストします。
+
+1. 情報漏えいの修正を確認します (Issue #10)。
+
+    セキュリティ監査方法が削除または制限されていること、および冗長なエラー メッセージで機密のシステム情報が公開されなくなったことを確認します。
+
+1. 全体的なセキュリティ体制を元のバージョンと比較します。
+
+    アプリケーションを実行し、コンソール出力と最初の観測値を比較します。 アプリケーションは、すべてのコア機能を維持しながら、大幅に強化されたセキュリティを示すはずです。
 
 1. 残っている問題や改善する領域を文書化します。
 
@@ -484,84 +767,29 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
     git add .
     ```
 
-1. GitHub の issue を参照するわかりやすいメッセージを使って変更をコミットします。
+1. すべての GitHub の issue を参照する包括的なメッセージを使用して、すべてのセキュリティ修正をコミットします。
 
-    セキュリティの修正を明確に説明し、issue 番号を参照するコミット メッセージを使います。
-
-    ```bash
-    git commit -m "Fix SQL injection vulnerability in ProductService SearchProducts method
-
-    - Remove vulnerable SQL query logging
-    - Implement proper input sanitization
-    - Maintain search functionality while preventing injection attacks
-
-    Fixes #1"
-    ```
-
-1. 主要なセキュリティ修正カテゴリごとに追加のコミットを行います。
-
-    パスワード ハッシュの改善をコミットします。
+    このトレーニング演習で特定されたすべてのセキュリティの脆弱性に対処する 1 つのコミットを作成します。
 
     ```bash
-    git commit -m "Replace MD5 with secure password hashing
+    git commit -m "Fix all ContosoShopEasy security vulnerabilities
 
-    - Implement bcrypt/PBKDF2 for password storage
-    - Add proper salt generation
-    - Maintain authentication compatibility
+    Security improvements implemented:
+    - Fix SQL injection in ProductService SearchProducts method
+    - Replace MD5 with secure password hashing (bcrypt/PBKDF2)
+    - Remove sensitive data from debug logging (passwords, card numbers, CVV)
+    - Remove hardcoded admin credentials, use environment variables
+    - Fix PCI DSS violations in Order model (remove full card storage)
+    - Fix input validation bypass to properly reject dangerous input
+    - Implement secure session token generation with crypto randomness
+    - Strengthen email validation with proper format checking
+    - Improve password requirements (8+ chars, complexity rules)
+    - Reduce information disclosure from security audit and debug logs
 
-    Fixes #2"
+    Fixes #1 #2 #3 #4 #5 #6 #7 #8 #9 #10"
     ```
 
-1. 残りのセキュリティ修正についてのコミットを続けます。
-
-    ```bash
-    git commit -m "Remove sensitive data from payment processing logs
-
-    - Mask credit card numbers in logging
-    - Remove CVV code exposure
-    - Maintain operational logging capabilities
-
-    Fixes #3"
-
-    git commit -m "Remove hardcoded admin credentials
-
-    - Implement secure credential management
-    - Use environment variables for sensitive config
-    - Maintain admin functionality for demo purposes
-
-    Fixes #4"
-
-    git commit -m "Strengthen input validation and prevent XSS
-
-    - Implement comprehensive input sanitization
-    - Reject malicious content properly
-    - Maintain user experience for legitimate input
-
-    Fixes #5"
-
-    git commit -m "Reduce information disclosure in debug logging
-
-    - Remove sensitive data from console output
-    - Implement secure logging practices
-    - Maintain useful debugging information
-
-    Fixes #6"
-
-    git commit -m "Implement secure session token generation
-
-    - Replace predictable tokens with cryptographically secure random generation
-    - Increase token entropy to prevent brute force attacks
-
-    Fixes #7"
-
-    git commit -m "Enhance file upload security validation
-
-    - Implement comprehensive file type checking
-    - Add file size and content validation
-    - Reject dangerous file types effectively
-
-    Fixes #8"
-    ```
+    > **注**:運用環境では、通常、各 issue は個別のテストとコード レビューを使用して個別のコミットで対処されます。 この単一コミットアプローチは、トレーニング演習で時間を節約するためにのみ使用されます。
 
 1. 変更を GitHub リポジトリにプッシュします。
 
@@ -577,3 +805,6 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
     コミット メッセージでセキュリティの改善が明確に説明されていて、将来の参照のための適切な監査証跡が提供されていることを確認します。
 
+## クリーンアップ
+
+演習が完了したので、少し時間を取って、GitHub アカウントまたは GitHub Copilot サブスクリプションに保持したくない変更が加えられていないか確認します。 たとえば、ResolveGitHubIssues リポジトリを削除することが必要になる可能性があります。 ラボ環境としてローカル PC を使用している場合は、この演習用に作成したリポジトリのローカル クローンをアーカイブするか、削除することができます。
