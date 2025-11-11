@@ -10,7 +10,7 @@ GitHub の issue は、プロジェクトのバグ、機能強化、タスクを
 
 この演習では、GitHub Copilot を使用して、eコマース アプリケーションのセキュリティの脆弱性に関連する GitHub の issue を分析して解決します。
 
-この演習の所要時間は約**40** 分です。
+この演習の所要時間は約 **40** 分です。
 
 > **重要**:この演習を完了するには、自分の GitHub アカウントと GitHub Copilot サブスクリプションを用意する必要があります。 GitHub アカウントをお持ちでない場合は、無料の個人用アカウントに<a href="https://github.com/" target="_blank">サインアップ</a>し、GitHub Copilot Free プランを使用して演習を完了できます。 ラボ環境内から GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business、または GitHub Copilot Enterprise サブスクリプションにアクセスできる場合は、既存の GitHub Copilot サブスクリプションを使用してこの演習を完了できます。
 
@@ -22,11 +22,11 @@ GitHub の issue は、プロジェクトのバグ、機能強化、タスクを
 
 - ローカル PC をラボ環境として構成する方法については、ブラウザーで次のリンクを開いてください。<a href="https://go.microsoft.com/fwlink/?linkid=2320147" target="_blank">ラボ環境のリソースを構成する</a>。
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 この演習に、ホストされたラボ環境をお使いの場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーに次の URL を貼り付けてください:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーに次の URL を貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 - パッケージのダウンロードと復元のソースとして公式の NuGet.org リポジトリを使用するように .NET SDK を確実に構成するには、次の手順を実行します。
 
@@ -110,7 +110,7 @@ GitHub Importer を使用すると、独自の GitHub アカウントに既存�
 
 1. リポジトリの [アクション] タブを開きます。
 
-1. 左側の **[すべてのワークフロー]** で、**[ContosoShopEasy トレーニングの issue の作成]** ワークフローを選択し、**[ワークフローの実行]** を選択します。
+1. ページの左側にある **[すべてのワークフロー]** で、**[ContosoShopEasy トレーニングの issue の作成]** ワークフローを選択し、**[ワークフローの実行]** を選択します。
 
 1. 表示されたワークフロー ダイアログで、「**作成**」と入力し、**[ワークフローの実行]** を選択します。
 
@@ -122,7 +122,7 @@ GitHub Importer を使用すると、独自の GitHub アカウントに既存�
 
     緑色の円で囲まれたチェックマークは、ワークフローが正常に実行されたことを示します (ワークフロー名の左側に表示されます)。
 
-    ワークフロー名の左側に、赤い円で囲まれた X が表示されている場合は、ワークフローが失敗したことを意味します。 ワークフローが正常に実行されない場合は、リポジトリのインポート時にアカウントを選択し、そのアカウントに読み取りと書き込みのアクセス許可があることを確認します。 GitHub の**Copilot とチャット**機能を使用して、issue の診断に役立てることができます。
+    ワークフロー名の左側に、赤い円で囲まれた X が表示されている場合は、ワークフローが失敗したことを意味します。 ワークフローが正常に実行されない場合は、リポジトリのインポート時にアカウントを選択し、そのアカウントに読み取りと書き込みのアクセス許可があることを確認します。 GitHub の **Copilot とチャット**機能を使用して、issue の診断に役立てることができます。
 
 ### GitHub で issue を確認する
 
@@ -134,11 +134,15 @@ GitHub の issue は、バグ、セキュリティの脆弱性、機能強化要
 
 1. リポジトリの **[Issues]** タブを選択し、少し時間を取って [Issues] ページを確認します。
 
-    10 件の issue が一覧表示されます。 issue はバグとして定義されており、優先度レベルが割り当てられていることに注意してください。
+    10 件の開いている issue が一覧表示されます。 次のことに注意してください。
+
+    - すべての issue はバグとしてラベル付けされています。
+    - すべての issue には優先度レベルがあります。
+    - どの issue も誰にも割り当てられていません。
 
 1. 重大な issue のみを表示するには、**[ラベル]** ドロップダウンを選択し、**[重大]** ラベルを選択します。
 
-    issue の一覧がフィルター処理されて重大な issue のみが表示されます。
+    issue の一覧が更新されて、重大な issue のみが表示されます。
 
     - **🔐 ハードコーディングされた管理者資格情報を削除する**  
 
@@ -146,7 +150,7 @@ GitHub の issue は、バグ、セキュリティの脆弱性、機能強化要
 
 1. 高優先度の issue のみを表示するには、**[ラベル]** ドロップダウンを選択し、**[重大]** の選択を解除してから、**[高優先度]** ラベルを選択します。
 
-    issue の一覧がフィルター処理されて高優先度の issue のみが表示されます。
+    issue の一覧が更新されて、高優先度の issue のみが表示されます。
 
     - **🔐 入力検証のセキュリティ バイパスを修正する**  
 
@@ -168,17 +172,21 @@ GitHub の issue は、バグ、セキュリティの脆弱性、機能強化要
 
 1. [issue] タブに戻り、フィルターをクリアします。
 
-1. すべての issue を選択し、**[割り当て]** ドロップダウンを使用して自分に割り当てます。
+1. 次の重大および高優先度の issue を選択し、**[割り当て]** ドロップダウンを使用して自分に割り当てます。
 
-    issue を自分に割り当てると、修復プロセスを進める際に進行状況を追跡するのに役立ちます。
+    - **🔐 クレジット カードのデータ保存違反を修正する**  
+
+    - **🔐 製品検索の SQL インジェクションの脆弱性を修正する**  
+
+    一般的には、優先度の高い issue から先に取り組むのが最善の方法です。 issue を自分に割り当てると、修復プロセスを進める際に進行状況を追跡するのに役立ちます。
 
 ### リポジトリをローカルにクローンし、コードベースを確認する
 
 ContosoShopEasy アプリケーションはエンタープライズ アプリケーションに典型的な階層構造のアーキテクチャに従っており、モデル、サービス、データ アクセス、セキュリティ コンポーネントが明確に分離されています。
 
-セキュリティの問題を解決する前に、少し時間を取って、既存のコードベースの基本的な構造、動作、機能を理解することが不可欠です。
+少し時間を取って既存のコードベースの基本的な構造、動作、機能を理解することは、セキュリティの問題を解決する際に最初に行うべき重要なステップです。
 
-このタスクでは、リポジトリのローカル クローンを作成し、Visual Studio Code でプロジェクト構造を調べ、アプリケーションのコンソール出力を確認して、セキュリティの脆弱性を見つけます。
+このタスクでは、リポジトリのローカル クローンを作成し、Visual Studio Code でプロジェクト構造を調べ、アプリケーションのコンソール出力を確認して、コードベース内のセキュリティの脆弱性を特定します。
 
 そのためには、以下の手順を実行してください。
 
@@ -206,13 +214,13 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
     ContosoShopEasy アプリケーションは、次のコンポーネントを含む階層構造のアーキテクチャに従いっています。
 
-    - **Models/**:**Category.cs**、**Order.cs**、**Product.cs**、**User.cs** のデータ モデルが含まれています。
+    - **Data/**: **OrderRepository.cs**、**ProductRepository.cs**、**UserRepository.cs** のデータ リポジトリが含まれています。
 
-    - **Services/**:**OrderService.cs**、**PaymentService.cs**、**ProductService.cs**、**UserService.cs** のビジネス ロジックが含まれています。
+    - **Models/**: **Category.cs**、**Order.cs**、**Product.cs**、**User.cs** のデータ モデルが含まれています。
 
-    - **Data/**:**OrderRepository.cs**、**ProductRepository.cs**、**UserRepository.cs** のデータ リポジトリが含まれています。
+    - **Security/**: **SecurityValidator.cs** のセキュリティ検証ロジックが含まれています
 
-    - **Security/**:**SecurityValidator.cs** のセキュリティ検証ロジックが含まれています
+    - **Services/**: **OrderService.cs**、**PaymentService.cs**、**ProductService.cs**、**UserService.cs** のビジネス ロジックが含まれています。
 
     - **Program.cs**依存関係インジェクションのセットアップが含まれるメイン アプリケーション エントリ ポイント
 
@@ -232,15 +240,19 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
 1. 時間を取ってコンソール出力を確認します。
 
-    アプリケーションにより、パスワード、クレジット カード番号、管理者資格情報、内部システムの詳細などの機密情報がログされることに注意してください。 この出力は、対処する必要があるセキュリティの問題の明確な証拠を提供します。
+    ContosoShopEasy アプリケーションでは、脆弱性を明らかにするために、意図的に過剰に作成されたログを教育用ツールとして使用しています。 過剰なログには、セキュリティ上の問題を作成し、かつそれを露呈させるという 2 つのねらいがあり、これは一部の運用システムで実際に見られる過剰なログの問題を模倣しています。 この実装は、開発者が次の 2 種類の脆弱性を区別するのに役立ちます。
 
-    > **注**:このアプリのコードのコメント、ロジック、ログは、セキュリティの脆弱性を顕在化するのに役立つように設計されています。 実装は不自然ですが、コメントと出力ログでは、実際のアプリケーションで一般的なセキュリティ上の問題が浮き彫りになります。
+    - ログによって作成される問題:ContosoShopEasy アプリケーション内の脆弱性の約 40% は、過剰なログが原因で発生します。 たとえば、パスワードの露出、クレジット カード番号の開示、セッション トークンの露出、構成情報の開示などがあります。
 
-1. コードベースのセキュリティの脆弱性を特定するレビュー プロセスを開始するには、**Models** フォルダーを展開し、**Order.cs** ファイルを開きます。
+    - ログとは関係なく存在する問題:ContosoShopEasy アプリケーション内の脆弱性の約 60% は、ログとは関係なく存在します。 たとえば、SQL インジェクション、脆弱なパスワード ハッシュ、ハードコーディングされた資格情報、予測可能なトークン、入力検証のバイパス、クレジット カードの保存、弱い電子メール検証などがあります。 ログによってこれらの脆弱性が生じるわけではありませんが、トレーニング環境内で脆弱性を明らかにするのに役立ちます。
+
+1. コードベース内のセキュリティの脆弱性の確認を開始するには、**Models** フォルダーを展開し、**Order.cs** ファイルを開きます。
+
+    ContosoShopEasy アプリケーションでは、コード コメント、ロジック、ログを使用してセキュリティの問題を明らかにしていることに注意してください。 実装は不自然ですが、実際のアプリケーションで一般的な脆弱性が浮き彫りになります。
 
 1. 下方向にスクロールして、**PaymentInfo** クラスを見つけます。
 
-    CardNumber プロパティと CVV プロパティに関するコメントに注目してください。 このコードは、"クレジット カードのデータ保存違反を修正する" issue に関連しています。
+    CardNumber プロパティと CVV プロパティに関するコメントに注目してください。 このコードは、自分に割り当てた、**クレジット カードのデータ保存違反を修正する** という issue に関連しています。
 
 1. **Security** フォルダーを展開し、**SecurityValidator.cs** ファイルを開きます。
 
@@ -256,7 +268,7 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
     - ValidatePasswordStrength メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"パスワードのセキュリティ要件を強化する" issue に関連しています。
 
-    - ValidateCreditCard メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"クレジット カードのデータ保存違反を修正する" issue に関連しています。
+    - ValidateCreditCard メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、自分に割り当てた "**クレジット カードのデータ保存違反を修正する** " issue に関連しています。
 
     - GenerateSessionToken メソッドを見つけて、セキュリティの脆弱性を説明するコメントを確認します。 このコードは、"予測可能なセッション トークンの生成を修正する" issue に関連しています。
 
@@ -280,37 +292,63 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
     このコードのセキュリティの脆弱性は、"デバッグ ログから機密データを削除する" issue に関連しています。
 
+    PaymentService クラスでは、OrderRepository を使用して支払関連の注文データを保持していることに注意してください。 OrderRepository クラスで機密データが適切に処理されない場合、データの露出の脆弱性が生じる危険性があります。
+
 1. **ProductService.cs** ファイルを開きます。
 
 1. 少し時間を取って、SearchProducts メソッドを確認します。
 
-    このコードのセキュリティの脆弱性は、"製品検索の SQL インジェクションの脆弱性を修正する" issue に関連しています。
+    このコードのセキュリティの脆弱性は、自分に割り当てた "**製品検索の SQL インジェクションの脆弱性を修正する**" issue に関連しています。
+
+    SearchProducts メソッドによって ProductRepository の Search メソッドが呼び出されることに注意してください。 Search メソッドがユーザー入力を適切に検証してサニタイズしない場合、SQL インジェクション攻撃に対して脆弱になる危険性があります。
+
+1. 自分に割り当てた問題に関連するコード ファイルの一覧を作成します。
+
+    自分に割り当てた問題は次のとおりです。
+
+    - **🔐 クレジット カードのデータ保存違反を修正する**
+    - **🔐 製品検索の SQL インジェクションの脆弱性を修正する**
+
+    "クレジット カードのデータ保存違反を修正する" issue に関連するコード ファイルは次のとおりです。
+
+    - Models/Orders.cs/PaymentInfo クラス
+    - Security/SecurityValidator.cs/ValidateCreditCard メソッド
+    - Data/OrderRepository.cs
+
+    "製品検索の SQL インジェクションの脆弱性を修正する" issue に関連するコード ファイルは次のとおりです。
+
+    - Services/ProductService.cs/SearchProducts メソッド
+    - Data/ProductRepository.cs/SearchProducts メソッド
 
 ### GitHub Copilot の質問モードを使って issue を分析する
 
 GitHub の issue には、多くの場合、修正プログラムを実装する前に慎重に分析する必要がある複雑な問題が含まれています。 根本原因、潜在的な影響、最適な修復戦略を理解することは、効果的な解決に不可欠です。
 
-次の Visual Studio Code 拡張機能を使用して、issue の分析と解決に役立てることができます。
+次の Visual Studio Code 用 GitHub 拡張機能を使用して、issue の分析と解決に役立てることができます。
 
 - **GitHub Copilot Chat**:GitHub Copilot の質問モードが備えるインテリジェントなコード分析機能は、セキュリティの脆弱性を明らかにし、潜在的な影響を理解し、修復戦略を提案するのに役立ちます。
 
 - **GitHub pull request**。GitHub pull request 拡張機能は、GitHub の issue を Visual Studio Code に直接統合し、開発環境を離れることなく issue を管理および操作できるようにします。
 
-各セキュリティの問題を体系的に分析すると、修正を実装する前に、問題の包括的な理解を深めることができます。 このアプローチにより、解決策では単なる症状ではなく根本原因に対処できます。
+セキュリティの問題を体系的に分析すると、修正を実装する前に、問題の包括的な理解を深めることができます。 このアプローチにより、解決策では単なる症状ではなく根本原因に対処できます。
 
-このタスクでは、GitHub Copilot の Ask モードを使用して、セキュリティの脆弱性を体系的に分析します。
+このタスクでは、GitHub Copilot の Ask モードを使用して、セキュリティの脆弱性を分析します。
 
 そのためには、以下の手順を実行してください。
 
-1. Visual Studio Code で、[拡張機能] ビューを開きます。
+1. GitHub Copilot Chat と GitHub Pull Requests 拡張機能が Visual Studio Code にインストールされていることを確認します。
 
-    [拡張機能] ビューを開くには、Visual Studio Code ウィンドウで、左側のアクティビティ バーにある **[拡張機能]** アイコンを選択します。
+    Visual Studio Code で [拡張機能] ビューを開き、インストールされている拡張機能を確認します。 いずれかの拡張機能が見つからない場合は、続行する前にインストールします。
 
-1. [拡張機能] ビューで、"GitHub pull request" を検索し、拡張機能をインストールします。
+    たとえば、次の手順を使用して GitHub Pull Requests 拡張機能をインストールできます。
 
-    この拡張機能を使用すると、Visual Studio Code で GitHub の pull request と issue を確認および管理できます。
+    1. Visual Studio Code で、[拡張機能] ビューを開きます。
 
-    インストールが完了したら、変更を有効にするために Visual Studio Code の再読み込みが必要になる場合があります。 **[GitHub]** アイコンを Visual Studio Code のアクティビティ バーに追加する必要があります。
+    1. [拡張機能] ビューで、「**GitHub Pull Requests**」を検索します。
+
+    1. 検索結果から **[GitHub Pull Requests]** を選択し、拡張機能をインストールします。
+
+        インストールが完了したら、変更を有効にするために Visual Studio Code の再読み込みが必要になる場合があります。 **[GitHub]** アイコンを Visual Studio Code のアクティビティ バーに追加する必要があります。
 
 1. [GitHub pull request] ビューを開くには、アクティビティ バーから **[GitHub]** アイコンを選択します。
 
@@ -320,9 +358,20 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
     **[issue]** セクションでは、Visual Studio Code 内で直接 GitHub リポジトリから issue を表示および管理できます。
 
+    > **重要**:このトレーニング演習では時間を節約するために、issue をバッチで解決します。 ただし、Microsoft と GitHub では、各 issue を別個のコミットで個別に解決することをお勧めします。 GitHub Pull Requests 拡張機能は、issue を別個のブランチで個別に処理するのを容易にするように設計されています。 issue を個別に解決すると、追跡可能性が向上し、コード レビューが容易になり、問題が発生した場合にロールバック オプションの安全性が高くなります。
+
 1. **[issue]** セクションに記載されている issue を確認します。
 
     先ほど GitHub Web インターフェイスで確認したのと同じ issue が表示されます。
+
+1. 
+
+
+
+
+
+
+
 
 1. GitHub Copilot のチャット ビューを開き、**[Ask]** モードが選択されていることを確認します。
 
@@ -334,7 +383,7 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
     チャット セッションは、GitHub Copilot との対話を整理するのに役立ちます。 各セッションは独自のコンテキストを維持するため、特定のタスクや issue に集中できます。 セッション内の会話履歴により継続性が維持されるため、GitHub Copilot は以前の対話に基づいてより正確で関連性の高い応答を提供することができます。 このチャット会話では、ContosoShopEasy アプリケーションのセキュリティの脆弱性の分析と解決に重点を置きます。 GitHub Copilot の Ask モードを使用して GitHub の issue の分析を完了したら、同じ会話を使用して、GitHub Copilot の Agent モードを使用してコード変更を実装できます。 GitHub Copilot は、Ask モードからの詳細な分析を使用して、Agent モードでコード生成を通知します。これにより、修正は、特定された脆弱性および推奨される修復戦略と確実に一致します。
 
-    必要に応じて、**[新しいチャット]** ボタン ([チャット] パネルの上部にある**+** アイコン) を選択すると、新しいチャット セッションを開始できます。
+    必要に応じて、**[新しいチャット]** ボタン ([チャット] パネルの上部にある **+** アイコン) を選択すると、新しいチャット セッションを開始できます。
 
 1. **ProductService.cs** ファイルを開き、**SearchProducts** メソッドを見つけます。
 
@@ -366,23 +415,27 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
 1. **UserService.cs** ファイルを開きます。
 
-1. GitHub Copilot に、UserService.cs ファイルを確認し、セキュリティの脆弱性を特定し、関連する GitHub の issue を一覧表示するように依頼します。
+1. **RegisterUser**、**LoginUser**、**ValidateUserInput** の各メソッドを選択し、GitHub Copilot に、機密データの露出の脆弱性を分析するように依頼します。
 
     たとえば、次のプロンプトを送信できます。
 
     ```text
-    Review the UserService.cs file and identify the security vulnerabilities that are present in the code. Create a list the corresponding GitHub issues. Indicate the methods associated with each issue.
+    What sensitive information is being logged in the user registration, login, and input validation methods? Why is logging passwords and user data a security risk?
     ```
 
-1. 少し時間を取って、GitHub Copilot の応答を確認してください。
+1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
 
-1. コード エディターで、**GetMd5Hash** メソッドを見つけます。
+    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
 
-1. コード エディターで、**GetMd5Hash** メソッド全体を選択します。
+    ```text
+    How can I modify these methods to prevent sensitive data logging? What secure logging practices should I implement to protect user information?
+    ```
 
-    **GetMd5Hash** メソッドは、"MD5 パスワード ハッシュを安全な代替策に置き換える" issue に関連付けられています。
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
-1. GitHub Copilot に、脆弱なパスワード ハッシュの脆弱性を分析するように依頼します。
+   パスワードや個人データなどの機密情報をログから削除するための推奨事項が表示されます。 GitHub Copilot により、構造化されたログの実装、ログの編集技法の使用、ログの安全な保存の確保が提案される場合もあります。
+
+1. **GetMd5Hash** メソッドを選択し、GitHub Copilot に、脆弱なパスワード ハッシュの脆弱性を分析するように依頼します。
 
     たとえば、次のプロンプトを送信できます。
 
@@ -401,30 +454,6 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
     GitHub Copilot では、"PBKDF2" と "bcrypt" の比較が提供されます。 また、これらのアルゴリズムを使用して安全なパスワード ハッシュを実装する方法を示すコード スニペットと、パスワード処理のための追加のセキュリティ対策の一覧も提供されます。
-
-1. **UserService.cs** ファイルで、**RegisterUser** メソッドと**LoginUser** メソッドを見つけます。
-
-1. コード エディターで、両方のメソッドを選択します。
-
-    **RegisterUser** および**LoginUser** メソッドは、"デバッグ ログから機密データを削除する" issue に関連付けられています。
-
-1. GitHub Copilot に、機密データのログの脆弱性を分析するように依頼します。
-
-    たとえば、次のプロンプトを送信できます。
-
-    ```text
-    What sensitive information is being logged in the user registration and login methods? Why is logging passwords and user data a security risk?
-    ```
-
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
-
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
-
-    ```text
-    How can I modify these methods to prevent sensitive data logging? What secure logging practices should I implement to protect user information?
-    ```
-
-1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
 1. **PaymentService.cs** ファイルを開き、**ProcessPayment** メソッドを見つけます。
 
@@ -550,7 +579,7 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
 1. **Models** フォルダーで、**Order.cs** ファイルを開き、**PaymentInfo** クラスを見つけます。
 
-1. コード エディターで、**PaymentInfo** クラス内の**CardNumber** プロパティと**CVV** プロパティを選択します。
+1. コード エディターで、**PaymentInfo** クラス内の **CardNumber** プロパティと **CVV** プロパティを選択します。
 
 1. GitHub Copilot に、クレジット カードのデータ保存違反を分析するように依頼します。
 
@@ -668,7 +697,7 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
 1. 機密データのログに対処します (Issue #3)。
 
-    `PaymentService.cs` ファイルと`UserService.cs` ファイルに注目し、エージェントに次のように指示します。
+    `PaymentService.cs` ファイルと `UserService.cs` ファイルに注目し、エージェントに次のように指示します。
 
     ```text
     Fix sensitive data logging throughout the application. Remove logging of passwords, full credit card numbers, CVV codes, and other sensitive information. Implement secure logging that masks sensitive data while maintaining useful operational information.
