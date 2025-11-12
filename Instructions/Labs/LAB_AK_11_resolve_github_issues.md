@@ -70,8 +70,6 @@ GitHub の issue は、プロジェクトのバグ、機能強化、タスクを
 1. リファクタリング後のコードをテストして検証します。
 1. 変更をコミットして issue を閉じます。
 
-> **注**:このトレーニング演習では時間を節約するために、issue のグループを解決してテストし、1 回のコミットで更新をプッシュします。 issue をバッチ処理することは、推奨されるベスト プラクティスではありません。 Microsoft と GitHub では、個別のコミットで各 issue を個別に解決することをお勧めします。 issue を個別に解決すると、追跡可能性が向上し、コード レビューが容易になり、問題が発生した場合にロールバック オプションの安全性が高くなります。
-
 ### ContosoShopEasy リポジトリをインポートする
 
 GitHub Importer を使用すると、独自の GitHub アカウントに既存のリポジトリのコピーを作成し、インポートされたコピーを完全に制御できます。 GitHub Importer は、issue、PR、ディスカッションを移行しませんが、GitHub Actions ワークフローをインポートします。 インポートするリポジトリには、コードベースに関連する issue を作成する GitHub Actions ワークフローが含まれています。
@@ -240,21 +238,21 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
 1. 時間を取ってコンソール出力を確認します。
 
-    ContosoShopEasy アプリケーションでは、脆弱性を明らかにするために、意図的に過剰に作成されたログを教育用ツールとして使用しています。 過剰なログには、セキュリティ上の問題を作成し、かつそれを露呈させるという 2 つのねらいがあり、これは一部の運用システムで実際に見られる過剰なログの問題を模倣しています。 この実装は、開発者が次の 2 種類の脆弱性を区別するのに役立ちます。
+    ContosoShopEasy アプリケーションでは、意図的に過剰に作成されたログ記録を教育ツールとして使用します。 ログはコードベース内のセキュリティの問題を明らかにするだけでなく、一部には、実際に問題を引き起こすものがあります。 セキュリティの問題を引き起こすログを含めることにより、一部の運用システムで実際に見られるオーバーログの問題を例示します。 ContosoShopEasy アプリケーションで作成されるログは、開発者が次の 2 種類の問題を区別するのに役立ちます。
 
-    - ログによって作成される問題:ContosoShopEasy アプリケーション内の脆弱性の約 40% は、過剰なログが原因で発生します。 たとえば、パスワードの露出、クレジット カード番号の開示、セッション トークンの露出、構成情報の開示などがあります。
+    - ログによって引き起こされた問題:ContosoShopEasy アプリケーション内の脆弱性の約 40% は、過剰なログが原因で発生します。 たとえば、パスワードの露出、クレジット カード番号の開示、セッション トークンの露出、構成情報の開示などがあります。
 
-    - ログとは関係なく存在する問題:ContosoShopEasy アプリケーション内の脆弱性の約 60% は、ログとは関係なく存在します。 たとえば、SQL インジェクション、脆弱なパスワード ハッシュ、ハードコーディングされた資格情報、予測可能なトークン、入力検証のバイパス、クレジット カードの保存、弱い電子メール検証などがあります。 ログによってこれらの脆弱性が生じるわけではありませんが、トレーニング環境内で脆弱性を明らかにするのに役立ちます。
+    - ログとは関係なく存在する問題:ContosoShopEasy アプリケーション内の脆弱性の約 60% は、ログとは関係なく存在します。 たとえば、SQL インジェクション、脆弱なパスワード ハッシュ、ハードコーディングされた資格情報、予測可能なトークン、入力検証のバイパス、クレジット カードの保存、弱い電子メール検証などがあります。 これらの脆弱性はログによって生じるものではありませんが、ログはトレーニング環境内の問題を明らかにするのに役立ちます。
 
 1. コードベース内のセキュリティの脆弱性の確認を開始するには、**Models** フォルダーを展開し、**Order.cs** ファイルを開きます。
 
-    ContosoShopEasy アプリケーションでは、コード コメント、ロジック、ログを使用してセキュリティの問題を明らかにしていることに注意してください。 実装は不自然ですが、実際のアプリケーションで一般的な脆弱性が浮き彫りになります。
-
 1. 下方向にスクロールして、**PaymentInfo** クラスを見つけます。
 
-    CardNumber プロパティと CVV プロパティに関するコメントに注目してください。 このコードは、自分に割り当てた、**クレジット カードのデータ保存違反を修正する** という issue に関連しています。
+    CardNumber プロパティと CVV プロパティに関するコメントに注目してください。 このコードは、自分に割り当てた "**クレジット カードのデータ保存違反を修正する** " issue に関連しています。
 
 1. **Security** フォルダーを展開し、**SecurityValidator.cs** ファイルを開きます。
+
+    ContosoShopEasy アプリケーションでは、コード コメント、ロジック、ログを使用してセキュリティの問題を明らかにしていることに注意してください。 実装は作為的なものですが、このアプローチは、実際のアプリケーションで一般的な脆弱性を浮き彫りにするのに役立ちます。
 
     > **注**:SecurityValidator.cs クラスは、ContosoShopEasy アプリケーションのセキュリティ関連のロジックを一元化するように設計されており、セキュリティの issue の特定、管理、解決を容易にします。 実際のアプリケーションでは、SecurityValidator のようなクラスを使用して、セキュリティのベスト プラクティスと入力検証を強制することができます。 ただし、ContosoShopEasy の特定の実装は、意図的に安全ではなく、脆弱性が露呈するように作成されています。
 
@@ -288,11 +286,13 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
 1. **PaymentService.cs** ファイルを開きます。
 
-1. 少し時間を取って、セキュリティの脆弱性を説明するコメントを確認します。
+1. 少し時間を取って、支払いと検証の方法のコメントを確認します。
 
-    このコードのセキュリティの脆弱性は、"デバッグ ログから機密データを削除する" issue に関連しています。
+    このコードのセキュリティの脆弱性は、自分に割り当てた "**クレジット カードのデータ保存違反**" issue に関連しています。
 
-    PaymentService クラスでは、OrderRepository を使用して支払関連の注文データを保持していることに注意してください。 OrderRepository クラスで機密データが適切に処理されない場合、データの露出の脆弱性が生じる危険性があります。
+    PaymentService クラスは、他の issue にも関連しています。 たとえば、"デバッグ ログから機密データを削除する" と "エラー メッセージの情報漏えいを削減する (コンソール出力)" の issue です。
+
+    PaymentService クラスでは、OrderRepository を使用して支払関連の注文データを保持していることに注意してください。 OrderRepository クラスで機密データが適切に処理されない場合、OrderRepository クラスでデータの露出の脆弱性が生じる危険性があります。
 
 1. **ProductService.cs** ファイルを開きます。
 
@@ -300,7 +300,7 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
     このコードのセキュリティの脆弱性は、自分に割り当てた "**製品検索の SQL インジェクションの脆弱性を修正する**" issue に関連しています。
 
-    SearchProducts メソッドによって ProductRepository の Search メソッドが呼び出されることに注意してください。 Search メソッドがユーザー入力を適切に検証してサニタイズしない場合、SQL インジェクション攻撃に対して脆弱になる危険性があります。
+    ProductService の SearchProducts メソッドによって ProductRepository の SearchProducts メソッドが呼び出されることに注意してください。 リポジトリ メソッドを分析して、これにもセキュリティの強化が必要であるかどうかを判断することが必要な場合があります。
 
 1. 自分に割り当てた問題に関連するコード ファイルの一覧を作成します。
 
@@ -324,7 +324,7 @@ ContosoShopEasy アプリケーションはエンタープライズ アプリケ
 
 GitHub の issue には、多くの場合、修正プログラムを実装する前に慎重に分析する必要がある複雑な問題が含まれています。 根本原因、潜在的な影響、最適な修復戦略を理解することは、効果的な解決に不可欠です。
 
-次の Visual Studio Code 用 GitHub 拡張機能を使用して、issue の分析と解決に役立てることができます。
+Visual Studio Code 用の次の GitHub 拡張機能は、GitHub の issue を分析するのに役立ちます。
 
 - **GitHub Copilot Chat**:GitHub Copilot の質問モードが備えるインテリジェントなコード分析機能は、セキュリティの脆弱性を明らかにし、潜在的な影響を理解し、修復戦略を提案するのに役立ちます。
 
@@ -332,7 +332,7 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
 セキュリティの問題を体系的に分析すると、修正を実装する前に、問題の包括的な理解を深めることができます。 このアプローチにより、解決策では単なる症状ではなく根本原因に対処できます。
 
-このタスクでは、GitHub Copilot の Ask モードを使用して、セキュリティの脆弱性を分析します。
+このタスクでは、GitHub Copilot の Ask モードを使用して、自分に割り当てた GitHub の issue を分析します。
 
 そのためには、以下の手順を実行してください。
 
@@ -354,24 +354,19 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
     ダイアログが表示されたら、お使いの GitHub アカウントにサインインして、Visual Studio Code を GitHub リポジトリに接続します。
 
-1. [GitHub] ビューの **[pull request]** と **[issue]** セクションに注目します。
+1. GitHub ビューには、**[Pull Requests]** と **[Issues]** の 2 つのセクションが含まれていることに注意してください。
 
-    **[issue]** セクションでは、Visual Studio Code 内で直接 GitHub リポジトリから issue を表示および管理できます。
+    **[issue]** セクションでは、Visual Studio Code 内で直接 GitHub リポジトリから issue を表示および管理できます。 **[Pull Requests]** セクションでは、pull request を管理できます。
 
-    > **重要**:このトレーニング演習では時間を節約するために、issue をバッチで解決します。 ただし、Microsoft と GitHub では、各 issue を別個のコミットで個別に解決することをお勧めします。 GitHub Pull Requests 拡張機能は、issue を別個のブランチで個別に処理するのを容易にするように設計されています。 issue を個別に解決すると、追跡可能性が向上し、コード レビューが容易になり、問題が発生した場合にロールバック オプションの安全性が高くなります。
+1. **[Pull Requests]** セクションを折りたたみます。
 
-1. **[issue]** セクションに記載されている issue を確認します。
+1. 少し時間を取って、**[Issues]** セクションを確認します。
 
-    先ほど GitHub Web インターフェイスで確認したのと同じ issue が表示されます。
+    自分に割り当てた問題が [My Issues] セクションに一覧表示されていることに注意してください (マイルストーンは定義されていません)。 **[Recent Issues]** セクションを展開すると、リポジトリに追加されたすべての issue が表示されます。
 
-1. 
+1. [My Issues] セクションで、**[製品検索の SQL インジェクションの脆弱性を修正する]** を選択します。
 
-
-
-
-
-
-
+    GitHub Pull Requests 拡張機能によって、新しいエディター タブに issue の詳細が表示されます。このタブでは、issue の説明、コメント、関連情報を確認できます。issue の詳細を使用すると、チャット ビューで GitHub Copilot に送信するプロンプトを作成するのに役立ちます。
 
 1. GitHub Copilot のチャット ビューを開き、**[Ask]** モードが選択されていることを確認します。
 
@@ -381,9 +376,15 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
 1. クリーンなチャット セッションから開始していることを確認します。
 
-    チャット セッションは、GitHub Copilot との対話を整理するのに役立ちます。 各セッションは独自のコンテキストを維持するため、特定のタスクや issue に集中できます。 セッション内の会話履歴により継続性が維持されるため、GitHub Copilot は以前の対話に基づいてより正確で関連性の高い応答を提供することができます。 このチャット会話では、ContosoShopEasy アプリケーションのセキュリティの脆弱性の分析と解決に重点を置きます。 GitHub Copilot の Ask モードを使用して GitHub の issue の分析を完了したら、同じ会話を使用して、GitHub Copilot の Agent モードを使用してコード変更を実装できます。 GitHub Copilot は、Ask モードからの詳細な分析を使用して、Agent モードでコード生成を通知します。これにより、修正は、特定された脆弱性および推奨される修復戦略と確実に一致します。
+    チャット セッションは、GitHub Copilot との対話を整理するのに役立ちます。 各セッションは独自のコンテキストを維持するため、特定のタスクや issue に集中できます。 セッション内の会話履歴により継続性が維持されるため、GitHub Copilot は以前の対話に基づいてより正確で関連性の高い応答を提供することができます。 このチャット会話では、自分に割り当てた ContosoShopEasy アプリケーション内のセキュリティの脆弱性を分析して解決することに重点を置きます。 GitHub Copilot の Ask モードを使用して GitHub の issue の分析を完了したら、同じ会話を使用して、GitHub Copilot の Agent モードを使用してコード変更を実装できます。 GitHub Copilot は、Ask モードからの詳細な分析を使用して、Agent モードでコード生成を通知します。これにより、修正は、特定された脆弱性および推奨される修復戦略と確実に一致します。
 
     必要に応じて、**[新しいチャット]** ボタン ([チャット] パネルの上部にある **+** アイコン) を選択すると、新しいチャット セッションを開始できます。
+
+#### SQL インジェクションの脆弱性を分析する
+
+SQL インジェクションの脆弱性は ProductService.cs ファイルに存在し、ProductRepository.cs ファイルにも存在する可能性があります。 脆弱性の完全な範囲を把握するために、両方のファイルを分析します。
+
+SQL インジェクションの脆弱性を分析するには、次の手順に従います。
 
 1. **ProductService.cs** ファイルを開き、**SearchProducts** メソッドを見つけます。
 
@@ -391,225 +392,177 @@ GitHub の issue には、多くの場合、修正プログラムを実装する
 
     エディターでコードを選択すると、チャット コンテキストがフォーカスされます。 GitHub Copilot では、選択したコードを使用して、関連する分析と推奨事項が提供されます。
 
-    **SearchProducts** メソッドは、"製品検索での SQL インジェクションの脆弱性の修正" の問題に関連付けられています。
-
 1. GitHub Copilot に、SQL インジェクションの脆弱性のコードを分析するように依頼します。
 
     たとえば、次のプロンプトを送信できます。
 
     ```text
-    Analyze the SearchProducts method for security vulnerabilities. What makes this code susceptible to SQL injection attacks, and what are the potential consequences if an attacker exploits this vulnerability?
+    Analyze the SearchProducts method for SQL injection vulnerabilities. Consider the following issue description: "The product search functionality is vulnerable to SQL injection attacks. User input is directly concatenated into SQL queries without proper parameterization or sanitization." Explain the impact of directly concatenating user input into SQL queries without proper parameterization or sanitization. What are the potential consequences if an attacker exploits this vulnerability?
     ```
 
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
+1. GitHub Copilot の分析を確認します。
+
+    GitHub Copilot によって、このメソッドは、適切なサニタイズを行わないままユーザー入力を使用して SQL クエリを構築することが明らかになりました。 シミュレートされた SQL クエリは、ユーザー入力がどのようにしてクエリ文字列に直接連結されるかを示しており、これにより、攻撃者がデータベースに対するクエリを操作できる危険性があります。
+
+1. 特定の修復ガイダンスを要求します。
 
     たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
 
     ```text
-    How can I modify this method to prevent SQL injection attacks? What secure coding practices should I implement to safely handle user input in database queries?
+    How can I modify this method to prevent SQL injection attacks? What secure coding practices should I implement to safely handle user input in database queries? Where should user input be validated and sanitized? What techniques can I use to construct SQL queries safely?
     ```
 
 1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
 
     SQL インジェクション リスクの管理に役立つパラメーター化クエリまたは ORM メソッドを使用するための推奨事項が表示されます。 入力の検証とサニタイズの手法に関する提案も表示される場合があります。 多くの場合、GitHub Copilot により、提案を実装する方法を示すコード スニペットが提供されます。
 
-1. **UserService.cs** ファイルを開きます。
+1. **Data** フォルダー内の **ProductRepository.cs** ファイルを開き、**SearchProducts** メソッドを見つけます。
 
-1. **RegisterUser**、**LoginUser**、**ValidateUserInput** の各メソッドを選択し、GitHub Copilot に、機密データの露出の脆弱性を分析するように依頼します。
+    コード レビュー中に、ProductRepository 内の SearchProducts メソッドが ProductService の SearchProducts メソッドによって呼び出されることに気付きました。 リポジトリ メソッドを分析すると、これにもセキュリティの強化が必要であるかどうかを判断できます。
 
-    たとえば、次のプロンプトを送信できます。
-
-    ```text
-    What sensitive information is being logged in the user registration, login, and input validation methods? Why is logging passwords and user data a security risk?
-    ```
-
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
-
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
-
-    ```text
-    How can I modify these methods to prevent sensitive data logging? What secure logging practices should I implement to protect user information?
-    ```
-
-1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
-
-   パスワードや個人データなどの機密情報をログから削除するための推奨事項が表示されます。 GitHub Copilot により、構造化されたログの実装、ログの編集技法の使用、ログの安全な保存の確保が提案される場合もあります。
-
-1. **GetMd5Hash** メソッドを選択し、GitHub Copilot に、脆弱なパスワード ハッシュの脆弱性を分析するように依頼します。
+1. コード エディターで、**SearchProducts** メソッド全体を選択し、GitHub Copilot に、SQL インジェクションの脆弱性についてコードを分析するように依頼します。
 
     たとえば、次のプロンプトを送信できます。
 
     ```text
-    Why is MD5 hashing unsuitable for password storage? What are the security risks of using MD5 for passwords, and what stronger alternatives should I use instead?
+    Analyze the SearchProducts method in ProductRepository. Does this method properly handle the search term to prevent SQL injection, or are there vulnerabilities here as well? How does this method relate to the vulnerability in ProductService?
     ```
 
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
+1. GitHub Copilot によるリポジトリ メソッドの分析を確認します。
 
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
+    GitHub Copilot によって、リポジトリメソッドでは安全な文字列操作 (ToLower と Contains) が使用されているが、主な脆弱性は、シミュレートされた SQL クエリがユーザー入力を使用して構築される ProductService レイヤーにあることがわかりました。 リポジトリの実装自体は比較的安全ですが、サービス レイヤーでは、SQL クエリの不適切な構築によって脆弱性が露呈します。
 
-    ```text
-    Show me how to implement secure password hashing using bcrypt or PBKDF2. What additional security measures should I implement for password handling?
-    ```
+1. ProductRepository.cs ファイルを閉じます。
 
-1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
-
-    GitHub Copilot では、"PBKDF2" と "bcrypt" の比較が提供されます。 また、これらのアルゴリズムを使用して安全なパスワード ハッシュを実装する方法を示すコード スニペットと、パスワード処理のための追加のセキュリティ対策の一覧も提供されます。
-
-1. **PaymentService.cs** ファイルを開き、**ProcessPayment** メソッドを見つけます。
-
-1. コード エディターで、**ProcessPayment** メソッド全体を選択します。
-
-    **ProcessPayment** メソッドは、"デバッグ ログから機密データを削除する" issue に関連付けられています。
-
-1. GitHub Copilot に、機密の支払いデータのログを分析するように依頼します。
+1. GitHub Copilot に、SQL インジェクションの脆弱性に関して入力の検証とサニタイズの手法を含む包括的な修復戦略を提案するように依頼します。
 
     たとえば、次のプロンプトを送信できます。
 
     ```text
-    What sensitive payment information is being logged in this method? Why is logging credit card numbers and CVV codes a security risk?
+    #codebase I need to resolve SQL injection vulnerabilities associated with the SearchProducts method in the ProductService.cs file. Notice that user input is directly concatenated into SQL queries without proper parameterization or sanitization. The updated codebase should use parameterized queries or prepared statements, implement proper input validation and sanitization, remove debug logging of SQL queries, and add input length restrictions. My acceptance criteria includes: User input is properly parameterized; No raw SQL construction with user input; Input validation prevents malicious characters; Debug logging removed or sanitized. Review the codebase and identify the code files that must be updated to address the SQL injection vulnerability. Based on your code review and the current Chat conversation, suggest a phased approach to required file updates.
     ```
 
-1. **SecurityValidator.cs** ファイルを開き、ファイルの先頭付近にある管理者資格情報定数を見つけます。
+1. 修復フェーズの間に参照できるよう、分析の結果を文書化します。
 
-1. コード エディターで、ハードコーディングされた管理者資格情報定数を選択します。
+    両方の脆弱性カテゴリに関する GitHub Copilot の推奨事項をメモします。 このドキュメントは、次のタスクでセキュリティの修正を実装する際のガイドになります。
 
-1. GitHub Copilot に、ハードコーディングされた資格情報の脆弱性を分析するように依頼します。
+#### クレジット カードのデータ保存違反を分析する
 
-    たとえば、次のプロンプトを送信できます。
+クレジット カードのデータ保存の脆弱性は複数のファイル (Order.cs モデル、PaymentService.cs サービス、SecurityValidator.cs 検証ツール、OrderRepository.cs データ レイヤー) に存在します。 これらのファイルを分析して、脆弱性の完全な範囲を把握します。
 
-    ```text
-    What security risks are created by hardcoding admin credentials in source code? How should application credentials be managed securely in production environments?
-    ```
-
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
-
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
-
-    ```text
-    What are best practices for managing application credentials securely? How can I implement secure credential management in this application?
-    ```
-
-1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
-
-1. **SecurityValidator.cs** ファイルで、**ValidateInput** メソッドを見つけます。
-
-1. コード エディターで、**ValidateInput** メソッド全体を選択します。
-
-1. GitHub Copilot に、入力検証バイパスの脆弱性を分析するように依頼します。
-
-    たとえば、次のプロンプトを送信できます。
-
-    ```text
-    What makes this input validation method ineffective? Why does it detect dangerous input but still return true, and how should proper input validation work?
-    ```
-
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
-
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
-
-    ```text
-    How can I modify this method to implement effective input validation? What secure coding practices should I follow to prevent input validation bypass vulnerabilities?
-    ```
-
-1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
-
-1. **SecurityValidator.cs** ファイルで、**GenerateSessionToken** メソッドを見つけます。
-
-1. コード エディターで、**GenerateSessionToken** メソッド全体を選択します。
-
-1. GitHub Copilot に、予測可能なセッション トークンの生成の脆弱性を分析するように依頼します。
-
-    たとえば、次のプロンプトを送信できます。
-
-    ```text
-    Why are predictable session tokens based on username and timestamp a security risk? How should secure, unpredictable session tokens be generated?
-    ```
-
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
-
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
-
-    ```text
-    How can I modify this method to generate secure, unpredictable session tokens? What cryptographic techniques should I use to enhance session token security?
-    ```
-
-1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
-
-1. **SecurityValidator.cs** ファイルで、**ValidateEmail** メソッドを見つけます。
-
-1. コード エディターで、**ValidateEmail** メソッド全体を選択します。
-
-1. GitHub Copilot に、弱い電子メール検証の脆弱性を分析するように依頼します。
-
-    たとえば、次のプロンプトを送信できます。
-
-    ```text
-    What makes this email validation insufficient? What are the security risks of weak email validation, and how should proper email validation be implemented?
-    ```
-
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
-
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
-
-    ```text
-    How can I modify this method to implement robust email validation? What techniques should I use to ensure email addresses are properly validated?
-    ```
-
-1. **SecurityValidator.cs** ファイルで、**ValidatePasswordStrength** メソッドを見つけます。
-
-1. コード エディターで、**ValidatePasswordStrength** メソッド全体を選択します。
-
-1. GitHub Copilot に、不十分なパスワード要件の脆弱性を分析するように依頼します。
-
-    たとえば、次のプロンプトを送信できます。
-
-    ```text
-    Why are these password requirements insufficient for security? What are proper password complexity requirements, and how should password strength be validated?
-    ```
-
-1. GitHub Copilot の分析を確認し、特定の修復ガイダンスを依頼します。
-
-    たとえば、最初の分析を確認した後、次のプロンプトを送信できます。
-
-    ```text
-    How can I modify this method to enforce strong password requirements? What best practices should I follow for password strength validation?
-    ```
-
-1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
+クレジット カードのデータ保存違反を分析するには、次の手順に従います。
 
 1. **Models** フォルダーで、**Order.cs** ファイルを開き、**PaymentInfo** クラスを見つけます。
 
 1. コード エディターで、**PaymentInfo** クラス内の **CardNumber** プロパティと **CVV** プロパティを選択します。
+
+    これらのプロパティがセキュリティの脆弱性であることを示すコメントに注意してください。 完全なカード番号と CVV コードを保存すると、PCI DSS コンプライアンス要件に違反します。
 
 1. GitHub Copilot に、クレジット カードのデータ保存違反を分析するように依頼します。
 
     たとえば、次のプロンプトを送信できます。
 
     ```text
-    Why is storing full credit card numbers and CVV codes a PCI DSS compliance violation? What are the proper ways to handle payment card data securely?
+    Why is storing full credit card numbers and CVV codes in the PaymentInfo class a PCI DSS compliance violation? What are the proper ways to handle payment card data securely?
     ```
 
-1. **SecurityValidator.cs** ファイルに戻り、**RunSecurityAudit** メソッドを見つけます。
+1. GitHub Copilot の分析を確認します。
 
-1. コード エディターで、**RunSecurityAudit** メソッド全体を選択します。
+    GitHub Copilot によって、PCI DSS 要件では、承認後に CVV コードなどの機密の認証データを保存することは禁止されていることが説明されます。 また、完全なカード番号はトークン化またはマスキングする必要があることも説明されます。
 
-1. GitHub Copilot に、情報漏えいの脆弱性を分析するように依頼します。
+1. 特定の修復ガイダンスを要求します。
 
     たとえば、次のプロンプトを送信できます。
 
     ```text
-    How does the security audit method create information disclosure vulnerabilities? What information should never be exposed in logs or error messages?
+    How should I modify the PaymentInfo class to comply with PCI DSS requirements? What properties should I add or change to store payment information securely?
+    ```
+
+1. 少し時間を取って、GitHub Copilot の修復提案を確認します。
+
+    CVV プロパティを完全に削除し、CardNumber をマスキングしたバージョンまたはトークンに置き換え、最後の 4 桁のみを保存し、表示目的でカードの種類のプロパティを追加するための推奨事項が表示されます。
+
+1. **PaymentService.cs** ファイルを開き、**ProcessPayment** メソッドを見つけます。
+
+1. コード エディターで、**ProcessPayment** メソッド全体を選択します。
+
+    このメソッドは PaymentInfo オブジェクトを作成し、完全なカード番号と CVV を保存することに注意してください。 このメソッドは、機密の支払い情報もログします。
+
+1. GitHub Copilot に、クレジット カードのデータ保存の問題について ProcessPayment メソッドを分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    What security vulnerabilities exist in the ProcessPayment method related to credit card data storage and logging? How does this method contribute to the PCI DSS violations?
+    ```
+
+1. GitHub Copilot の分析を確認します。
+
+    GitHub Copilot によって、完全なカード番号と CVV コードのログ、PaymentInfo オブジェクトへのこれらの値の保存、処理フロー全体での機密データの露出という複数の問題が特定されます。
+
+1. ProcessPayment メソッドに関する特定の修復ガイダンスを要求します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    How should I modify the ProcessPayment method to handle credit card data securely? What changes are needed to prevent storing and logging sensitive card information?
+    ```
+
+1. **SecurityValidator.cs** ファイルを開き、**ValidateCreditCard** メソッドを見つけます。
+
+1. コード エディターで、**ValidateCreditCard** メソッド全体を選択します。
+
+    このメソッドは完全なクレジット カード番号をログします。これは、セキュリティの脆弱性です。
+
+1. GitHub Copilot に、ValidateCreditCard メソッドを分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    What security issues exist in the ValidateCreditCard method? How should credit card validation be performed without logging sensitive data?
+    ```
+
+1. GitHub Copilot による分析と修復の提案を確認します。
+
+    GitHub Copilot によって、セキュリティの問題の一覧と、安全なコーディング プラクティスに関するいくつかの推奨事項が生成されます。 これらの推奨事項としては、ログ ステートメントでのクレジット カード番号の削除またはマスキング、アルゴリズムによるカード番号の検証、カード番号の長さと形式の検証の改善などがあります。
+
+1. **Data** フォルダー内の **OrderRepository.cs** ファイルを開きます。
+
+1. ファイルを調べて、PaymentInfo オブジェクトが処理されるかどうかを確認します。
+
+    OrderRepository クラスには、PaymentInfo などの Order オブジェクトが保存されることに注意してください。 PaymentInfo クラスに完全なカード番号と CVV コードが保存されると、この機密データがリポジトリで保持されます。
+
+1. GitHub Copilot に、クレジット カードのデータ保存に対する OrderRepository の影響を分析するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    How does the OrderRepository contribute to credit card data storage violations? What happens when Order objects containing PaymentInfo with full card numbers and CVV codes are stored?
+    ```
+
+1. GitHub Copilot の分析を確認します。
+
+    GitHub Copilot によって、Order オブジェクトおよび PaymentInfo オブジェクト内のあらゆるデータがリポジトリで保持されることが説明されます。 PaymentInfo モデルが安全なデータ (トークン、最後の 4 桁) のみを保存するように固定されている場合、リポジトリには安全なデータが自動的に保存されます。
+
+1. OrderRepository.cs ファイルを閉じます。
+
+1. GitHub Copilot に、"クレジット カード データ ストレージ違反を修正する" issue について、入力の検証とサニタイズの手法を含む包括的な修復戦略を提案するように依頼します。
+
+    たとえば、次のプロンプトを送信できます。
+
+    ```text
+    #codebase I need to resolve credit card data storage violations associated with the PaymentInfo model in the OrderRepository.cs file. Notice that the model currently stores full card numbers and CVV codes. The updated codebase should never store CVV codes (remove CVV storage completely), tokenize card numbers and store tokens instead of actual card numbers, mask the display of credit card numbers to show only last 4 digits, and implement proper encryption if card data must be stored temporarily. My acceptance criteria includes: CVV storage completely removed; Full card numbers replaced with tokens; Only the last 4 digits of a credit card are stored for display; Card type detection implemented. Review the codebase and identify the code files that must be updated to address the credit card data storage violations. Based on your code review and the current Chat conversation, suggest a phased approach to required file updates.
     ```
 
 1. 修復フェーズの間に参照できるよう、分析の結果を文書化します。
 
-    各脆弱性カテゴリに関する GitHub Copilot の推奨事項を記録します。 このドキュメントは、次のタスクでセキュリティの修正を実装する際のガイドになります。
+    両方の脆弱性カテゴリに関する GitHub Copilot の推奨事項をメモします。 このドキュメントは、次のタスクでセキュリティの修正を実装する際のガイドになります。
 
 ### GitHub Copilot のエージェント モードを使って issue を解決する
 
 GitHub Copilot のエージェント モードを使うと、複数のファイルとメソッドで複雑なセキュリティ修正を自律的に実装できます。 分析と推奨事項を提供する質問モードとは異なり、エージェント モードでは、コードを直接変更してセキュリティの改善を実装できます。 このアプローチは、複数の関連する脆弱性に一貫して対処する必要がある体系的なセキュリティ修復に特に有効です。
 
-このタスクでは、GitHub Copilot のエージェント モードを使って、ContosoShopEasy アプリケーションで特定されたすべての脆弱性に対する包括的なセキュリティ修正を実装します。
+このタスクでは、GitHub Copilot のエージェント モードを使用して、自分に割り当てた GitHub の issue を修復します。
 
 そのためには、以下の手順を実行してください。
 
@@ -619,34 +572,25 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
 1. 少し時間を取って、修復戦略を検討します。
 
-    GitHub Copilot の Ask モードを使用して完了した分析に基づくプランを作成します。 issue に対処する順序、修正間の依存関係、各脆弱性が正常に修復されたことを確認する方法を検討します。
+    GitHub Copilot の Ask モードを使用して、完了した分析に基づく修復戦略を作成します。 自分に割り当てた issue に対処する順序、issue を解決するためのアプローチ、コードの脆弱性が正常に修復されたことを確認する方法を検討します。
 
-    GitHub の issue は、重大な issue から優先度の低い issue の順に次のとおりです。
+    自分に割り当てた 2 つの GitHub の issue は次のとおりです。
 
-    1. 🔐 製品検索の SQL インジェクションの脆弱性を修正する
-    1. 🔐 MD5 パスワード ハッシュを安全な代替ハッシュに置き換える
-    1. 🔐 デバッグ ログから機密データを削除する
-    1. 🔐 ハードコーディングされた管理者資格情報を削除する
-    1. 🔐 クレジット カードのデータ保存違反を修正する
-    1. 🔐 入力検証のセキュリティ バイパスを修正する
-    1. 🔐 予測可能なセッション トークンの生成を修正する
-    1. 🔐 電子メール検証のセキュリティを強化する
-    1. 🔐 パスワードのセキュリティ要件を強化する
-    1. 🔐 エラー メッセージの情報漏えいを削減する
+    1. 🔐 製品検索の SQL インジェクションの脆弱性を修正する (高優先度)
+    1. 🔐 クレジット カードのデータ保存違反を修正する (重大な優先度)
 
-    これらの issue は、コードベース内の特定のファイルとメソッドに関連しています。 ファイルの関連付け別に整理すると、issue は次のようになります。
+    重大度はクレジット カードの保存の問題の方が高くなりますが、修正は SQL インジェクションの問題の方が簡単であるため、先に対処できます。 これにより、より複雑なクレジット カードの保存違反に取り組む前に、修正がより簡単なワークフローを検証できます。
 
-    - **ProductService.cs**:issue #1
-    - **UserService.cs**:issues #2 および #3
-    - **PaymentService.cs**:issue #3
-    - **SecurityValidator.cs**:issue #4、#6、#7、#8、#9、#10
-    - **Models/Order.cs**:issue #5
+    これらの問題は、コードベース内の特定のファイルとメソッドに関連しています。
 
-    修復戦略では、各問題に体系的に対処し、修正が正しくかつ一貫して実装されるようにする必要があります。
+    - **SQL インジェクションの問題**:ProductService.cs (SearchProducts メソッド)
+    - **クレジット カードの保存の問題**:Models/Order.cs (PaymentInfo クラス)、PaymentService.cs (ProcessPayment メソッド)、SecurityValidator.cs (ValidateCreditCard メソッド)、OrderRepository.cs (データの永続化)
 
-    このトレーニング演習では時間を節約するために、すべての issue を解決してから、すべてのコード更新をまとめてコミットします。 この場合、ファイルベースの修復戦略が合理的です。 ただし、issue を大きなバッチで処理するのは、推奨されるベスト プラクティスではありません。
+    > **注**:GitHub Pull Requests 拡張機能では、issue の別個のブランチでの個別処理がサポートされています。 issue を個別に解決すると、追跡可能性が向上し、コード レビューが容易になり、問題が発生した場合にロールバック オプションの安全性が高くなります。 運用環境では、別個のコミットと pull request で各 issue に個別に対処する必要があります。
 
-    運用環境では、多くの場合、別個コミットで各 issue に個別に対処することをお勧めします。 このアプローチにより、追跡可能性が向上し、コード レビューが容易になり、問題が発生した場合にロールバック オプションの安全性が高くなります。
+#### SQL インジェクションの脆弱性を解決する
+
+SQL インジェクションの脆弱性を解決するには、次の手順に従います。
 
 1. コード エディターで開いているすべてのファイルを閉じます。
 
@@ -654,7 +598,7 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
 1. **ProductService.cs** ファイルをチャット コンテキストに追加します。
 
-    SQL インジェクションの issue は、ProductService.cs ファイル内の SearchProducts メソッドに関連します。
+    SQL インジェクションの問題は、主に ProductService.cs ファイルの SearchProducts メソッドに存在します。
 
 1. GitHub Copilot に、SQL インジェクションの脆弱性に対処するように依頼します。
 
@@ -663,7 +607,7 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
     たとえば、エージェントに次のタスクを割り当てることができます。
 
     ```text
-    Fix the SQL injection vulnerability in the SearchProducts method. Remove the simulated SQL query logging that demonstrates the vulnerability, and implement proper input sanitization to safely handle search terms. Ensure the method still functions correctly for legitimate searches while preventing malicious input.
+    #codebase I need you to fix the SQL injection vulnerability in the SearchProducts method. Review the current Chat conversation related to SQL injection vulnerabilities to identify my expected code fixes and acceptance criteria. Remove the simulated SQL query logging that demonstrates the vulnerability, and implement proper input sanitization to safely handle search terms. Ensure that the method still functions correctly for legitimate searches while preventing malicious input. Update the DisplayKnownVulnerabilities method in SecurityValidator.cs to reflect that SQL injection protection is enabled.
     ```
 
 1. エージェントの進行状況を監視します。
@@ -674,6 +618,11 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
     コード エディターで GitHub Copilot の編集候補を常に確認します。 セキュリティ上の問題に対処しても機能が確実に維持されるようにします。
 
+    変更には、次のものを含める必要があります。
+    - シミュレートされた SQL クエリ ログの削除
+    - 検索用語を露出するデバッグ ログの削除またはサニタイズ
+    - 入力検証またはサニタイズ ロジックの追加
+
     運用環境では、チームは次の issue に進む前に、次のチェックリストを完了する必要があります。
 
     - コードに含まれていた脆弱性はなくなりました。
@@ -683,112 +632,96 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
     - コードの更新は明確に文書化されています。
     - 変更は、説明メッセージでコミットされ、issue をマージして閉じる前にピア レビューされます。
 
-1. 安全なパスワード ハッシュを実装します。
+#### クレジット カードのデータ保存違反を解決する
 
-    `UserService.cs` ファイルに注目して、次のプロンプトを使います。
+クレジット カードのデータ保存違反は複数のファイルにまたがるため、変更の調整が必要です。 データ モデルの変更、支払いデータを処理するサービスの更新、ログからの機密データの削除を行う必要があります。
 
-    ```text
-    Replace the MD5 password hashing with bcrypt or PBKDF2. Update the GetMd5Hash method to use a cryptographically secure hashing algorithm with proper salt generation. Ensure compatibility with existing user authentication while improving security.
-    ```
+クレジット カードのデータ保存違反を解決するには、次の手順に従います。
 
-1. パスワード ハッシュの変更をレビューしてテストします。
+1. エディターで開いているファイルをすべて閉じ、**Order.cs** ファイル (Models フォルダー内) をチャット コンテキストに追加します。
 
-    エージェントは、より強力なパスワード ハッシュを実装します。 アプリケーションを実行して変更をテストし、ユーザーの登録とログインがまだ正しく機能することを確認します。
+    このファイル内の PaymentInfo クラスには、完全なカード番号と CVV コードが保存されます。これは、PCI DSS コンプライアンス要件に違反します。
 
-1. 機密データのログに対処します (Issue #3)。
+1. GitHub Copilot に、PaymentInfo クラスを修正するように依頼します。
 
-    `PaymentService.cs` ファイルと `UserService.cs` ファイルに注目し、エージェントに次のように指示します。
+    たとえば、エージェントに次のタスクを割り当てることができます。
 
     ```text
-    Fix sensitive data logging throughout the application. Remove logging of passwords, full credit card numbers, CVV codes, and other sensitive information. Implement secure logging that masks sensitive data while maintaining useful operational information.
+    Fix PCI DSS compliance violations in the PaymentInfo class in Order.cs. Remove the CVV property entirely as CVV codes should never be stored. Replace the CardNumber property with a CardLastFourDigits property that stores only the last 4 digits. Add a CardType property to identify the card brand (Visa, Mastercard, etc.). Update the constructor and any initializations accordingly.
     ```
 
-1. ハードコーディングされた管理者資格情報を削除します (Issue #4)。
+1. エージェントの進行状況を監視し、提案された変更を検討します。
 
-    `SecurityValidator.cs` ファイルに注目して、次のプロンプトを使います。
+    エージェントによって、機密データの保存を削除するように PaymentInfo クラスが変更されます。 変更を確認し、issue に正しく対処している場合は、**[Keep]** を選択します。
+
+1. Order.cs ファイルを閉じ、チャット コンテキストに **PaymentService.cs** ファイルを追加します。
+
+    このファイル内の ProcessPayment メソッドは、機密の支払いデータをログし、完全なカード番号と CVV コードを含む PaymentInfo オブジェクトを作成します。
+
+1. GitHub Copilot に、ProcessPayment メソッドを修正するように依頼します。
+
+    たとえば、エージェントに次のタスクを割り当てることができます。
 
     ```text
-    Remove hardcoded admin credentials from the SecurityValidator class. Replace the hardcoded ADMIN_USERNAME and ADMIN_PASSWORD constants with a secure configuration approach using environment variables while maintaining the functionality for educational demonstration purposes.
+    Fix the credit card data handling in the ProcessPayment method in PaymentService.cs. Remove all logging of full card numbers, CVV codes, and other sensitive payment data. Update the PaymentInfo object creation to store only the last 4 digits of the card number and the card type, without storing CVV. Implement card number masking in any remaining log statements (show only last 4 digits). Ensure the payment processing logic still works correctly.
     ```
 
-1. クレジット カードのデータ保存違反を修正します (Issue #5)。
+1. エージェントの進行状況を監視します。
 
-    `Models/Order.cs` ファイルに注目し、エージェントに次のように指示します。
+    変更には、次のものを含める必要があります。
+    - ログ ステートメント内の機密データの削除またはマスキング
+    - 最後の 4 桁のみを使用するように PaymentInfo オブジェクトの作成を更新する
+    - CVV ストレージの削除
+    - 必要に応じて、カードの種類の検出ロジックを追加する
+
+1. 少し時間を取って、コード エディターで提案されている変更を確認し、チャット ビューで **[Keep]** を選択します。
+
+    コード エディターで GitHub Copilot の編集候補を常に確認します。 セキュリティ上の問題に対処しても機能が確実に維持されるようにします。
+
+1. PaymentService.cs ファイルを閉じ、チャット コンテキストに **SecurityValidator.cs** ファイルを追加します。
+
+    ValidateCreditCard メソッドは、完全なクレジット カード番号をログします。
+
+1. GitHub Copilot に、ValidateCreditCard メソッドを修正するように依頼します。
+
+    たとえば、エージェントに次のタスクを割り当てることができます。
 
     ```text
-    Fix PCI DSS compliance violations in the Order model. Remove or modify the CardNumber and CVV properties to avoid storing full credit card numbers and CVV codes. Implement secure payment data handling that stores only last 4 digits for display purposes.
+    Fix the credit card validation logging in the ValidateCreditCard method in SecurityValidator.cs. Remove or mask the full credit card number in log statements, showing only the last 4 digits if logging is necessary. Ensure the validation logic continues to work correctly. Update the DisplayKnownVulnerabilities method to reflect that credit card data storage is now secure.
     ```
 
-1. 入力検証のバイパスを修正します (Issue #6)。
+1. エージェントの進行状況を監視します。
 
-    入力検証の脆弱性を修正するようにエージェントに指示します。
+    エージェントによって、ログが、検証機能を維持しながら機密データをマスキングするように更新されます。
 
-    ```text
-    Fix the ValidateInput method in SecurityValidator that currently always returns true despite detecting threats. Implement proper input validation that actually rejects dangerous content when SQL injection, XSS, or other malicious patterns are detected.
-    ```
+1. 少し時間を取って、コード エディターで提案されている変更を確認し、チャット ビューで **[Keep]** を選択します。
 
-1. セキュリティで保護されたセッション トークンの生成を実装します (Issue #7)。
+    コード エディターで GitHub Copilot の編集候補を常に確認します。 セキュリティ上の問題に対処しても機能が確実に維持されるようにします。
 
-    セッション トークンの脆弱性に焦点を当てます。
+1. OrderRepository への影響を検討します。
 
-    ```text
-    Replace the predictable session token generation in GenerateSessionToken method with a cryptographically secure random token generator. Remove the username and timestamp-based pattern and implement unpredictable tokens with sufficient entropy.
-    ```
+    OrderRepository.cs ファイルには、PaymentInfo を含む Order オブジェクトが保存されます。 安全なデータ (最後の 4 桁、カードの種類) のみを保存するように PaymentInfo クラスを更新したので、リポジトリには、完全なカード番号と CVV コードではなく、安全なデータが自動的に保持されます。 リポジトリを直接変更する必要はありませんが、テスト中にこれを検証する必要があります。
 
-1. 電子メール検証を強化します (Issue #8)。
+1. アプリケーションをビルドして、すべての変更が正常にコンパイルされることを確認します。
 
-    弱い電子メール検証に対処します。
-
-    ```text
-    Fix the ValidateEmail method that only checks for '@' and '.' characters. Implement proper email format validation using regex or built-in validation methods. Remove email logging and add appropriate length restrictions.
-    ```
-
-1. パスワード要件を改善します (Issue #9)。
-
-    パスワード強度の検証に焦点を当てます。
-
-    ```text
-    Strengthen the ValidatePasswordStrength method that currently only requires 4 characters. Implement proper password complexity requirements including minimum 8 characters, uppercase, lowercase, numbers, and special characters. Remove password logging.
-    ```
-
-1. 情報漏えいを削減します (Issue #10)。
-
-    デバッグ ログとセキュリティ監査の問題に対処します。
-
-    ```text
-    Fix information disclosure vulnerabilities by removing or restricting the RunSecurityAudit method and reducing verbose error messages throughout the application. Remove sensitive system information from logs while maintaining useful debugging capabilities.
-    ```
-
-1. アプリケーションをテストします。
-
-    エージェントが各脆弱性カテゴリの修正を実装した後、アプリケーションを実行して、機能が保たれていることを確認します。
+    ターミナルで次のコマンドを実行します。
 
     ```bash
     dotnet build
-    dotnet run
     ```
 
-1. セキュリティの改善によってコア機能が損なわれていないことを検証します。
-
-    セキュリティの修正を実装した後も、製品検索、ユーザー登録、支払い処理、その他のコア機能が引き続き正しく動作することを確認します。
+    コンパイル エラーがある場合は、GitHub Copilot を使って、セキュリティ修正の過程で発生した問題を特定して解決します。 一般的な問題としては次のものが考えられます。
+    - 削除されたプロパティへの参照 (CVV、完全な CardNumber)
+    - コンストラクター パラメーターの不一致
+    - 代入での型の不一致
 
 ### リファクタリング後のコードをテストして検証する
 
 セキュリティ修復後の包括的なテストでは、セキュリティの改善が有効であることを確認する一方で、脆弱性の修正によって機能の回帰が発生しないことを確認します。 この検証プロセスでは、アプリケーションのセキュリティ面とビジネス機能の両方をテストする必要があります。 適切なテストで、アプリケーションが意図した動作を維持しながら、より安全になっていることを検証します。
 
-このタスクでは、更新後の ContosoShopEasy アプリケーションを体系的にテストして、セキュリティの問題が解決され、コア機能はそのままであることを確認します。
+このタスクでは、更新された ContosoShopEasy アプリケーションを体系的にテストして、セキュリティに関する 2 つの issue が解決されていることと、コア機能はそのままであることを確認します。
 
 そのためには、以下の手順を実行してください。
-
-1. アプリケーションをビルドし、コンパイル エラーを解決します。
-
-    次のコマンドを実行して、コードが正常にコンパイルされることを確認します。
-
-    ```bash
-    dotnet build
-    ```
-
-    コンパイル エラーがある場合は、GitHub Copilot を使って、セキュリティ修正の過程で発生した問題を特定して解決します。
 
 1. 完成したアプリケーションを実行して、全体的な動作を確認します。
 
@@ -800,49 +733,32 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
     出力を元のアプリケーション実行の記録と比較します。 ログの機密情報が大幅に減っているはずです。
 
-1. SQL インジェクションの修正をテストします (Issue #1)。
+1. SQL インジェクションの修正をテストします。
 
-    `SearchProducts` メソッドが脆弱な SQL クエリをログしなくなったこと、および正当な検索語句に対して検索機能が正しく機能することを確認します。
+    SearchProducts メソッドが、クエリ文字列に直接連結されたユーザー入力を使用してシミュレートされた SQL クエリをログしなくなったことを確認します。 アプリケーションは次のことを行う必要があります。
 
-1. パスワード セキュリティの強化を確認します (Issue #2)。
+    - 引き続き製品検索を正しく実行する
+    - 脆弱な SQL クエリのログを表示しない
+    - SQL インジェクションの脆弱性を露出することなく、検索語句を安全に処理する
+    - 生の検索語句を過度にログしない
 
-    ユーザー登録とログイン プロセスでプレーンテキストのパスワードがログされなくなったことと、より強力なパスワード ハッシュが実装されていることを確認します。 アプリケーションによってユーザーの認証が引き続き正しく行われる必要があります。
+1. クレジット カードのデータ保存の修正をテストします。
 
-1. 機密データ ログの修正を確認します (Issue #3)。
+    PaymentInfo クラスとこれに関連するコードが、完全なクレジット カード番号と CVV コードを保存またはログしなくなったことを確認します。 アプリケーションは次のことを行う必要があります。
 
-    トランザクションを正常に処理する機能を維持しながら、支払い処理とユーザー操作でパスワード、完全なクレジット カード番号、または CVV コードがログされないようにします。
+    - 完全なクレジット カード番号をログしない (マスキング (例: ****1234) の確認)
+    - CVV コードをまったくログしない
+    - PaymentInfo オブジェクトに CVV コードを保存しない
+    - カード番号の最後の 4 桁のみを保存する
+    - 引き続き支払いを正しく処理する (シミュレート)
 
-1. ハードコーディングされた資格情報の削除を検証します (Issue #4)。
+1. 全体的なセキュリティの強化を確認します。
 
-    ハードコーディングされた管理者資格情報がログやセキュリティ監査に表示されなくなり、管理機能にはセキュリティで保護された構成を使用して引き続きアクセスできることを確認します。
+    コンソール出力を最初の観測値と比較します。 主な改善点は次のとおりです。
 
-1. クレジット カード保存のコンプライアンスをテストします (Issue #5)。
-
-    注文モデルで完全なクレジット カード番号または CVV コードが格納されなくなり、マスクされた支払い情報のみが表示目的で保持されることを確認します。
-
-1. 入力検証の修正を確認します (Issue #6)。
-
-    改善された ValidateInput メソッドが、警告をログして true を返す代わりに、危険な入力を適切に拒否するようになったことを確認します。
-
-1. セッション トークンのセキュリティを確認します (Issue #7)。
-
-    アプリケーションの実行中にセッション トークンが生成された場合は、前のユーザー名タイムスタンプ パターンに従うのではなく、セッション トークンがランダムで予測不可能に見えるかどうかを確認します。
-
-1. 電子メール検証の改善をテストします (Issue #8)。
-
-    電子メールの検証で、"@" and "" 文字を含む文字列を受け入れる代わりに、無効な電子メール形式が適切に拒否されることを確認します。
-
-1. パスワード要件の機能強化を検証します (Issue #9)。
-
-    パスワード検証で、4 文字の文字列を受け入れるのではなく、適切な複雑さの要件が適用されるようになったことをテストします。
-
-1. 情報漏えいの修正を確認します (Issue #10)。
-
-    セキュリティ監査方法が削除または制限されていること、および冗長なエラー メッセージで機密のシステム情報が公開されなくなったことを確認します。
-
-1. 全体的なセキュリティ体制を元のバージョンと比較します。
-
-    アプリケーションを実行し、コンソール出力と最初の観測値を比較します。 アプリケーションは、すべてのコア機能を維持しながら、大幅に強化されたセキュリティを示すはずです。
+    - **SQL インジェクション**:シミュレートされた SQL クエリはユーザー入力の連結を示さない
+    - **クレジット カード データ**:ログまたは保存されたデータに完全なカード番号または CVV コードがない
+    - アプリケーションのコア機能 (製品検索、支払い処理) は引き続き正しく機能する
 
 1. 残っている問題や改善する領域を文書化します。
 
@@ -856,60 +772,57 @@ GitHub Copilot のエージェント モードを使うと、複数のファイ�
 
 そのためには、以下の手順を実行してください。
 
-1. コードベースに行われたすべての変更を確認します。
+1. Visual Studio Code の [ソース管理] ビューを開き、更新された各ファイルに加えられた変更を確認します。
 
-    Git を使って、変更されたファイルを確認します。
+    修復プロセス中に発生した可能性がある予期しない変更を探します。 すべての変更が修復戦略と一致し、新しい脆弱性が導入されていないことを確認します。
 
-    ```bash
-    git status
-    git diff
+1. GitHub Copilot に、包括的なコミット メッセージを作成するように依頼します。
+
+    たとえば、チャット ビューで次のプロンプトを使用できます。
+
+    ```text
+    I need to create a commit message that summarizes the security fixes I implemented for two GitHub issues: "Fix SQL Injection Vulnerability in Product Search" and "Fix Credit Card Data Storage Violations." The commit message should clearly describe the changes made to address each issue, including specific code modifications and the overall impact on application security. Draft a detailed commit message that captures all relevant information.
     ```
 
-1. セキュリティ関連のすべての変更をコミットのためにステージングします。
+1. 少し時間を取って、提案されたコミット メッセージを確認します。
 
-    変更したファイルをステージング領域に追加します。
+    行われたセキュリティの強化が正確に反映され、将来参照するのに十分な詳細が提供されていることを確認します。
 
-    ```bash
-    git add .
-    ```
+    たとえば、コミット メッセージは次のサンプルのようになります。
 
-1. すべての GitHub の issue を参照する包括的なメッセージを使用して、すべてのセキュリティ修正をコミットします。
-
-    このトレーニング演習で特定されたすべてのセキュリティの脆弱性に対処する 1 つのコミットを作成します。
-
-    ```bash
-    git commit -m "Fix all ContosoShopEasy security vulnerabilities
+    ```text
+    Fix SQL injection and credit card data storage vulnerabilities
 
     Security improvements implemented:
     - Fix SQL injection in ProductService SearchProducts method
-    - Replace MD5 with secure password hashing (bcrypt/PBKDF2)
-    - Remove sensitive data from debug logging (passwords, card numbers, CVV)
-    - Remove hardcoded admin credentials, use environment variables
-    - Fix PCI DSS violations in Order model (remove full card storage)
-    - Fix input validation bypass to properly reject dangerous input
-    - Implement secure session token generation with crypto randomness
-    - Strengthen email validation with proper format checking
-    - Improve password requirements (8+ chars, complexity rules)
-    - Reduce information disclosure from security audit and debug logs
-
-    Fixes #1 #2 #3 #4 #5 #6 #7 #8 #9 #10"
+      - Remove vulnerable SQL query logging with user input
+      - Implement proper input handling and sanitization
+    
+    - Fix PCI DSS violations for credit card data storage
+      - Remove CVV property from PaymentInfo class
+      - Replace CardNumber with CardLastFourDigits
+      - Add CardType property for card brand identification
+      - Update PaymentService to not log or store sensitive card data
+      - Mask credit card numbers in SecurityValidator logs
+    
+    Fixes #[SQL_INJECTION_ISSUE_NUMBER] #[CREDIT_CARD_ISSUE_NUMBER]
     ```
 
-    > **注**:運用環境では、通常、各 issue は個別のテストとコード レビューを使用して個別のコミットで対処されます。 この単一コミットアプローチは、トレーニング演習で時間を節約するためにのみ使用されます。
+1. `[SQL_INJECTION_ISSUE_NUMBER]` と `[CREDIT_CARD_ISSUE_NUMBER]` を GitHub リポジトリの実際の issue 番号に置き換えます。
 
-1. 変更を GitHub リポジトリにプッシュします。
+    これらの番号は、Visual Studio Code の GitHub Pull Requests ビューで、または GitHub で issue を表示することで確認できます。
 
-    ```bash
-    git push origin main
-    ```
+    > **注**:運用環境では、通常、各 issue は個別のテストとコード レビューを使用して個別のコミットで対処されます。 ここでは、トレーニング演習のワークフローを効率化するために、両方の修正を 1 つのコミットに組み合わせて使用します。
 
-1. GitHub の issue が自動的に閉じられることを確認します。
+1. 変更をステージングしてコミットし、GitHub リポジトリに変更をプッシュ (または同期) します。
 
-    GitHub 上のリポジトリに移動し、issue がそれを参照するコミット メッセージによってクローズとしてマークされていることを確認します。
+1. GitHub を開き、GitHub の issue が自動的に閉じられていることを確認します。
 
-1. コミット履歴をレビューし、すべてのセキュリティ修正が適切に文書化されていることを確認します。
+    GitHub 上のリポジトリに移動し、コミット メッセージで参照した 2 つの issue が終了としてマークされていることを確認します。 コミット メッセージに "Fixes #[issue_number]" 構文が含まれている場合、issue は GitHub によって自動的に閉じられます。
 
-    コミット メッセージでセキュリティの改善が明確に説明されていて、将来の参照のための適切な監査証跡が提供されていることを確認します。
+1. コミット履歴を確認して、セキュリティの修正が適切に文書化されていることを確認します。
+
+    コミット メッセージでセキュリティの強化について明確に説明されており、将来参照するための適切な監査証跡が提供されることを確認します。
 
 ## クリーンアップ
 
