@@ -738,7 +738,7 @@ tasks.md ファイルでは、技術計画を具体的で実用的な実装手�
     たとえば (前の手順の MVP 実装例を参照)、次のコマンドを入力します。
 
     ```dotnetcli
-    /speckit.implement Implement the MVP first strategy (Tasks: T001 - T045)
+    speckit/implement Implement the MVP first strategy (Tasks: T001 - T045)
     ```
 
     このコマンドは、ドキュメントのアップロードと管理機能の MVP バージョンに必要なタスクの実装を開始するように GitHub Copilot に指示します。
