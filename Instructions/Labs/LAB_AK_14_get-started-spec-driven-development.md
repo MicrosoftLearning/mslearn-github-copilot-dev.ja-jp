@@ -80,8 +80,6 @@ Contoso の利害関係者は、プロジェクトの目標、機能、技術の
 
     ブラウンフィールド プロジェクトの場合、`specify init` コマンドは、現在のディレクトリが空ではないことを認識し、続行するかどうかの確認を求めます。
 
-1. 少し時間を取って、ターミナル ウィンドウに表示される情報を確認しましょう。
-
     `specify init` コマンドは、次のアクションを完了します。
 
     - `.github/agents/` ディレクトリと `.github/prompts/` ディレクトリにエージェント プロンプト ファイルを作成します。
@@ -92,17 +90,7 @@ Contoso の利害関係者は、プロジェクトの目標、機能、技術の
     - 成功メッセージ ("Project ready") を表示します。
     - 次に行う手順をいくつか提示しますが、これらは省略できます。
 
-## プロジェクト ファイルを確認し、利害関係者のドキュメントを準備する
-
-GitHub Spec Kit は、Visual Studio Code のチャット インターフェイスを通じて GitHub Copilot と連携します。 プロジェクト ディレクトリで "specify init --ai copilot" を実行すると、このツールキットによって、"/speckit.*" コマンドを認識するようにワークスペースが構成されます。
-
-このタスクでは、GitHub Spec Kit が正しく初期化されていることを確認し、Contoso 利害関係者から提供された RSSFeedReader ドキュメントを確認した後、利害関係者のドキュメントをプロジェクト フォルダーに追加します。
-
-そのためには、以下の手順を実行してください。
-
-1. Visual Studio Code で RSSFeedReader プロジェクトを開きます。
-
-    たとえば、ターミナル ウィンドウがまだ開いている場合は、次のコマンドを使用してプロジェクトを開くことができます。
+1. Visual Studio Code で RSSFeedReader プロジェクトを開くには、次のコマンドを入力します。
 
     ```powershell
     code .
@@ -110,7 +98,7 @@ GitHub Spec Kit は、Visual Studio Code のチャット インターフェイ�
 
     `code .` コマンドは、Visual Studio Code で現在のディレクトリ (RSSFeedReader) を開きます。
 
-    Visual Studio Code にプロジェクトが完全に読み込まれるまで待ちます。
+1. Visual Studio Code にプロジェクトが完全に読み込まれるまで待ちます。
 
 1. 少し時間を取ってプロジェクト構造を確認します。
 
@@ -126,10 +114,11 @@ GitHub Spec Kit は、Visual Studio Code のチャット インターフェイ�
     │   ├── scripts/powershell/     (GitHub Spec Kit uses automation utilities (scripts) for creating features, setting up plans, and managing the specification workflow)
     │   └── templates/              (GitHub Spec Kit provides standardized markdown formats for specs, plans, tasks, and checklists to ensure consistent documentation across all features)
     └── .vscode/                    (Visual Studio Code configuration)
-
     ```
 
 1. GitHub Copilot のチャット ビューが開かれていることを確認します。
+
+    GitHub Spec Kit は、Visual Studio Code のチャット インターフェイスを通じて GitHub Copilot と連携します。 プロジェクト ディレクトリで "specify init --ai copilot" を実行すると、このツールキットによって、"/speckit.*" コマンドを認識するようにワークスペースが構成されます。
 
     > **注:** このラボ演習は、GPT-5.2 モデルと Claude Sonnet 4.5 モデルを使用してテストされました。 これらの 2 つのモデルの結果はよく似ています。 ただし、GPT-4 および GPT-5 ミニ モデルを使用すると、矛盾した予期しない結果が生成されました。 GitHub Spec Kit コマンドを実行するときに複雑な推論のために最適化された新しい言語モデルを使用することをお勧めします。
 
@@ -156,15 +145,65 @@ GitHub Spec Kit は、Visual Studio Code のチャット インターフェイ�
     - **git clone エラー**:GitHub にサインイン済みで、インポートしたリポジトリへのアクセスがあることを確認します。
     - **GitHub Spec Kit コマンドが表示されない**:ワークスペースのルートに `.github/prompts/` が存在することを確認します。 Visual Studio Code を再度読み込んでみてください。
 
-1. Visual Studio Code のエクスプローラー ビューで、RSSFeedReader プロジェクトのルートに **StakeholderDocs** という名前の新しいフォルダーを作成します。
-1. 
+## 利害関係者ドキュメントをダウンロードして確認する
 
+このタスクでは、Contoso の利害関係者から提供された RSSFeedReader ドキュメントをダウンロードし、プロジェクトに追加して、ドキュメントが GitHub Spec Kit コマンドとどのように関連しているかを評価します。
 
-## 標準とガイドラインに基づいて、規約を生成します。
+そのためには、以下の手順を実行してください。
 
-GitHub Spec Kit では、constitution.md ファイルを使用して、ContosoDashboard プロジェクトの開発上のすべての決定を導く管理原則と制約を確立します。 これにより、実装全体で従う必要がある組織のポリシー、技術標準、セキュリティ要件、開発プラクティスが取り込まれます。
+1. 利害関係者ドキュメントをダウンロードするには、ブラウザーで次のリンクを開きます。[RSSFeedReader - 利害関係者ドキュメント](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHSpecKitEx14StakeholderDocuments.zip)。
 
-このタスクでは、GitHub Copilot の `/speckit.constitution` コマンドを使用して、Contoso の利害関係者の要件に基づいて包括的な規約を生成します。
+1. ダウンロードした ZIP ファイルが格納されているフォルダーを開きます。
+
+1. ダウンロードした ZIP ファイルの内容を一時フォルダーに抽出します。
+
+1. Visual Studio Code のエクスプローラー ビューで、RSSFeedReader プロジェクトのルート フォルダーを右クリックし、**[エクスプローラーで表示]** (macOS の場合は **[Finder で表示]**) を選択します。
+
+1. エクスプローラー (または Finder) で、ZIP ファイルを抽出した一時フォルダーを開きます。
+
+1. 一時フォルダー内のすべてのファイルを選択し、コピーして、RSSFeedReader プロジェクトのルート フォルダーに貼り付けます。
+
+    抽出されたファイル フォルダーの内容は次のとおりです。
+
+    ```plaintext
+    GHSpecKitEx14StakeholderDocuments (root)
+    ├── StakeholderDocuments        (folder containing stakeholder supplied documents)
+    └── README.md                   (a readme file describing the project)
+    ```
+
+1. Visual Studio Code に戻ります。
+
+1. Visual Studio Code のエクスプローラー ビューで、**StakeholderDocuments** フォルダーを展開します。
+
+    StakeholderDocuments フォルダーには次のファイルが格納されています。
+
+    - **Project Goals.md** - プロジェクト目標の概要、目的、スコープ、提供アプローチ、ロールアウト計画、品質目標、標準/ガイドライン。
+    - **App Features.md** - ユーザー向け機能要件の詳細。
+    - **Tech Stack.md** - テクノロジの選択とアーキテクチャの根拠。
+    - **MVP System Rules.md** - 仕様策定の基礎となる MVP システムの動作規則。
+
+1. 少し時間をとり、各利害関係者ドキュメントを開いて確認してください。
+
+    これらのドキュメントには、プロジェクトの目標、機能、技術要件、制約に関する自然言語による説明が記載されています。 このコンテキストを理解することは、効果的な仕様、計画、タスクを作成するために不可欠です。 詳細レベルはドキュメントによって異なりますが、全体的な構成は、多くの実際のプロジェクトで見られる一般的な内容です。
+
+    ドキュメントの数やドキュメントで提供される詳細は、会社のポリシーとプロジェクトの複雑さに応じて大きく変わります。 GitHub Spec Kit コマンドは、使用できるファイルと詳細を処理し、その情報を使用して、仕様駆動型開発プロセスを成功させるために必要な規約、仕様、計画、タスクのドキュメントを作成するように設計されています。
+
+1. 少し時間をとり、各ドキュメントが GitHub Spec Kit コマンドとどのように関連しているかを検討してください。
+
+    各利害関係者ドキュメントには、仕様駆動型開発プロセスのさまざまな側面を導くのに役立つ情報が提供されています。
+
+    次に例を示します。
+
+    - **Project Goals.md**:このドキュメントには、constitution.md ファイルの参考情報となる目標の概要と標準が記載されています。
+    - **App Features.md**:このドキュメントには、spec.md ファイルの作成に利用される詳細なユーザー向け要件が記載されています。
+    - **Tech Stack.md**:このドキュメントには、plan.md ファイルに影響を与えるテクノロジの選択とアーキテクチャの根拠の概要が記載されています。
+    - **MVP System Rules.md**:このドキュメントには、tasks.md 内の実装タスクをガイドするシステム動作規則が定義されています。
+
+## 標準とガイドラインに基づいて、規約を生成する
+
+GitHub Spec Kit では、constitution.md ファイルを使用して、RSSFeedReader プロジェクトに関するすべての開発判断を導く管理原則と制約を定めています。 これにより、実装全体で従う必要がある組織のポリシー、技術標準、セキュリティ要件、開発プラクティスが取り込まれます。
+
+このタスクでは、GitHub Copilot の `/speckit.constitution` コマンドを使用して、最初はユーザーが指定したインライン テキスト入力、次に利害関係者ドキュメントを使用して、包括的な規約を生成します。
 
 そのためには、以下の手順を実行してください。
 
@@ -192,13 +231,51 @@ GitHub Spec Kit では、constitution.md ファイルを使用して、ContosoDa
 
     **[新しいチャット]** ボタン (チャット パネルの上部にある **+** アイコン) を選択すると、新しいセッションを開始できます。 新しいチャット セッションを開始すると、コンテキストがクリーンな状態になります。
 
-1. チャット ビューで規約ワークフローを開始するには、次のコマンドを入力します。
+1. 少し時間をとって、/speckit.constitution コマンドを実行する際のオプションを検討してみましょう。
+
+    次のオプションを使用して /speckit.constitution コマンドを実行できます。
+
+    - `/speckit.constitution --text "..."`:インライン テキストを使用して、規約に含めるべき標準、ガイドライン、原則、制約を記述します。
+    - `/speckit.constitution --files ...`:規約作成のコンテキストを提供するプロジェクト ドキュメントを指定します。
+    - `/speckit.constitution --text "..." --files ...`:インライン テキスト入力とプロジェクト ドキュメントを組み合わせます。
+    - `/speckit.constitution`:入力せずにコマンドを実行します。 ブラウンフィールド プロジェクトの場合、ワークフローはコードベースを使用して標準、ガイドライン、要件を特定し、規約を生成します。
+
+    > **注**:/speckit.constitution コマンドを同じプロジェクト内で複数回実行して、constitution.md ファイルを改良または拡張することができます。 詳細な情報を入力すると、より正確で包括的な規約が作成されます。
+
+1. [チャット] ビューで、インライン テキストを使用して規約ワークフローを開始するには、次のコマンドを入力します。
 
     ```plaintext
-    /speckit.constitution
+    /speckit.constitution --text "Code projects emphasize security, accessibility, performance, and code quality. Ensure that all principles are specific, actionable, and relevant to the project context."
     ```
 
-    GitHub Spec Kit は、プロジェクトの種類 "グリーンフィールド" と "ブラウンフィールド" をサポートしています。 グリーンフィールド プロジェクトの場合、既存のコードベースが存在しないため、事前要件がより重要になります。 この演習では、ContosoDashboard は既存のコードベースがあるブラウンフィールド プロジェクトであるため、エージェントにより、現在のプロジェクト ファイルが分析されて規約が生成されます。
+    この場合、インライン テキストは、規約を作成するための大まかなガイダンスとして機能します。 このアプローチは、詳細なプロジェクト ドキュメントなしでコア原則を迅速に確立したい場合に役立ちます。
+
+1. [チャット] ビューで GitHub Copilot の応答を監視します。
+
+1. 更新された Constitution.md ファイルをエディターで確認します。
+
+    GitHub Copilot によって Constitution.md ファイルが更新され、指定したインライン テキストに基づいた原則が組み込まれていることに注目してください。 原則は明確に記述され、実行可能なものである必要があります。
+
+    実際のプロジェクトでは、次の条件に照らして規約を確認することが重要です。
+
+    - 完全性:すべての主要な領域 (セキュリティ、パフォーマンス、品質、技術基準) がカバーされている。
+    - 明確さ:各原則は具体的で明確である。
+    - 一貫性: 原則は相互に矛盾していない。
+    - 関連性:すべての原則は RSSFeedReader プロジェクトに関連しています。
+
+1. /speckit.constitution ワークフローによって **templates** フォルダー内のファイルが更新された場合は、それらのファイルも確認します。
+
+    規約ワークフローでは、他の GitHub Spec Kit ファイル (spec.md、plan.md、tasks.md) のテンプレートも更新される可能性があります。 更新は、constitution.md ファイルに定義されている原則を反映しているはずです。 これにより、すべてのプロジェクト ドキュメントの整合性が確保されます。
+
+1. 更新されたすべてのファイルへの変更を承認するには、[チャット] ビューで **[保持]** ボタンを選択します。
+
+    エディターで **[保持]** ボタン オプションを選択して、個々のファイルへの変更、またはファイル内の個々の変更を受け入れることもできます。
+
+1. [チャット] ビューで、利害関係者ドキュメントを使用して 2 つ目の規約ワークフローを開始するには、次のコマンドを入力します。
+
+    ```plaintext
+    /speckit.constitution --files StakeholderDocuments/ProjectGoals.md StakeholderDocuments/AppFeatures.md StakeholderDocuments/TechStack.md StakeholderDocuments/MVPSystemRules.md
+    ```
 
 1. GitHub Copilot の応答を監視します。
 

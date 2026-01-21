@@ -16,7 +16,7 @@ GitHub Spec Kit は、仕様と GitHub Copilot などの AI コーディング �
 
 ## 開始する前に
 
-ラボ環境には次のリソースが必要です。Git 2.48 以降、.NET SDK 8.0 以降、C# 開発キットおよび GitHub Copilot Chat の拡張機能を含む Visual Studio Code、SQL Server LocalDB、Python 3.11 以降、uv パッケージ マネージャー、GitHub Copilot が有効な GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。Git 2.48 以降、.NET SDK 8.0 以降、C# 開発キットおよび GitHub Copilot Chat の拡張機能を含む Visual Studio Code、SQL Server LocalDB、Python 3.11 以降、uv パッケージ マネージャー、Specify CLI、GitHub Copilot が有効な GitHub アカウントへのアクセス。
 
 ラボ環境を構成する方法については、ブラウザーで次のリンクを開いてください: <a href="https://go.microsoft.com/fwlink/?linkid=2345907" target="_blank">GitHub Spec Kit のラボ環境を構成する</a>。
 
@@ -738,7 +738,7 @@ tasks.md ファイルでは、技術計画を具体的で実用的な実装手�
     たとえば (前の手順の MVP 実装例を参照)、次のコマンドを入力します。
 
     ```dotnetcli
-    speckit/implement Implement the MVP first strategy (Tasks: T001 - T045)
+    /speckit.implement Implement the MVP first strategy (Tasks: T001 - T045)
     ```
 
     このコマンドは、ドキュメントのアップロードと管理機能の MVP バージョンに必要なタスクの実装を開始するように GitHub Copilot に指示します。
