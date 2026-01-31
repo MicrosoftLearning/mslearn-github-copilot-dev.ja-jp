@@ -24,7 +24,7 @@ GitHub Spec Kit は、仕様と GitHub Copilot などの AI コーディング �
 
 あなたは、コンサルティング会社で働くソフトウェア開発者です。 あなたの会社は、Visual Studio Code で GitHub Spec Kit と GitHub Copilot を使用して仕様駆動開発手法に移行しているところです。 あなたは、可能な限り早急に SDD と GitHub Spec Kit の使用を開始するように言われています。
 
-顧客の 1 つである Contoso Corporation からは、初期 MVP バージョンの RSS フィード リーダー アプリを開発するように依頼されています。 このアプリのプロジェクト目標、初期機能、技術面の要件は、Contoso の利害関係者が文書化しました。 あなたはその利害関係者のドキュメントを使用して、規約、仕様、計画、タスクのドキュメントを生成します。 Contoso は、最初のサインオフ後に追加の機能を依頼することを示唆しています。
+顧客の 1 つである Contoso Corporation からは、初期 MVP バージョンの RSS フィード リーダー アプリを開発するように依頼されています。 このアプリのプロジェクト目標、初期機能、技術面の要件は、Contoso の利害関係者が文書化しました。 あなたは、この利害関係者ドキュメントを使用して規約、仕様、計画、タスクのドキュメントを生成してから、アプリケーションの初期 MVP バージョンを実装します。 Contoso は、最初のサインオフ後に追加の機能を依頼することを示唆しています。
 
 GitHub Spec Kit を使用して SDD 手法を実装することで、MVP アプリが迅速に配信され、利害関係者の要件を満たし、必要に応じて新しい機能をシームレスにロールアウトできるようになります。
 
@@ -139,7 +139,9 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
     - `/speckit.tasks` - 作業を実行可能なタスクに分割します。
     - `/speckit.taskstoissues` - tasks.md のタスクを GitHub の issue に変換します。
 
-    > **注**:'/speckit.'  コマンドが表示されない場合は、Visual Studio Code でプロジェクトを閉じてから再度開いてみてください。
+    '/speckit.'  コマンドが表示されない場合は、Visual Studio Code でプロジェクトを閉じてから再度開いてみてください。
+
+    > **重要**:このラボ演習は、GPT-5.2 と Claude Sonnet 4.5 のモデルを使用して正常にテストされました。 どちらのモデルでも、動作するアプリケーションを生成できましたが、いくつかの違いが見られました。 Claude Sonnet 4.5 モデルの方が詳細な出力が生成される傾向があります。 たとえば、tasks.md ファイルのタスクとフェーズの数が多くなる傾向があります。 Claude モデルの応答は一貫性があり、パフォーマンスは信頼できるものでした。 GPT-5.2 モデルは、生成される出力の詳細さが低くなる傾向があります。 たとえば、一連のタスクはスコープが広くて数が少なく、これらをまとめたフェーズの数が少なくなっています。 GPT モデルはタスクを正常に実装することができましたが、バグを解決するために追加のイテレーションが使用された可能性があります。 GPT モデルのパフォーマンスは全般的に良好でしたが、テスト中の一貫性は低くなりました。 たとえば、/speckit コマンドの処理中に AI が応答しなくなることが何度かありました。 チャット ビューでコマンドを再起動すると、すぐに正常に戻りました。 最新ではないモデル、たとえば GPT-4 や GPT-5 mini を使用するテストでは、予期しない結果が生成されることがよくありました。 GitHub Spec Kit コマンドを実行するときは、可能な限り複雑な推論のために最適化された新しい言語モデルを使用することをお勧めします。
 
 1. プロジェクトを新しい GitHub リポジトリに公開します。
 
@@ -233,8 +235,6 @@ GitHub Spec Kit には、constitution.md ファイルの作成と保守に役立
     ```plaintext
     /speckit.constitution --text "Code projects emphasize security, maintainability, and code quality. Ensure that all principles are specific, actionable, and relevant to the project context." --files StakeholderDocuments/ProjectGoals.md StakeholderDocuments/AppFeatures.md StakeholderDocuments/TechStack.md
     ```
-
-    > **注**:/speckit.constitution コマンドを同じプロジェクト内で複数回実行して、constitution.md ファイルを改良または拡張することができます。 詳細な入力を提供すると、より正確で包括的な規約を生成するのに役立ちます。
 
 1. GitHub Copilot の応答を監視します。
 
@@ -511,11 +511,9 @@ GitHub Spec Kit の実装ワークフローでは、tasks.md ファイルを使�
 
     たとえば、MVP 実装戦略 (サブスクリプションを追加および表示する機能) は、次の例のようになります。
 
-    ```plaintext
-    **Phases**: Setup → Foundation → US1 only  
-    **Tasks**: T001 - T050 (50 tasks)  
-    **Deliverable**: Users can add a known-good feed URL; refresh; see items; restart and confirm persistence.
-    ```
+    **フェーズ**: セットアップ → 基盤 → US1 のみ  
+    **タスク**:T001 - T050 (50 タスク)  
+    **成果物**: ユーザーは既知の適切なフィード URL を追加する、最新の情報に更新する、アイテムを見る、再起動して永続性を確認することができます。
 
     MVP 優先戦略は、必ずしも最初のユーザー ストーリーに限定されるわけではありません。 機能の複雑さに応じて、いくつかのユーザー ストーリーが含まれる場合があります。 これらのストーリーを基本フェーズの後に順番に一覧表示し、MVP 実装戦略の一部として明確にマークする必要があります。
 
@@ -553,13 +551,9 @@ GitHub Spec Kit の実装ワークフローでは、tasks.md ファイルを使�
 
 1. バックエンド アプリケーションを起動してから、フロントエンド アプリケーションを起動します。
 
-    分割ターミナルを使用して、両方のアプリケーションを左右に並べて実行できます。 両方のアプリケーションがエラーなしで起動することを確認します。
+    分割ターミナルを使用して、両方のアプリケーションを左右に並べて実行できます。 両方のアプリケーションがエラーなしで起動することを確認します。 両方のアプリケーションを起動するために必要なコマンドが不明な場合は、GitHub Copilot に問い合わせることができます。
 
-    両方のアプリケーションを起動するために必要なコマンドが不明な場合は、GitHub Copilot に問い合わせることができます。 たとえば、チャット ビューで次のプロンプトを入力します。
-
-    ```plaintext
-    Can you provide the commands required to start both the backend and frontend applications?
-    ```
+    いずれかのアプリケーションが起動に失敗した場合は、この問題をチャット ビューで GitHub Copilot に報告してください。 問題を詳しく説明し、問題の診断に役立つエラー メッセージやログなども、あれば添えてください。 GitHub Copilot はこの情報を使用して、問題のデバッグと解決を開始します。
 
 1. フロントエンド アプリケーションがブラウザーで正常に開くことを確認します。
 
