@@ -1,7 +1,7 @@
 ---
 lab:
   title: 演習 - GitHub Spec Kit を使用して製品機能を実装する
-  description: Visual Studio Code で GitHub Spec Kit と GitHub Copilot を使用して、仕様駆動型の開発プロセスを実装する方法について学習します。
+  description: GitHub Spec Kit のワークフロー、Visual Studio Code、GitHub Copilot を使用して、既存のアプリケーションに新機能を追加する方法について学習します。
 ---
 
 # GitHub Spec Kit を使用して製品機能を実装する
