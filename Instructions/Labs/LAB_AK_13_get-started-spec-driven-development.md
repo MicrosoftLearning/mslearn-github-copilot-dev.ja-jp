@@ -196,7 +196,7 @@ GitHub Spec Kit には、constitution.md ファイルの作成と保守に役立
 
 そのためには、以下の手順を実行してください。
 
-1. 利害関係者ドキュメントをダウンロードするには、ブラウザーで次のリンクを開きます。[RSSFeedReader - 利害関係者ドキュメント](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHSpecKitEx14StakeholderDocuments.zip)。
+1. 利害関係者ドキュメントをダウンロードするには、ブラウザーで次のリンクを開きます。[RSSFeedReader - 利害関係者ドキュメント](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHSpecKitEx13StakeholderDocuments.zip)。
 
 1. ダウンロードした ZIP ファイルが格納されているフォルダーを開きます。
 
