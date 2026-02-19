@@ -2,7 +2,7 @@
 lab:
   title: 演習 - GitHub Copilot SDK を使用して AI エージェントを既存のアプリに統合する
   description: GitHub Copilot SDK を使用して AI エージェントを既存のアプリケーションに統合し、タスクを自動化し、機能を強化する方法について学びます。
-  level: 200
+  level: 300
   duration: 60 minutes
 ---
 
