@@ -159,6 +159,8 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 
         GitHub にサインインするように求められたら、サインイン プロセスに従って GitHub アカウントを認証します。
 
+        > **重要**:GitHub Copilot Free プランを使用している場合は、リポジトリを **Public** として発行して、GitHub Copilot 機能に確実にアクセスできるようにする必要があります。 Pro、Pro+、Business、または Enterprise サブスクリプションをお持ちの場合は、**Private** リポジトリに発行できます。
+
 1. リポジトリが正常に作成されたことを確認します。
 
     次に例を示します。
