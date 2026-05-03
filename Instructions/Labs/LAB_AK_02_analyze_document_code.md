@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot を使用してコードを分析し、文書化する
   description: GitHub Copilot in Visual Studio Code を使用して、新しい、またはなじみのないコードを分析し、ドキュメントを生成する方法について説明します。
+  duration: 20 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot を使用してコードを分析し、文書化する
@@ -94,9 +100,9 @@ GitHub Copilot は、説明やドキュメントを生成することで、コ�
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで、**AccelerateDevGHCopilot** を右クリックし、次に **[ビルド]** を選択します。
+    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
 
-    警告はいくつか表示されますが、エラーは発生しないはずです。
+    警告はいくつか表示される場合もありますが、エラーは発生しません。
 
 ## GitHub Copilot を使用してライブラリ アプリケーションのコードベースを説明する
 
@@ -106,9 +112,9 @@ GitHub Copilot を使用してソリューション、ファイル、コード�
 
 GitHub Copilot のチャット ビューには、自然言語プロンプトを使用して GitHub Copilot と対話できるチャットベースのインターフェイスが用意されています。 既存のコードベースを初めて評価するときに、ワークスペースまたはプロジェクト レベル、またはコード ブロックまたはコード行レベルで説明を生成するプロンプトを作成できます。 プロンプトのコンテキストを指定する際に利用できるように、GitHub Copilot にはチャット参加者、チャット変数、スラッシュ コマンドが用意されています。
 
-- チャット参加者は、プロンプトのスコープを特定のドメインに限定するために使用されます。
-- チャット変数は、プロンプトに特定のコンテキストを含めるために使用されます。
-- スラッシュ コマンドは、一般的なシナリオで複雑なプロンプトを記述する手間を省くために使用されます。
+- プロンプトでチャット参加者を使用して、ドメイン固有のエキスパートを呼び出します。 エキスパートは、最も正確な応答を提供します。
+- プロンプトでチャット変数を使用して、特定のコンテキストを含めます。 コンテキストは、GitHub Copilot がより関連性の高い応答を生成するのに役立ちます。
+- プロンプトでスラッシュ コマンドを使用して、特定のアクションを呼び出したり、プロンプトの意図を設定したりします。
 
 以下の手順に従って、演習のこのセクションを完了します。
 
@@ -118,25 +124,21 @@ GitHub Copilot のチャット ビューには、自然言語プロンプトを�
 
     チャット ビューを開くには、Visual Studio Code ウィンドウの上部にある **[チャットの切り替え]** ボタンを選択します。
 
-    ![GitHub Copilot の状態メニューを示すスクリーンショット。](./Media/m02-github-copilot-toggle-chat.png)
-
     **Ctrl+Alt+I** キーボード ショートカットを使用してチャット ビューを開くこともできます。
 
-1. チャット ビューで、GitHub Copilot の **@workspace** チャット参加者を使用してプロジェクトの説明を生成するプロンプトを入力します。
+1. チャットビューで、**#codebase** チャット変数を使用して、コードの説明を生成する際にコードベースの完全なコンテキストを含むプロンプトを入力します。
 
     たとえば、チャット ビューに次のプロンプトを入力します。
 
     ```plaintext
-    @workspace describe this project
+    #codebase describe this project
     ```
 
-    **@workspace** などのチャット参加者を使用して、GitHub Copilot によって生成される応答を改善します。 チャット参加者は、特定分野の専門家のように機能し、それぞれの専門領域で支援を提供します。 GitHub Copilot でプロジェクトの構造、コードのさまざまな部分の操作、またはプロジェクトの設計パターンを考慮する場合は、**@workspace** を使用します。
-
-    使用できるすべてのチャット参加者の一覧を表示するには、チャット プロンプト ボックスに「**@**」と入力します。
+    **#codebase** などのチャット変数を使用して、プロンプトに特定のコンテキストを含めます。 コンテキストは、GitHub Copilot がより関連性の高い応答を生成するのに役立ちます。
 
 1. 少し時間を取って、GitHub Copilot の応答と実際のプロジェクト ファイルを比較してみましょう。
 
-    ソリューション内の各プロジェクトについて説明する応答が表示されます。
+    ソリューションに含まれるすべてのプロジェクトを説明する応答が表示されます。
 
     - **Library.ApplicationCore**
     - **Library.Console**
@@ -145,27 +147,19 @@ GitHub Copilot のチャット ビューには、自然言語プロンプトを�
 
 1. ソリューション エクスプローラー ビューを使用して、プロジェクト フォルダーを展開します。
 
-1. **ConsoleApp.cs** ファイルを見つけて開きます。
+1. 少し時間を取って、プロジェクト ファイルを確認しましょう。
 
-    ConsoleApp.cs ファイルは **src/Library.Console** フォルダーにあります。
-
-1. 少し時間を取って、コード ファイルを確認しましょう。
-
-1. **ConsoleApp** クラスの説明を生成するプロンプトをチャット ビューに入力します。
+1. チャット ビューに、プライベート GitHub リポジトリにコードベースを公開する方法を尋ねるプロンプトを入力します。
 
     たとえば、チャット ビューに次のプロンプトを入力します。
 
     ```plaintext
-    @workspace #usages How is the ConsoleApp class used?
+    @github #codebase What's the easiest way to publish my current codebase to a private GitHub repo from within Visual Studio Code? 
     ```
 
-    **#usages** などのチャット変数を使用して、プロンプトに特定のコンテキストを含めます。 チャット変数の一覧を表示するには、チャット プロンプト ボックスに「**#**」と入力します。
+    **@github** などのチャット参加者を使用して、プロンプトのドメイン エキスパートを割り当てます。 ドメイン エキスパートは、GitHub Copilot が正確な応答を生成するのに役立ちます。
 
     > **注**:GitHub Copilot は、プロンプトのコンテキストを構築し、応答を生成するときに、チャット履歴と Visual Studio Code で開いているコード ファイルを考慮します。
-
-1. 少し時間を取って、GitHub Copilot の応答の正確性を確認しましょう。
-
-    **ConsoleApp** クラスが定義されている場所と、コードベースでどのように使用されているかを説明する応答が表示されます。 応答では、ファイル ConsoleApp.cs と Program.cs が行番号と共に参照されます。
 
 1. **Program.cs** ファイルを開き、コードを確認します。
 
@@ -174,10 +168,10 @@ GitHub Copilot のチャット ビューには、自然言語プロンプトを�
     たとえば、チャット ビューに次のプロンプトを入力します。
 
     ```plaintext
-    @workspace /explain Explain the Program.cs file
+    /explain #codebase Explain the Program.cs file
     ```
 
-    一般的なシナリオで複雑なプロンプトを入力しなくても済むようにするには、**/explain** などのスラッシュ コマンドを使用します。 使用できるすべてのスラッシュ コマンドの一覧を表示するには、チャット プロンプト ボックスに「**/**」と入力します。 使用できるスラッシュ コマンドは、環境やチャットのコンテキストによって異なります。
+    **/explain** などのスラッシュ コマンドを使用して、プロンプトの意図を指定します。 意図を伝えると、生成する必要のある応答の種類を GitHub Copilot が理解するのに役立ちます。 使用できるスラッシュ コマンドの一覧は、お使いの環境やチャットのコンテキストによって異なります。
 
 1. 少し時間を取って、GitHub Copilot によって生成された詳細な応答を確認しましょう。
 
@@ -187,9 +181,9 @@ GitHub Copilot のチャット ビューには、自然言語プロンプトを�
 
 ### コンテキストを追加してチャットの応答を改善する
 
-GitHub Copilot は、コンテキストを使用して、より関連性の高い応答を生成します。
+GitHub Copilot は、コンテキストを使用して、関連性の高い応答を生成します。
 
-コード エディターでファイルを開くことはコンテキストを確立する 1 つの方法ですが、ドラッグ アンド ドロップ操作や、チャット ビューの **[コンテキストのアタッチ]** ボタンを使用して、チャット コンテキストにファイルを追加することもできます。
+コード エディターでファイルを開くことはコンテキストを確立するための 1 つの方法ですが、ドラッグ アンド ドロップ操作を使用してチャット コンテキストにファイルを追加するか、チャット ビューの **[コンテキストの追加]** ボタンを使用することもできます。
 
 以下の手順に従って、演習のこのセクションを完了します。
 
@@ -197,18 +191,16 @@ GitHub Copilot は、コンテキストを使用して、より関連性の高�
 
 1. ドラッグ アンド ドロップ操作を使用して、ソリューション エクスプローラーからチャット コンテキストに次のファイルを追加できます: **JsonData.cs**、**JsonLoanRepository.cs**、**JsonPatronRepository.cs**。
 
-    GitHub Copilot はチャット コンテキストを使用して、プロンプトに関連するコード ファイルを理解します。 ドラッグ アンド ドロップ操作を使用してチャット コンテキストにファイルを追加するか、チャット ビューの **[コンテキストのアタッチ]** ボタンを使用することができます。
+    GitHub Copilot はチャット コンテキストを使用して、プロンプトに関連するコード ファイルを理解します。 ドラッグ アンド ドロップ操作を使用してチャット コンテキストにファイルを追加するか、チャット ビューの **[コンテキストの追加]** ボタンを使用することができます。
 
-    個々のファイルを手動で追加するのではなく、Copilot にコードベースから適切なファイルを自動的に見つけてもらうことができます。 これは、どのファイルが質問に関連しているかわからない場合に役立ちます。
-
-    Copilot が適切なファイルを自動的に見つけられるようにするには、プロンプトに #codebase を追加するか、コンテキストの種類の一覧から Codebase を選択します。
+    個々のファイルを手動で追加する代わりに、Copilot にコードベースから適切なファイルを検出させることができます。 この方法は、どのファイルが質問に関連しているかわからない場合に役立ちますが、応答時間が遅くなります。    Copilot に適切なファイルを検出させるには、プロンプトに #codebase を追加します。
 
 1. データ アクセス クラスの説明を生成するプロンプトをチャット ビューに入力します。
 
     たとえば、チャット ビューに次のプロンプトを入力します。
 
     ```plaintext
-    @workspace /explain Explain how the data access classes work
+    /explain Explain how the data access classes work
     ```
 
 1. 少し時間を取って、応答を読みましょう。
@@ -231,7 +223,7 @@ GitHub Copilot は、コンテキストを使用して、より関連性の高�
 
 1. **ソリューション エクスプローラー** ビューが開かれていることを確認します。
 
-    ソリューション エクスプローラー ビューは、エクスプローラー ビューと同じではありません。 ソリューション エクスプローラー ビューは、プロジェクト ファイルとソリューション ファイルを "ディレクトリ" ノードとして使用して、ソリューションの構造を表示します。
+    ソリューション エクスプローラーは、C# Dev Kit 拡張機能によって Visual Studio Code のプライマリ サイドバーに追加される専用のビューです。 これは、Visual Studio IDE のソリューション エクスプローラーと同様に、.NET アプリケーションの構造化されたソリューション中心のビューを提供します。 組み込みのエクスプローラー ビューのようなプレーンなフォルダーやファイルのツリーよりも情報量が多く、より整理されています。
 
 1. アプリケーションを実行するには、**Library.Console** を右クリックし、**[デバッグ]** を選択してから **[新しいインスタンスを開始]** を選択します。
 
@@ -296,13 +288,13 @@ Readme ファイルは、プロジェクトの共同作成者と関係者にコ�
 
 1. **AccelerateDevGHCopilot** ソリューションのルート フォルダーに、**README.md** という新しいファイルを追加します。
 
-1. チャット ビューを開きます。
+1. チャット ビューを開き、**[Ask]** エージェント モードを選択します。
 
 1. README ファイルのプロジェクト ドキュメントを生成するには、次のプロンプトを入力します。
 
     ```plaintext
 
-    @workspace Generate the contents of a README.md file for a code repository. Use "Library App" as the project title. The README file should include the following sections: Description, Project Structure, Key Classes and Interfaces, Usage, License. Format all sections as raw markdown. Use a bullet list with indents to represent the project structure. Do not include ".gitignore" or the ".github", "bin", and "obj" folders.
+    #codebase I need you to generate the contents of a README.md file that I can use for the current code repository. Use "Library App" as the project title. The README file should include the following sections: Description, Project Structure, Key Classes and Interfaces, Usage, License. Format all sections as raw markdown. Use a bullet list with indents to represent the project structure. Do not include ".gitignore" or the ".github", "bin", and "obj" folders. I want add the suggested content to the README.md file that's open in the editor.
 
     ```
 
