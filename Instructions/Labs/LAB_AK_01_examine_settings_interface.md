@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot の設定とユーザー インターフェイスの機能を確認する
   description: GitHub Copilot の設定を構成する方法と、Visual Studio Code で GitHub Copilot 機能にアクセスする方法について説明します。
+  duration: 25 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot の設定とユーザー インターフェイスの機能を確認する
