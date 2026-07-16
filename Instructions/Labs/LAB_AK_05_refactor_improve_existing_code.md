@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot を使用して既存のコードをリファクタリングする
   description: Visual Studio Code で GitHub Copilot を使用し、既存のコード セクションをリファクタリングして改善する方法について説明します。
+  duration: 30 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot を使用して既存のコードをリファクターする
@@ -57,12 +63,11 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 この演習には、次のタスクが含まれています。
 
 1. Visual Studio Code で図書館アプリケーションを設定します。
-1. 質問モードと編集モードでチャット ビューを使用してコードを分析し、リファクターします。
-1. インライン チャットおよび編集モードとエージェント モードのチャット ビューを使用してコードをリファクタリングします。
+1. 質問モードとエージェント モードでチャット ビューを使用してコードを分析し、リファクターします。
 
 ## Visual Studio Code で図書館アプリケーションを設定する
 
-既存のアプリケーションをダウンロードし、コード ファイルを抽出して、Visual Studio Code でそのソリューションを開く必要があります。
+既存のアプリケーションをダウンロードし、コード ファイルを展開した後、Visual Studio Code でソリューションを開く必要があります。
 
 図書館アプリケーションを設定するには、次の手順に従います。
 
@@ -82,7 +87,7 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 
     1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
 
-1. 抽出したファイルのフォルダーを開き、**AccelerateDevGHCopilot** フォルダーを、アクセスしやすい場所 (Windows デスクトップ フォルダーなど) にコピーします。
+1. 展開されたファイル フォルダーを開き、**AccelerateDevGHCopilot** フォルダーを Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
 
 1. Visual Studio Code で **AccelerateDevGHCopilot** フォルダーを開きます。
 
@@ -106,11 +111,11 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで、**AccelerateDevGHCopilot** を右クリックし、次に **[ビルド]** を選択します。
+    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
 
-    いくつかの警告が表示されますが、エラーは表示されないはずです。
+    警告はいくつか表示されますが、エラーは報告されないはずです。
 
-## 質問モードと編集モードのチャット ビューを使用して、コードを分析およびリファクタリングする
+## 質問モードとエージェント モードでチャット ビューを使用してコードを分析し、リファクターする
 
 リフレクションは、実行時にオブジェクトを検査および操作できる強力なコーディング機能です。 ただし、リフレクションには時間がかかる可能性があり、リフレクションに関連する潜在的なセキュリティ リスクを考慮する必要があります。
 
@@ -121,11 +126,11 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 
 ### 質問モードのチャット ビューを使用して EnumHelper クラスを分析する
 
-GitHub Copilot のチャット ビューには、次の 3 つのモードがあります。**質問**、**編集**、および**エージェント**。 各モードは、GitHub Copilot のさまざまな操作のために設計されています。
+GitHub Copilot のチャット ビューには、3 つのモード (**質問**、**編集**、**エージェント**) があります。 各モードは、GitHub Copilot のさまざまな操作のために設計されています。
 
-- **質問**:このモードを使用して、コードベースについて GitHub Copilot に質問します。 コードの説明、変更の提案、コードベースに関する情報の提供を GitHub Copilot に依頼できます。
-- **編集**:選択したコード ファイルを編集するには、このモードを使用します。 GitHub Copilot を使用して、コードをリファクターし、コメントを追加し、コードにその他の変更を加えることができます。
-- **エージェント**:このモードを使用して、GitHub Copilot をエージェントとして実行します。 GitHub Copilot を使用して、コマンドの実行、コードの実行、あるいはその他の各種タスクをワークスペース内で実行することができます。
+- 質問: 質問モードは、コードベース、コーディング、一般的なテクノロジの概念に関する質問に回答するのに最適です。 何かのしくみを理解したい場合、アイデアを探索したい場合、タスクのコーディングについて問い合わせたい場合、質問モードを使用します。
+- 計画: 計画モードは、コーディング タスクの構造化された実装計画の作成用に最適化されています。 実装前に複雑な機能を分割したり、より小さく管理しやすい手順に変更したりする場合、計画エージェントを使用します。
+- エージェント: エージェント モードは、ターミナル コマンドとツールの実行が必要になる可能性がある、高度な要件に基づく複雑なコーディング タスク用に最適化されています。 AI は自律的に動作して、編集する必要がある関連のコンテキストとファイルを決定し、必要な作業を計画し、問題が発生した場合に解決するための反復処理を行います。
 
 演習のこのセクションでは、質問モードのチャット ビューを使用して、割り当てられたコーディングを分析します。
 
@@ -165,26 +170,28 @@ GitHub Copilot のチャット ビューには、次の 3 つのモードがあ�
     }
     ```
 
-1. GitHub Copilot チャット ビューを開きます。
+1. GitHub Copilot のチャット ビューを開きます。
 
     チャット ビューには、GitHub Copilot と対話するための管理された会話型インターフェイスが用意されています。
 
-    Visual Studio Code ウィンドウ上部の検索テキスト ボックスのすぐ右側にある **[チャットの切り替え]** ボタンを使用して、チャット ビューのオープンとクローズを切り替えることができます。
+    Visual Studio Code ウィンドウ上部の検索テキスト ボックスのすぐ右側にある **[チャットの切り替え]** ボタンを使用して、チャット ビューのオープンとクローズを切り替えることができます。 キーボード ショートカット **Ctrl + Alt + I** を使用してチャット ビューを切り替えることもできます。
 
-    ![Copilot の [チャットの切り替え] ボタンを示すスクリーンショット。](./Media/m01-github-copilot-toggle-chat.png)
+1. [エージェントの設定] ドロップダウン メニューで **[質問]** モードが選択されていることを確認します。
 
-    キーボード ショートカット **Ctrl + Alt + I** を使用してチャット ビューを切り替えることもできます。
+    [エージェントの設定] ドロップダウン メニューは、チャット ビューの右下隅付近に表示されます。
 
-1. チャット ビューは既定では**質問**モードで開かれることに注意します。
+1. チャット モードを **[質問]** に設定し、**[Auto]** モデルを選択します。
 
-    現在のチャット モードは、チャット ビューの右下隅の近くに表示されます。 チャット応答がチャット ビューに表示されるのは、**質問**モードで作業しているときです。
+    [モードの設定] と [モデルの選択] のメニューは、チャット ビューの左下隅にあります。
+
+    > **注**: プランで許可されている場合は別のモデルを使用できますが、応答は、この演習で示されているものとは異なる可能性があります。 無料プランのユーザーは、毎月のチャット要求の数が限られているため、各プロンプトはクォータにカウントされます。
 
 1. EnumHelper.cs ファイル内のコードを選択します。
 
 1. 次のプロンプトを確認してから送信します。
 
     ```plaintext
-    @workspace Explain how the GetDescription method uses reflection to assign the return value.
+    #codebase Explain how the GetDescription method uses reflection to assign the return value.
     ```
 
 1. 少し時間を取って応答を確認します。
@@ -196,7 +203,7 @@ GitHub Copilot のチャット ビューには、次の 3 つのモードがあ�
 1. 次のプロンプトを確認してから送信します。
 
     ```plaintext
-    @workspace Which files in this workspace are used to store the enum values passed to the GetDescription method?
+    #codebase Which files in this workspace are used to store the enum values passed to the GetDescription method?
     ```
 
     応答によって、Enums フォルダーを確認するように指示されます。 列挙値は、**LoanExtensionStatus**、**LoanReturnStatus** および **MembershipRenewalStatus** ファイルに定義されています。
@@ -216,7 +223,7 @@ GitHub Copilot のチャット ビューには、次の 3 つのモードがあ�
 
     ```plaintext
 
-    @workspace I need to refactor the `EnumHelper` class and remove any code that uses reflection. Use static dictionaries to supply enum description attributes. Use a separate dictionary for each enum. The dictionaries should use values from the `LoanExtensionStatus.cs`, `LoanReturnStatus.cs`, and `MembershipRenewalStatus.cs` files. Explain how to update the EnumHelper class using dictionaries and show me the updated code.
+    #codebase I need to refactor the `EnumHelper` class and remove any code that uses reflection. Use static dictionaries to supply enum description attributes. Use a separate dictionary for each enum. The dictionaries should use values from the `LoanExtensionStatus.cs`, `LoanReturnStatus.cs`, and `MembershipRenewalStatus.cs` files. Explain how to update the EnumHelper class using dictionaries and show me the updated code.
 
     ```
 
@@ -311,19 +318,17 @@ GitHub Copilot のチャット ビューには、次の 3 つのモードがあ�
 
 1. 各ボタンの上にマウス ポインターを置くと、アクションを説明するヒントが表示されます。
 
-    最初の 2 つのボタンを使用すると、エディターにコードがコピーされます。 3 つ目のボタンを使用すると、クリップボードにコードがコピーされます。
+    最初の 2 つのボタンを使用すると、コードがエディターにコピーされます。 3 つ目のボタンを使用すると、クリップボードにコードがコピーされます。
 
-> **注**:質問モードを使用して、**EnumHelper** クラスを更新することができました。 ただし、編集モードでは、コード エディター内で直接コードがリファクタリングされ、更新内容を受け入れるためのその他のオプションが提供されます。
+> **注**:質問モードを使用して、**EnumHelper** クラスを更新することができました。 ただし、エージェント モードでは、コード エディター内で直接コードがリファクタリングされ、更新内容を受け入れるためのその他のオプションが提供されます。
 
-### 編集モードのチャット ビューを使用して EnumHelper クラスをリファクタリングする
+### エージェント モードのチャット ビューを使用して EnumHelper クラスをリファクタリングする
 
-チャット ビューの編集モードは、ワークスペース内でコードを編集するために設計されています。 編集モードを選択して、コードをリファクターし、コメントを追加し、その他のコード変更を行うことができます。
+チャット ビューのエージェント モードは、ワークスペース内でコードを編集するために設計されています。 エージェント モードを使用して、コードのリファクタリング、コメントの追加、その他のコード変更を行うことができます。
 
-1. チャット ビューで **[モードの設定]** を選択し、**[編集]** を選択します。
+1. チャット ビューで、**[エージェントの設定]** ドロップダウン メニューを使用して、**[エージェント]** モードを選択します。
 
-    編集モードで新しいセッションを開始するように求められたら、**[はい]** を選択します。
-
-    **編集**モードでは、GitHub Copilot の応答はコード エディター内にコード更新の提案として表示されます。 一般に編集モードが使用されるのは、新機能の実装、バグの修正またはコードのリファクタリング時です。
+    **[エージェント]** モードでは、GitHub Copilot はチャット ビューとコード エディターの両方で動作します。 チャット ビューは会話を追跡し、コンテキストを提供するために使用され、コード エディターは、コードに直接変更を加えるために使用されます。 エージェント モードは、一般的に新機能の実装、バグの修正、コードのリファクタリングを行う際に使用されます。
 
 1. チャット コンテキストに次のファイルを追加します。
 
@@ -336,7 +341,7 @@ GitHub Copilot のチャット ビューには、次の 3 つのモードがあ�
 
     ```plaintext
 
-    #codebase I need to refactor the `EnumHelper` class and remove any code that uses reflection. Use static dictionaries to supply enum description attributes. Use a separate dictionary for each enum. The dictionaries should use values from the `LoanExtensionStatus.cs`, `LoanReturnStatus.cs`, and `MembershipRenewalStatus.cs` files.
+    #codebase I need to refactor the `GetDescription` method in the `EnumHelper` class and remove any code that uses reflection. Use static dictionaries to supply enum description attributes. Use a separate dictionary for each enum. The dictionaries should use values from the `LoanExtensionStatus.cs`, `LoanReturnStatus.cs`, and `MembershipRenewalStatus.cs` files. I want a single GetDescription method that uses pattern matching to determine the type of the enum and retrieve the description from the appropriate dictionary.
 
     ```
 
@@ -444,21 +449,19 @@ GitHub Copilot のチャット ビューには、次の 3 つのモードがあ�
 
     この演習の開始時に表示されたのと同じ警告が表示されますが、エラー メッセージは表示されないはずです。
 
-## インライン チャットおよび編集モードとエージェント モードのチャット ビューを使用してコードをリファクタリングする
+## エージェント モードでチャット ビューを使用してコードをリファクタリングする
 
 LINQ は、コレクション、データベース、XML ドキュメントに対し統一した方法でクエリを実行できるようにする C# の強力な機能です。 LINQ は、従来の foreach ループと比較して、データのクエリを実行するためのより簡潔で読みやすい方法を提供します。
 
-演習のこのセクションには次のタスクが含まれています。
+演習のこのセクションでは、エージェント モードを使用して、foreach ループの代わりに LINQ を使用するように JsonData、JsonLoanRepository、JsonPatronRepository クラスをリファクタリングします。
 
-- インライン チャットを使用して JsonData クラスをリファクタリングします。
-- 編集モードのチャット ビューを使用して JsonLoanRepository クラスをリファクタリングします。
-- エージェント モードのチャット ビューを使用して JsonPatronRepository クラスをリファクタリングします。
-
-### インライン チャットを使用して JsonData クラスをリファクタリングする
+### エージェント モードを使用して JsonData クラスをリファクタリングする
 
 JsonData クラスには、次のデータ アクセス メソッドが含まれています。GetPopulatedPatron、GetPopulatedLoan、GetPopulatedBookItem、GetPopulatedBook。 これらのメソッドは、foreach ループを使用してコレクションを反復処理し、オブジェクトを設定します。 これらのメソッドをリファクターして LINQ を使用すると、コードの可読性と保守性が向上します。
 
 以下の手順に従って、演習のこのセクションを完了します。
+
+1. チャット ビューが開いており、[エージェントの設定] ドロップダウン メニューで **[エージェント]** モードが選択されていることを確認します。
 
 1. ソリューション エクスプローラー ビューで、**Library.Infrastructure** プロジェクトを展開し、**Data** フォルダーを展開します。
 
@@ -497,7 +500,7 @@ JsonData クラスには、次のデータ アクセス メソッドが含まれ
 
     ```
 
-1. インライン チャットを開き、LINQ を使用してメソッドをリファクタリングするプロンプトを入力します。
+1. チャット ビューで、LINQ を使用してメソッドをリファクタリングするプロンプトを入力します。
 
     ```plaintext
     #selection refactor selection to `return new Patron` using LINQ
@@ -541,7 +544,7 @@ JsonData クラスには、次のデータ アクセス メソッドが含まれ
 
     - **.ToList()**:結果を **List\<Loan\>** に変換します。
 
-1. おすすめの更新を受け入れるには、**[同意する]** を選択します。
+1. 提案された更新を受け入れるには、**[保持]** を選択します。
 
     これと同じ方法を使用して、他の 3 つのメソッドをリファクタリングします。
 
@@ -623,9 +626,9 @@ JsonData クラスには、次のデータ アクセス メソッドが含まれ
     }
     ```
 
-1. LINQ クエリの説明を表示するには、**Explain** スマート アクションを使用します。
+1. **[説明]** スマート アクションを使用して LINQ クエリの説明を表示します。
 
-    **[説明]** スマート アクションを開くには、エディターでコードを選択し、選択したコードを右クリックして、[Copilot] を選択してから **[説明]** を選択します。 **[説明]** スマート アクションによって、選択したコードの詳しい説明が提供されます。 このケースでは、LINQ クエリがコードで使用されています。
+    **[説明]** スマート アクションを開くには、エディターでコードを選択し、選択したコードを右クリックして、**[説明]** を選択します。 **[説明]** スマート アクションによって、選択したコードの詳しい説明が提供されます。 このケースでは、LINQ クエリがコードで使用されています。
 
     たとえば、**GetPopulatedBook** メソッドで **[説明]** スマート アクションを使用すると、**Book** オブジェクトの **Author** プロパティを事前設定するのに使用される LINQ クエリの説明を表示できます。
 
@@ -656,7 +659,7 @@ JsonData クラスには、次のデータ アクセス メソッドが含まれ
 
 1. ソリューションを構築してエラーがないことを確認します。
 
-### 編集モードのチャット ビューを使用して JsonLoanRepository クラスをリファクタリングする
+### エージェント モードでチャット ビューを使用して JsonLoanRepository クラスをリファクタリングする
 
 JsonLoanRepository クラスには、**GetLoan** および **UpdateLoan** データ アクセス メソッドが含まれています。 これら 2 つのメソッドをリファクターし、foreach ループを LINQ に置き換えて、コードの可読性と保守性を向上させます。
 
@@ -685,10 +688,6 @@ JsonLoanRepository クラスには、**GetLoan** および **UpdateLoan** デー
         return null;
     }
     ```
-
-1. チャット ビューが**編集**モードで開いていることを確認します。
-
-    チャット ビューが開いていない場合は、**[チャットの切り替え]** を選択して、モードを **[編集]** に設定します。
 
 1. LINQ を使用してメソッドをリファクタリングするプロンプトを入力します。
 
@@ -854,7 +853,7 @@ JsonLoanRepository クラスには、**GetLoan** および **UpdateLoan** デー
 
     警告が表示されます。 今のところは無視しても構いません。
 
-### エージェント モードのチャット ビューを使用して JsonPatronRepository クラスをリファクタリングする
+### エージェント モードを使用して JsonPatronRepository クラスをリファクタリングする
 
 **JsonPatronRepository** クラスには、次の 3 つのメソッドが含まれています。
 
@@ -957,17 +956,9 @@ JsonLoanRepository クラスには、**GetLoan** および **UpdateLoan** デー
 
     **UpdatePatron** メソッドは foreach ループを使用し、利用者について反復処理を行い、**id** パラメーターに基づいて一致するものを見つけます。 次に、このメソッドは、既存の利用者を新しいデータで更新し、更新された patron コレクションを保存します。
 
-1. チャット ビューのモードを **[エージェント]** に変更します。
+1. 少し時間を取って、LINQ を使用して **JsonPatronRepository** クラスをリファクタリングするプロンプトを検討します。
 
-    エージェント モードは、GitHub Copilot をエージェントとして実行するように設計されています。 自然言語を使用して、高度なタスクを指定できます。 エージェントにより、割り当てたタスクの評価、必要な作業の計画作成、変更のコードベースへの適用が行われます。
-
-    エージェント モードは、ユーザーが指定したタスクを実行するために、コード編集とツール呼び出しを組み合わせて使用します。 ユーザーのリクエストを処理する際に、編集とツールの結果を監視し、問題が発生した場合には解決します。 エージェント側で問題を解決できない場合は、介入を求められます。 たとえば、エージェントが同じ問題を解決するために複数の反復処理を使用する場合は、プロセスを一時停止して、ユーザーに、要求を明確にするための追加コンテキストの提供やプロセスのキャンセルを求めます。
-
-    > **重要**:エージェント モードでチャット ビューを使用すると、GitHub Copilot は 1 つのタスクを完了するために複数の Premium リクエストを行う場合があります。 Premium リクエストは、ユーザーが開始するプロンプトや、Copilot がユーザーに代わって実行するフォローアップ アクションで使用できます。 使用される Premium リクエストの合計数は、タスクの複雑さ、必要なステップ数、選択されたモデルによって決まります。
-
-1. 少し時間を取って、エージェントに割り当てる必要があるタスクについて検討します。
-
-    タスクは、**JsonPatronRepository** クラスをリファクタリングすることです。 目標は、foreach ループを、元の foreach コードと同じ結果を生成する LINQ クエリで置換することです。
+    目標は、foreach ループを、元の foreach コードと同じ結果を生成する LINQ クエリで置換することです。
 
     **JsonData** および **JsonLoanRepository** クラスでの経験を活かすことで、エージェントのためにタスクを記述できます。 LINQ クエリは、**Where**、**Select** および **FirstOrDefault** を使用して、一致する利用者を見つける必要があります。 LINQ クエリは、元の foreach コードの並べ替えを維持するために **OrderBy** も使用する必要があります。
 
@@ -1096,8 +1087,8 @@ JsonLoanRepository クラスには、**GetLoan** および **UpdateLoan** デー
 
 ## まとめ
 
-この演習では、GitHub Copilot を使用してコードをリファクタリングする方法を学習しました。 編集モードのチャット ビューを使用して、**EnumHelper** クラスをリファクタリングし、リフレクションを静的ディクショナリに置き換えました。 また、インライン チャットと編集モードを使用して、**JsonData** および **JsonLoanRepository** クラスをリファクタリングし、foreach ループを LINQ クエリで置き換えました。 最後に、エージェント モードを使用して **JsonPatronRepository** クラスをリファクタリングし、foreach ループを LINQ クエリで置き換えました。
+この演習では、GitHub Copilot を使用してコードをリファクタリングする方法を学習しました。 質問モードのチャット ビューを使用して、**EnumHelper** クラスを分析し、リフレクションを静的ディクショナリに置き換える方法を調べました。 その後、エージェント モードを使用してリファクタリングを適用しました。 また、エージェント モードでチャット ビューを使用して、**JsonData** および **JsonLoanRepository** クラスをリファクターし、foreach ループを LINQ クエリで置き換えました。 最後に、エージェント モードを使用して **JsonPatronRepository** クラスをリファクターし、foreach ループを LINQ クエリで置き換えました。
 
 ## クリーンアップ
 
-演習が済んだので、少し時間を取って、GitHub アカウントまたは GitHub Copilot サブスクリプションに残しておきたくない変更を行っていないことを確認します。 変更を加えた場合は、ここで元に戻します。
+演習が完了したので、少し時間を取って、GitHub アカウントまたは GitHub Copilot サブスクリプションに保持したくない変更が加えられていないか確認します。 変更を加えた場合は、ここで元に戻します。

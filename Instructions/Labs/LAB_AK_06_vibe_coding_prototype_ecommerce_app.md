@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot エージェントを使用して Vibe コーディングを始める
   description: Vibe コーディング プロセスと GitHub Copilot エージェントを使用してプロトタイプ アプリを作成する方法について説明します。
+  duration: 30 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot エージェントを使用して Vibe コーディングを始める
@@ -10,7 +16,7 @@ Vibe コーディングとは、GitHub Copilot エージェントなどの AI �
 
 この演習では、Vibe コーディング プロセスと GitHub Copilot エージェントを使用して、オンライン ショッピング アプリのプロトタイプ バージョンを作成します。 このプロトタイプ アプリには、製品、製品の詳細、ショッピング カート、チェックアウトのページが含まれています。アプリには、ページ間の基本的なナビゲーションと、アプリの機能を説明するために役立つ限定的なデータセットが含まれています。 プロトタイプには、ユーザー認証、支払い処理、データベース統合などのバックエンド機能は含まれていません。
 
-この演習の所要時間は約**30** 分です。
+この演習の所要時間は約 **30** 分です。
 
 > **重要**:この演習を完了するには、自分の GitHub アカウントと GitHub Copilot サブスクリプションを用意する必要があります。 GitHub アカウントをお持ちでない場合は、無料の個人用アカウントに<a href="https://github.com/" target="_blank">サインアップ</a>し、GitHub Copilot Free プランを使用して演習を完了できます。 ラボ環境内から GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business、または GitHub Copilot Enterprise サブスクリプションにアクセスできる場合は、既存の GitHub Copilot サブスクリプションを使用してこの演習を完了できます。
 
@@ -23,13 +29,13 @@ Vibe コーディングとは、GitHub Copilot エージェントなどの AI �
 
 この演習のラボ環境としてローカル PC を使用している場合:
 
-- Visual Studio Code インストーラー ファイルは、次の URL からダウンロードできます:<a href="https://code.visualstudio.com/download" target="_blank">Visual Studio Code をダウンロードする</a>。
+- Visual Studio Code インストーラー ファイルは、次の URL からダウンロードできます: <a href="https://code.visualstudio.com/download" target="_blank">Visual Studio Code をダウンロードする</a>。
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 この演習をサポートするホスト ラボ環境を使用している場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーを開き、次の URL をサイト ナビゲーション バーに貼り付けてください:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーを開き、次の URL をサイト ナビゲーション バーに貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 ## 演習のシナリオ
 
@@ -77,7 +83,7 @@ Vibe コーディングとは、GitHub Copilot エージェントなどの AI �
 
     チャット ビューを開くには、Visual Studio Code ウィンドウの上部中央付近の検索テキストボックスのすぐ右にある GitHub Copilot アイコンを選択します。
 
-1. チャット モードが **[質問]** に設定され、**GPT-4.1** モデルが選択されていることを確認します。
+1. チャット モードが **[質問]** に設定され、**[Auto]** モデルが選択されていることを確認します。
 
     *[モードの設定]* と *[モデルの選択]* のドロップダウン メニューは、チャット ビューの左下隅にあります。
 
@@ -87,9 +93,7 @@ Vibe コーディングとは、GitHub Copilot エージェントなどの AI �
     - **編集**:ワークスペース内の特定のコード ファイルを編集するには、このモードを使用します。 編集モードを使用すると、コードのリファクター、コメントの追加、テストの実装、アプリへの新機能の追加を依頼できます。
     - **エージェント**:このモードを使用して、GitHub Copilot をエージェントとして実行します。 エージェント モードを使用すると、コーディング タスクを自律的に実行できます。
 
-    **サポートされているモデル**:GitHub Copilot は、長所が異なる複数のモデルをサポートしています。 速度とコスト効率が優先されるモデルもあれば、正確性、推論、またはマルチモーダル入力 (画像とコードの組み合わせなど) での動作に最適化されているモデルもあります。 GitHub Copilot の無料プランは、現在、GPT-4.1、GPT-4o、o3-mini、Claude Sonnet 3.5、Gemini 2.0 Flash をサポートしています。 GPT-4.1 モデルは、高速で正確なコード補完と説明を生成し、視覚的な入力をサポートし、複雑なタスクを効果的に処理できるため、この演習に適しています。
-
-    > **注**:別のモデルを選択すると、GitHub Copilot から受け取る応答に影響します。 この演習では GPT-4.1 モデルをお勧めしますが、プロンプトに対して他のモデルがどのように応答するかを確認する場合は、他のモデルを使用して演習を繰り返すこともできます。
+    **サポートされているモデル**:GitHub Copilot は、長所が異なる複数のモデルをサポートしています。 速度とコスト効率が優先されるモデルもあれば、正確性、推論、またはマルチモーダル入力 (画像とコードの組み合わせなど) での動作に最適化されているモデルもあります。
 
 1. チャット ビューで、次のプロンプトを入力します。
 
@@ -308,7 +312,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
 以下の手順に従って、演習のこのセクションを完了します。
 
-1. Visual Studio Code で、VibeCoding-PrototypeApp フォルダー内に**ShoppingApp** という新しいフォルダーを作成します。
+1. Visual Studio Code で、VibeCoding-PrototypeApp フォルダー内に **ShoppingApp** という新しいフォルダーを作成します。
 
     GitHub Copilot エージェントには、新しいアプリ ファイルのワークスペースとして使用する空のフォルダーが必要です。
 
@@ -332,7 +336,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
     チャット コンテキストにファイルを追加するには、エクスプローラー ビューからチャット ビューにファイルをドラッグ アンド ドロップするか、チャット ビューの左下にある **[コンテキストの追加]** ボタンを使用します。
 
-1. エクスプローラー ビューで**ShoppingApp** フォルダーを選択します。
+1. エクスプローラー ビューで **ShoppingApp** フォルダーを選択します。
 
 1. チャット ビューで、次のプロンプトを入力します。
 
@@ -349,7 +353,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
         - **index.html**:Web アプリケーションのエントリ ポイントとして機能し、基本構造を設定し、スタイルとスクリプトをリンクします。
         - **styles.css**:プロトタイプ Web アプリのビジュアル レイアウトとレスポンシブ デザインを指定します。
 
-    - エージェントにより、ワークスペースに **.github/copilot-instructions.md** ファイルが追加され、PRD ファイルとワイヤーフレーム ファイルの内容が**copilot-instructions.md** ファイルに追加されます。
+    - エージェントにより、ワークスペースに **.github/copilot-instructions.md** ファイルが追加され、PRD ファイルとワイヤーフレーム ファイルの内容が **copilot-instructions.md** ファイルに追加されます。
 
     > **ヒント**:カスタム指示は、ワークスペースまたはリポジトリの .github/copilot-instructions.md ファイルに保存できます。 カスタム指示を使用すると、共通のガイドラインや規則を記述し、特定のコーディング方法や技術スタックに合う応答を得ることができます。 すべてのチャット クエリにこのコンテキストを手動で含めるのではなく、カスタム指示を使用してこの情報をすべてのチャットリクエストに自動的に組み込むことができます。 このような指示は、ファイルが配置されているワークスペースにのみ適用されます。
 
@@ -380,7 +384,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
     時間に余裕がある場合は、GitHub Copilot に各ファイルの詳細な説明を生成するよう依頼することを検討してください。
 
-1. Visual Studio Code エディターで**index.html** ファイルを開きます。
+1. Visual Studio Code エディターで **index.html** ファイルを開きます。
 
 1. **[実行]** メニューの **[デバッグなしで実行]** を選択します。
 
@@ -489,7 +493,7 @@ GitHub Copilot エージェントでは、製品要件とワイヤーフレー�
 
 1. [ファイル] メニューで、**[名前を付けてワークスペースを保存]** を選択します。
 
-1. ワークスペース構成ファイル (VibeCoding-PrototypeApp.code-workspace) を**VibeCoding-PrototypeApp** フォルダーに保存するには、**[保存]** を選択します。
+1. ワークスペース構成ファイル (VibeCoding-PrototypeApp.code-workspace) を **VibeCoding-PrototypeApp** フォルダーに保存するには、**[保存]** を選択します。
 
     このファイルを使用すると、同じフォルダー構造と設定でワークスペースを保存し、再度開くことができます。
 

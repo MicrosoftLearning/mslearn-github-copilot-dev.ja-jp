@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot を使用して GitHub の issue を解決する
   description: Visual Studio Code で GitHub Copilot を使用してコード セキュリティの脆弱性を特定して解決する方法について学びます。
+  duration: 40 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot を使用して GitHub の issue を解決する
@@ -374,11 +380,9 @@ Visual Studio Code 用の次の GitHub 拡張機能は、GitHub の issue を分
 
     GitHub Pull Requests 拡張機能によって、新しいエディター タブに issue の詳細が表示されます。このタブでは、issue の説明、コメント、関連情報を確認できます。issue の詳細を使用すると、チャット ビューで GitHub Copilot に送信するプロンプトを作成するのに役立ちます。
 
-1. GitHub Copilot チャット ビューを開き、**[質問]** モードが選択されていること、**GPT-4.1** モデルが選択されていることを確認します。
+1. GitHub Copilot チャット ビューを開き、**[質問]** モードが選択されていること、および **[Auto]** モデルを使用していることを確認します。
 
-    チャット ビューをまだ開いていない場合は、Visual Studio Code ウィンドウの上部にある **[チャット]** アイコンを選びます。 チャット モードが **[Ask]** に設定されており、**GPT-4.1** モデルを使用していることを確認します。
-
-    > **注**:GitHub Copilot には、さまざまなチャット モデルが用意されています。 GPT-4.1 モデルは、優れたコード分析機能を提供するもので、GitHub Copilot Free プランに含まれています。 別のモデルを選択すると、得られる結果が異なる場合があります。
+    チャット ビューをまだ開いていない場合は、Visual Studio Code ウィンドウの上部にある **[チャット]** アイコンを選びます。
 
 1. クリーンなチャット セッションから開始していることを確認します。
 

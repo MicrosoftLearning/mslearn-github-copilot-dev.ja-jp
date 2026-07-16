@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Spec Kit を使用してグリーンフィールド アプリケーションを開発する
   description: GitHub Spec Kit をインストールする方法と、GitHub Spec Kit ワークフローを使用してグリーンフィールド アプリケーションの仕様駆動型開発手法を実装する方法について学習します。
+  duration: 60 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Spec Kit を使用してグリーンフィールド アプリケーションを開発する
@@ -68,7 +74,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 1. 現在のディレクトリで GitHub Spec Kit を初期化するには、次のコマンドを入力します。
 
     ```powershell
-    specify init --here --ai copilot --script ps
+    specify init --here --integration copilot --script ps
     ```
 
     > **注:** macOS または Linux で bash または zsh を使用している場合は、`--script ps` を `--script sh`に置き換えます。
@@ -76,7 +82,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
     このコマンドは、次のパラメーターを指定します。
 
     - `--here` - 現在のディレクトリ (既存の RSSFeedReader プロジェクト) で GitHub Spec Kit を初期化します。
-    - `--ai copilot` - AI アシスタントとして GitHub Copilot を使用するようにプロジェクトを構成します。
+    - `--integration copilot` - AI アシスタントとして GitHub Copilot を使用するようにプロジェクトを構成します。
     - `--script ps` - PowerShell スクリプトを使用することを指定します。
 
     `specify init` コマンドは、次のアクションを完了します。
@@ -115,6 +121,8 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
     │   ├── agents/                 (GitHub Spec Kit executable workflows that can be triggered via commands)
     │   └── prompts/                (GitHub Spec Kit prompt files that provide detailed instructions for each of the agent workflows)
     ├── .specify/                   (GitHub Spec Kit configuration)
+    │   ├── extensions/             (GitHub Spec Kit stores installed extension packages and their resources - commands, templates, hooks, and config - that add optional capabilities beyond the core Specify workflow.)
+    │   ├── integrations/           (GitHub Spec Kit stores the project’s active AI-agent integration state and manifests so Specify can install, switch, upgrade, or uninstall agent-specific command wiring safely.)
     │   ├── memory/                 (GitHub Spec Kit stores the project constitution defining core principles and governance rules that all features must follow)
     │   ├── scripts/powershell/     (GitHub Spec Kit uses automation utilities (scripts) for creating features, setting up plans, and managing the specification workflow)
     │   └── templates/              (GitHub Spec Kit provides standardized markdown formats for specs, plans, tasks, and checklists to ensure consistent documentation across all features)
@@ -127,7 +135,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 
 1. チャット ビューで GitHub Spec Kit コマンドが使用可能かどうかを確認するには、「**/speckit**」と入力します
 
-    使用できるコマンドを示すオートコンプリートの候補が表示されます。
+    使用できるコマンドを示すオートコンプリートの候補が表示されます。 次に例を示します。
 
     - `/speckit.analyze` - 実装計画を監査します。
     - `/speckit.checklist` - 仕様の完全性を検証します。
@@ -141,7 +149,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 
     '/speckit.'  コマンドが表示されない場合は、Visual Studio Code でプロジェクトを閉じてから再度開いてみてください。
 
-    > **重要**:このラボ演習は、GPT-5.2 と Claude Sonnet 4.5 のモデルを使用して正常にテストされました。 どちらのモデルでも、動作するアプリケーションを生成できましたが、いくつかの違いが見られました。 Claude Sonnet 4.5 モデルの方が詳細な出力が生成される傾向があります。 たとえば、tasks.md ファイルのタスクとフェーズの数が多くなる傾向があります。 Claude モデルの応答は一貫性があり、パフォーマンスは信頼できるものでした。 GPT-5.2 モデルは、生成される出力の詳細さが低くなる傾向があります。 たとえば、一連のタスクはスコープが広くて数が少なく、これらをまとめたフェーズの数が少なくなっています。 GPT モデルはタスクを正常に実装することができましたが、バグを解決するために追加のイテレーションが使用された可能性があります。 GPT モデルのパフォーマンスは全般的に良好でしたが、テスト中の一貫性は低くなりました。 たとえば、/speckit コマンドの処理中に AI が応答しなくなることが何度かありました。 チャット ビューでコマンドを再起動すると、すぐに正常に戻りました。 最新ではないモデル、たとえば GPT-4 や GPT-5 mini を使用するテストでは、予期しない結果が生成されることがよくありました。 GitHub Spec Kit コマンドを実行するときは、可能な限り複雑な推論のために最適化された新しい言語モデルを使用することをお勧めします。
+    > **重要**:このラボ演習は、GPT-5.2 と Claude Sonnet 4.5 のモデルを使用して正常にテストされました。 どちらのモデルでも、動作するアプリケーションを生成できましたが、いくつかの違いが見られました。 Claude Sonnet 4.5 モデルの方が詳細な出力が生成される傾向があります。 たとえば、tasks.md ファイルのタスクとフェーズの数が多くなる傾向があります。 Claude モデルの応答は一貫性があり、パフォーマンスは信頼できるものでした。 GPT-5.2 モデルは、生成される出力の詳細さが低くなる傾向があります。 たとえば、一連のタスクはスコープが広くて数が少なく、これらをまとめたフェーズの数が少なくなっています。 GPT モデルはタスクを正常に実装することができましたが、バグを解決するために追加のイテレーションが使用された可能性があります。 GPT モデルのパフォーマンスは全般的に良好でしたが、テスト中の一貫性は低くなりました。 たとえば、/speckit コマンドの処理中に AI が応答しなくなることが何度かありました。 チャット ビューでコマンドを再起動すると、すぐに正常に戻りました。 最新ではないモデル、たとえば GPT-4.x や GPT-5 mini を使用するテストでは、予期しない結果が生成されることがよくありました。 GitHub Spec Kit コマンドを実行するときは、可能な限り複雑な推論のために最適化された新しい言語モデルを使用することをお勧めします。
 
 1. プロジェクトを新しい GitHub リポジトリに公開します。
 

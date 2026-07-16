@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot を使用して新しいコード機能を開発する
   description: GitHub Copilot in Visual Studio Code を使用して、新しいコード機能の開発を高速化する方法について説明します。
+  duration: 30 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot を使用して新しいコード機能を開発する
@@ -127,9 +133,9 @@ GitHub Copilot のコード補完機能と対話型チャット機能により�
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで、**AccelerateDevGHCopilot** を右クリックし、次に **[ビルド]** を選択します。
+    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
 
-    警告はいくつか表示されますが、エラーは発生しないはずです。
+    警告はいくつか表示されますが、エラーは報告されないはずです。
 
 ## コード用の GitHub リポジトリを作成する
 
@@ -139,13 +145,15 @@ GitHub Copilot のコード補完機能と対話型チャット機能により�
 
 以下の手順に従って、演習のこのセクションを完了します。
 
-1. ブラウザー ウィンドウを開き、GitHub アカウントに移動します。
+1. ブラウザー ウィンドウを開き、GitHub ログイン ページに移動します。
 
     GitHub ログイン ページは [https://github.com/login](https://github.com/login) です。
 
 1. GitHub アカウントにサインインします。
 
-1. GitHub アカウント メニューを開き、**[ご使用のリポジトリ]** を選択します。
+    GitHub アカウントには、GitHub Copilot サブスクリプションが含まれている必要があります。
+
+1. GitHub アカウント メニューを開き、**[リポジトリ]** を選択します。
 
 1. [Visual Studio Code] ウィンドウに切り替えます。
 
@@ -189,9 +197,11 @@ GitHub Copilot のコード補完機能と対話型チャット機能により�
 
 1. 新しいブランチをリモート リポジトリにプッシュするには、**[ブランチの発行]** を選択します。
 
+    この時点で pull request を作成する必要はありません。 コードの準備ができたら、新しい機能をメイン ブランチにマージできます。
+
 ## 新しい "書籍の在庫状況" 機能を開発する
 
-演習のこのセクションでは、GitHub Copilot を使用して、図書館アプリケーションの新しい機能を開発します。 依頼された機能により、図書館員は書籍が貸し出し可能かどうかを確認できるようになります。これは、現在の図書館アプリケーションではサポートされていない一般的なシナリオです。
+演習のこのセクションでは、GitHub Copilot を使用して、図書館アプリケーションの新しい機能を開発します。 要求された機能により、図書館員は書籍が貸し出し可能かどうかを確認できるようになります。これは、お使いの図書館アプリケーションでは現在サポートされていない一般的なシナリオです。
 
 書籍の在庫状況機能を実装するには、次の更新を完了する必要があります。
 
@@ -199,35 +209,40 @@ GitHub Copilot のコード補完機能と対話型チャット機能により�
 
 - ConsoleApp.cs の **WriteInputOptions** メソッドを更新します。
 
-    - 新しい **CommonActions.SearchBooks** オプションのサポートを追加します。
-    - 書籍が貸出可能かどうかを確認するオプションを表示します。
+  - 新しい **CommonActions.SearchBooks** オプションのサポートを追加します。
+  - 書籍が貸出可能かどうかを確認するオプションを表示します。
 
 - ConsoleApp.cs の **ReadInputOptions** メソッドを更新します。
 
-    - 新しい **CommonActions.SearchBooks** オプションのサポートを追加します。
+  - 新しい **CommonActions.SearchBooks** オプションのサポートを追加します。
 
 - ConsoleApp.cs の **PatronDetails** メソッドを更新します。
 
-    - **ReadInputOptions** を呼び出す前に、**CommonActions.SearchBooks** を **options** に追加します。
-    - **SearchBooks** アクションを処理するために **else if** を追加します。
-    - **else if** ブロックは、**SearchBooks** という新しいメソッドを呼び出す必要があります。
+  - **ReadInputOptions** を呼び出す前に、**CommonActions.SearchBooks** を **options** に追加します。
+  - **SearchBooks** アクションを処理するために **else if** を追加します。
+  - **else if** ブロックは、**SearchBooks** という新しいメソッドを呼び出す必要があります。
 
 - ConsoleApp.cs に新しい **SearchBooks** メソッドを作成します。
 
-    - **SearchBooks** メソッドは、ユーザーが指定した書籍のタイトルを読み取る必要があります。
-    - 書籍が貸し出し可能かどうかを確認し、次のいずれかを示すメッセージを表示します。
+  - **SearchBooks** メソッドは、ユーザーが指定した書籍のタイトルを読み取る必要があります。
+  - 書籍が貸し出し可能かどうかを確認し、次のいずれかを示すメッセージを表示します。
 
-        - "**book.title** は貸し出し可能です"、または
-        - "**book.title** は別の利用者に貸し出し中です。 返却期限は **loan.DueDate** です。"
+    - "**book.title** は貸し出し可能です"、または
+    - "**book.title** は別の利用者に貸し出し中です。 返却期限は **loan.DueDate** です。"
 
-GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装を支援します。
+GitHub Copilot は、新機能の完成に必要なコード更新の実装を支援します。
 
-- インライン チャット セッションを使うと、要件に基づいて、より小規模で影響の小さいコードの更新を実装できます。
-- より対話的で反復的なアプローチが必要な大規模なコードの更新には、チャット ビューを使用できます。
+チャット ビューを使用すると、GitHub Copilot を使用して新しいコード機能を簡単に開発できます。 チャット ビューを使用して、コードベースや開発環境に関する質問やコード更新の提案の要求を行ったり、GitHub Copilot によって生成されたコードの説明を入手したりすることができます。
 
-### インライン チャットを使用して "book availability" の更新を実装する
+### GitHub Copilot を使用して "書籍貸出状況" の更新を実装する
 
-インライン チャット セッションを使用すると、コード エディター内で GitHub Copilot と直接対話できます。 インライン チャットを使用すると、質問したり、コードの提案を依頼したり、GitHub Copilot によって生成されたコードの説明を受け取ったりできます。
+GitHub Copilot には、新しいコード機能を開発するためのオプションがいくつか用意されています。 引き続きエディターで作業を続ける場合は、コード補完候補 (ゴースト テストの提案)、次の編集候補、インライン チャット機能を使用できます。 AI 同士の対話を操作する場合は、チャット ビューでエージェントを使用できます。 チャット ビューには、3 つの既定のエージェント モード (質問、計画、エージェント) が用意されています。 各モードは、特定の目的をサポートします。
+
+- 質問: 質問モードは、コードベース、コーディング、一般的なテクノロジの概念に関する質問に回答するのに最適です。 何かのしくみを理解したい場合、アイデアを探索したい場合、タスクのコーディングについて問い合わせたい場合、質問モードを使用します。
+- 計画: 計画モードは、コーディング タスクの構造化された実装計画の作成用に最適化されています。 実装前に複雑な機能を分割したり、より小さく管理しやすい手順に変更したりする場合、計画エージェントを使用します。
+- エージェント: エージェント モードは、ターミナル コマンドとツールの実行が必要になる可能性がある、高度な要件に基づく複雑なコーディング タスク用に最適化されています。 AI は自律的に動作して、編集する必要がある関連のコンテキストとファイルを決定し、必要な作業を計画し、問題が発生した場合に解決するための反復処理を行います。
+
+このタスクでは、インライン チャットとエージェント モードを使用して、"書籍貸出状況" 機能を実装します。
 
 以下の手順に従って、演習のこのセクションを完了します。
 
@@ -239,17 +254,23 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
     新しい **SearchBooks** アクションを **CommonActions** に追加する必要があります。
 
-1. インライン チャットを開き、次のプロンプトを入力します。
+1. チャット モードを **[質問]** に設定し、**[Auto]** モデルを選択します。
+
+    [モードの設定] と [モデルの選択] のメニューは、チャット ビューの左下隅にあります。
+
+    > **注**: プランで許可されている場合は別のモデルを使用できますが、応答は、この演習で示されているものとは異なる可能性があります。 無料プランのユーザーは、毎月のチャット要求の数が限られているため、各プロンプトはクォータにカウントされます。
+
+1. チャット ビューで、次のプロンプトを入力します。
 
     ```plaintext
-    Update selection to include a new `SearchBooks` action.
+    How should I update the selected code to include a new `SearchBooks` action?
     ```
 
     GitHub Copilot により、新しい **SearchBooks** アクションを **CommonActions** 列挙型に追加するコードの更新が提案されるはずです。
 
-1. 推奨された更新を確認し、**[承諾]** を選択します。
+1. 提案された更新内容を確認します。
 
-    更新されたコードは、次のコード スニペットのようになります。
+    更新されたコードは、次のコード スニペットのようになります。 
 
     ```csharp
 
@@ -267,13 +288,23 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
     ```
 
+1. チャット ビューで、提案されたコードの上にマウス ポインターを置き、**[エディターで適用]** を選択します。
+
+    > **注**: メッセージが表示されたら、**Active editor src\\Library.Console\\CommonActions.cs** を選択します。
+    
+    提案されたコードがコード エディターに表示されて、**[保持する]** または **[元に戻す]** オプションが表示されます。
+
+1. 提案された編集を受け入れるには、**[保持]** を選択します。
+
+    **[質問]** モードを使用すると、考えられる更新をコード エディターの外部で探索できますが、提案を適用することもできます。 これは、新しい機能を実装するためのさまざまなアプローチを探索するのに適したオプションです。 エディターの外部で作業すると、変更を実装する準備ができるまでコードベースがクリーンに保持されます。
+
 1. ConsoleApp.cs ファイルを開きます。
 
 1. **WriteInputOptions** メソッドを見つけて選択します。
 
     新しい **CommonActions.SearchBooks** オプションのサポートを追加する必要があります。 **SearchBooks** オプションにフラグが設定されている場合は、書籍が貸し出し可能かどうかを確認するオプションを表示します。
 
-1. インライン チャットを開き、次のプロンプトを入力します。
+1. インライン チャットを開き (**Ctrl + I** キー)、次のプロンプトを入力します。
 
     ```plaintext
     Update selection to include an option for the `CommonActions.SearchBooks` action. Use the letter "b" and the message "to check for book availability".
@@ -281,9 +312,9 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
     GitHub Copilot により、**SearchBooks** アクションに新しい **if** ブロックを追加するコードの更新が提案されます。
 
-1. 推奨された更新を確認し、**[承諾]** を選択します。
+1. 提案された更新を確認し、**[保持]** を選択します。
 
-    提案される更新は、次のコード スニペットのような内容になります。
+    更新されたメソッドは、次のコード スニペットのようになります。
 
     ```csharp
 
@@ -334,7 +365,7 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
     GitHub Copilot により、ユーザーが **SearchBooks** アクションを選択した場合にそれを処理する新しい**ケース**を追加する更新が提案されます。
 
-1. 推奨された更新を確認し、**[承諾]** を選択します。
+1. 提案された更新を確認し、**[保持]** を選択します。
 
     提案される更新は、次のコード スニペットのような内容になります。
 
@@ -354,10 +385,10 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
             {
                 "q" when options.HasFlag(CommonActions.Quit) => CommonActions.Quit,
                 "s" when options.HasFlag(CommonActions.SearchPatrons) => CommonActions.SearchPatrons,
+                "b" when options.HasFlag(CommonActions.SearchBooks) => CommonActions.SearchBooks,
                 "m" when options.HasFlag(CommonActions.RenewPatronMembership) => CommonActions.RenewPatronMembership,
                 "e" when options.HasFlag(CommonActions.ExtendLoanedBook) => CommonActions.ExtendLoanedBook,
                 "r" when options.HasFlag(CommonActions.ReturnLoanedBook) => CommonActions.ReturnLoanedBook,
-                "b" when options.HasFlag(CommonActions.SearchBooks) => CommonActions.SearchBooks,
                 _ when int.TryParse(userInput, out optionNumber) => CommonActions.Select,
                 _ => CommonActions.Repeat
             };
@@ -381,15 +412,19 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
     同じプロンプトで両方の要件に対応できます。
 
-1. インライン チャットを開き、次のプロンプトを入力します。
+1. チャット ビューで、*[エージェント]* モードに切り替えます。
+
+1. チャット ビューで、次のプロンプトを入力します。
 
     ```plaintext
-    Update selection to add `CommonActions.SearchBooks` to `options` before calling `ReadInputOptions`. Add an `else if` block to handle the `SearchBooks` action. The `else if` block should call a new method named `SearchBooks`.
+    Update the selected PatronDetail method to add `CommonActions.SearchBooks` to `options` before calling `ReadInputOptions`. Add an `else if` block to handle the `SearchBooks` action. The `else if` block should call a new method named `SearchBooks`.
     ```
 
     GitHub Copilot により、**ReadInputOptions** を呼び出す前に、**CommonActions.SearchBooks** を **options** に追加するコードの更新が提案されるはずです。
 
-1. 推奨された更新を確認し、**[承諾]** を選択します。
+1. 提案された更新を確認します。
+
+    更新された PatronDetails メソッドは、次のコード スニペットのようになります。
 
     ```csharp
 
@@ -408,6 +443,7 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
         CommonActions options = CommonActions.SearchPatrons | CommonActions.Quit | CommonActions.Select | CommonActions.RenewPatronMembership | CommonActions.SearchBooks;
         CommonActions action = ReadInputOptions(options, out int selectedLoanNumber);
+
         if (action == CommonActions.Select)
         {
             if (selectedLoanNumber >= 1 && selectedLoanNumber <= selectedPatronDetails.Loans.Count())
@@ -448,7 +484,11 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
     ```
 
-    > **注**:インライン チャットによって提案されたコードには、**SearchBooks** メソッドのスタブ コードが含まれている場合があります。 そのコードを受け入れることもできます。 次のセクションでは、**SearchBooks** メソッドを実装します。
+    > **注**: 提案されたコード更新には、**SearchBooks** メソッドのスタブ コードが含まれている場合があります。 そのコードを受け入れることもできます。 次のセクションでは、**SearchBooks** メソッドを実装します。
+
+1. チャット ビューで、すべての提案された更新を受け入れるには、**[保持]** を選択します。
+
+    チャット ビューで **[保持]** を選択すると、提案された更新がすべてコード エディターに適用されます。 コード エディターで個々の更新を確認し、一度に 1 つずつ適用する場合は、それぞれの更新に対して **[保持]** を選択することもできます。
 
 ### チャット ビューを使用して SearchBooks メソッドを実装する
 
@@ -456,11 +496,7 @@ GitHub Copilot Chat は、新機能の完成に必要なコード更新の実装
 
 GitHub Copilot のチャット ビューには、インライン チャットでは使用できない、会話型で対話型の環境が用意されています。 チャット ビューを使用すると、GitHub Copilot によって生成されたコードについて質問したり、コードの提案を依頼したり、説明を受けたりすることができます。 チャット ビューでは、次の 3 つのモードがサポートされています。
 
-- 質問モード:質問モードは、コードベースをより深く理解し、アイデアをブレインストーミングし、コーディング タスクを支援するために使用されます。 質問モードで生成されたコード提案は、コードベースに直接実装することも、クリップボードにコピーすることもできます。
-- 編集モード:編集モードは、リファクタリングや新しい機能の追加など、コードを変更するために使用されます。 編集モードでは、プロジェクト内の複数のファイルにわたって編集を行うことができます。
-- エージェント モード:エージェント モードは、上位レベルのタスクを定義し、そのタスクを実行するためのエージェント コード編集セッションを開始するために使用されます。 エージェント モードでは、Copilot は必要な作業を自律的に計画し、関連するファイルとコンテキストを決定します。 エージェントにより、コードの変更、テストの実行、さらにはアプリケーションのデプロイまで行うことができます。
-
-**SearchBooks** メソッドの実装には、質問および編集モードを使用します。
+エージェント モードを使用して、**SearchBooks** メソッドを実装します。
 
 以下の手順に従って、演習のこのセクションを完了します。
 
@@ -499,10 +535,10 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 
 1. **SearchBooks** メソッドを選択します。
 
-1. チャット ビューを開き、次のプロンプトを入力します。
+1. チャット ビューで、次のプロンプトを入力します。
 
     ```plaintext
-    Update selection to obtain a book title. Prompt the user to "Enter a book title to search for". Read the user input and ensure the book title isn't null.
+    I need to update the selected SearchBooks method to obtain a book title. The code should prompt the user to "Enter a book title to search for", and then read the user input and ensure the book title isn't null.
     ```
 
 1. 提案された更新内容を確認します。
@@ -528,11 +564,9 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 
     ```
 
-1. 提案されたコードの上にマウス ポインターを合わせ、**[src\\Library.Console\\ConsoleApp.cs に適用]** を選択します。
-
-    提案されたコードはコード エディターに表示され、**[保持する]** または **[元に戻す]** オプションが表示されます。
-
 1. コード エディターで、提案されたコードを受け入れるには、**[保持する]** を選択します。
+
+1. チャット ビューで、**[エージェントの設定]** ドロップダウンを使用して **[質問]** モードを選択します。
 
 1. **SearchBooks** メソッドを選択します。
 
@@ -552,7 +586,7 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 1. 次のプロンプトを入力します。
 
     ```plaintext
-    @workspace  Explain how to update the `SearchBooks` method and ConsoleApps class to find a matching book title in the `Books.json` file. Use the user supplied book title to find a matching book. If a book is found, use Loans.json to check if the book is available for loan. If the book has been returned, display a message stating "`book.title` is available for loan". If the book is on loan, display a message stating "`book.title` is on loan to another patron. The return due date is `loan.DueDate`".
+    Explain how to update the `SearchBooks` method and ConsoleApps class to find a matching book title in the `Books.json` file. Use the user supplied book title to find a matching book. If a book is found, use Loans.json to check if the book is available for loan. If the book has been returned, display a message stating "`book.title` is available for loan". If the book is on loan, display a message stating "`book.title` is on loan to another patron. The return due date is `loan.DueDate`".
     ```
 
 1. 少し時間をかけて、提案された更新を確認しましょう。
@@ -594,7 +628,7 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 
     ```
 
-    チャット ビューの**質問**モードを使用してコードの更新を分析し、**編集**モードを使用してコードの更新を実装できます。
+    チャット ビューの **[質問]** モードを使用してコード更新を分析し、**[エージェント]** モードを使用してコード更新を実装できます。
 
 1. GitHub Copilot の応答を使用して新しいプロンプトを作成します。
 
@@ -614,9 +648,7 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 
     ```
 
-1. チャット ビューを編集モードに切り替えるには、**[モードの設定]** を選択し、**[編集]** を選択します。
-
-    新しいセッションを開始するように求められたら、**[はい]** を選択します。
+1. チャット ビューで、**[エージェントの設定]** ドロップダウンを使用して、**[エージェント]** モードを選択します。
 
 1. ドラッグ アンド ドロップ操作を使用して、次のファイルをチャット コンテキストに追加します。
 
@@ -643,7 +675,7 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 
 1. 少し時間を取って、ConsoleApp.cs ファイルで提案された更新内容を確認しましょう。
 
-    提案されたコードの更新内容を移動するには、**[前へ]** と **[次へ]** を使用するか、ファイルを手動でスクロールすることができます。
+    提案されたコード更新を移動するには、**[前のチャット編集に移動]** ボタンと **[次のチャット編集に移動]** ボタンを使用するか、ファイルを手動でスクロールすることができます。
 
     **ConsoleApp.cs**
 
@@ -853,11 +885,11 @@ GitHub Copilot のチャット ビューには、インライン チャットで
     1. Visual Studio Code ウィンドウの左下隅で、**book-availability** を選択します。
     1. コンテキスト メニューで、**book-availability** ブランチの右側にある **[GitHub で開く]** アイコンを選択します。
 
-1. GitHub リポジトリ ページで、**[Compare & pull request]** タブを選びます。
+1. GitHub リポジトリ ページで、**[比較と pull request]** ボタンを選択します。
 
 1. **[Base]** で **main** が指定され、**[compare]** で **book-availability** が指定され、**[Able to merge]** がオンになっていることを確認します。
 
-1. **[Add a description]** の下で [Copilot Actions] ボタン (GitHub Copilot アイコン) を選んで、要約を生成するオプションを選びます。
+1. **[Add a description]** の下で [Copilot アクション] ボタン (GitHub Copilot アイコン) を選んで、要約を生成するオプションを選びます。
 
     > **注**:現在、GitHub Copilot Free プランでは pull request の要約機能はサポートされていません。
 
@@ -905,7 +937,7 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 
 ## まとめ
 
-この演習では、GitHub Copilot を使用して C# アプリケーションの新しいコード機能を開発する方法を学びました。 GitHub Copilot のインライン チャットとチャット ビューを使用して新しいブランチで機能を開発し、コードをテストして、変更をリポジトリのメイン ブランチにマージしました。 また、GitHub Copilot を使用して、コミット メッセージと pull request の概要も生成しました。
+この演習では、GitHub Copilot を使用して C# アプリケーションの新しいコード機能を開発する方法を学びました。 Visual Studio Code 内からプライベート GitHub リポジトリにプロジェクトを公開し、機能ブランチを作成し、インライン チャット、質問モード、エージェント モードを使用して "書籍の在庫" 機能を実装しました。 変更をテストし、GitHub Copilot を使用してコミット メッセージと pull request の要約を生成してから、機能ブランチをメインに統合しました。
 
 ## クリーンアップ
 

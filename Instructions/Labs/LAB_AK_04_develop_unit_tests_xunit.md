@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot を使用して単体テストを開発する
   description: Visual Studio Code で GitHub を使用して単体テストの開発を高速化する方法について説明します。
+  duration: 25 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot を使用して単体テストを開発する
@@ -96,9 +102,9 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで、**AccelerateDevGHCopilot** を右クリックし、次に **[ビルド]** を選択します。
+    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
 
-    いくつかの警告が表示されますが、エラーは発生しないはずです。
+    警告はいくつか表示されますが、エラーは報告されないはずです。
 
 ## UnitTests プロジェクトによって実装される単体テストへのアプローチを確認する
 
@@ -129,6 +135,12 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 1. チャット ビューを開きます。
 
+1. チャット モードを **[質問]** に設定し、**[Auto]** モデルを選択します。
+
+    [モードの設定] と [モデルの選択] のメニューは、チャット ビューの左下隅にあります。
+
+    > **注**: プランで許可されている場合は別のモデルを使用できますが、応答は、この演習で示されているものとは異なる可能性があります。 無料プランのユーザーは、毎月のチャット要求の数が限られているため、各プロンプトはクォータにカウントされます。
+
 1. 次のファイルをチャット コンテキストに追加します。
 
     (Library.ApplicationCore プロジェクトの下)
@@ -147,10 +159,10 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 1. 既存の単体テスト プロジェクトについて知るには、次のプロンプトを入力します。
 
     ```plaintext
-    @workspace Explain the approach to unit testing that's been implemented in this workspace.
+    #codebase Explain the approach to unit testing that's been implemented in this workspace.
     ```
 
-    このプロンプトは、ワークスペースのコンテキストでの単体テストのアプローチについて説明するように GitHub Copilot に求めます。 関連するファイルをチャット コンテキストに追加すると、応答が向上します。
+    このプロンプトは、コードベースのコンテキストでの単体テストのアプローチについて説明するように GitHub Copilot に求めます。 関連するファイルをチャット コンテキストに追加すると、応答が向上します。
 
 1. 少し時間を取って、GitHub Copilot の応答を確認してください。
 
@@ -214,7 +226,7 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 1. 現在のアプローチの利点を分析するには、次のプロンプトを入力します。
 
     ```plaintext
-    @workspace What are the benefits of this approach to unit testing?
+    #codebase What are the benefits of this approach to unit testing?
     ```
 
 1. 少し時間を取って、GitHub Copilot の応答を確認してください。
@@ -243,7 +255,7 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 1. GitHub Copilot に UnitTests プロジェクトの拡張の支援を依頼するには、次のプロンプトを入力します。
 
     ```plaintext
-    @workspace How can I extend the `UnitTests` project to begin testing methods in the `Library.Infrastructure` project? Provide a process overview.
+    #codebase How can I extend the `UnitTests` project to begin testing methods in the `Library.Infrastructure` project? Provide a process overview.
     ```
 
     このプロンプトは、UnitTests プロジェクトを拡張して、Library.Infrastructure プロジェクトでメソッドのテストを開始するためのプロセスの概要を提供するよう GitHub Copilot に求めます。 応答のコンテキストを提供するために、プロンプトにはいくつかのファイルが含まれています。
@@ -292,8 +304,6 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 特定のタスクが念頭にあり、Copilot がコードを自律的に編集できるようにしたい場合は、チャット ビューのエージェント モードを使用できます。 たとえば、エージェント モードを使って、ファイルの作成や編集を行ったり、ツールを呼び出してタスクを実行したりできます。 エージェント モードの GitHub Copilot は、必要な作業を自律的に計画し、関連するファイルとコンテキストを決定できます。 その後、コードベースを編集し、ツールを呼び出してユーザーが行った要求を遂行します。
 
-> **注**:エージェント モードは Visual Studio Code でのみ使用できます。 GitHub Copilot を別の環境でお使いの場合は、チャット モードを使って同様のタスクを実行できます。
-
 演習のこのセクションでは、GitHub Copilot のエージェント モードを使って、JsonLoanRepository クラスの GetLoan メソッド用の新しいテスト クラスを作成します。
 
 以下の手順に従って、演習のこのセクションを完了します。
@@ -319,31 +329,23 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
     このプロンプトも、GitHub Copilot に、UnitTests.csproj ファイル内の Library.Infrastructure プロジェクトへの参照の追加を求めます。
 
+1. アクセス許可を要求するメッセージが表示された場合は、**[このセッションで許可する]** を選択します。
+
+    チャット ビューの **[アクセス許可の設定]** メニューには、**[既定の承認]** と **[承認のバイパス]** のオプションがあります。 **[既定の承認]** オプションを使用すると、GitHub Copilot は、実行する各アクションに対してアクセス許可を要求できます。 **[承認のバイパス]** オプションを使用すると、GitHub Copilot は、アクセス許可を要求せずにアクションを実行できます。 この演習では、**[既定の承認]** を使用します。
+
 1. 少し時間を取って、GitHub Copilot からの応答を確認してください。
 
-    チャット ビューとコード エディターで次の更新に注意してください。
+    エージェントは、要求されたタスクを完了すると、チャット ビューに状態メッセージを表示します。 コード エディターで次の更新に注意してください。
 
-    - エージェントは、要求されたタスクを完了するとステータス メッセージを表示します。 最初のタスクは、UnitTests プロジェクトにフォルダー構造を作成することです。 エージェントは、フォルダー構造を作成する前に、いったん停止してユーザーに確認を求める場合があります。
+    - エージェントによって、UnitTests プロジェクト内に GetLoan.cs ファイルのフォルダー構造が作成されます。
+    - UnitTests.csproj ファイルが更新され、Library.Infrastructure プロジェクトへの参照が含まれます。
 
-        ![エージェント モードでのチャット ビューを示すスクリーンショット。](./Media/m04-github-copilot-agent-mode-terminal-command-mkdir.png)
-
-    - UnitTests.csproj ファイルがコード エディターで開かれ、次の更新のような編集が行われます。
-
-        ![コード エディターでの UnitTests.csproj ファイルの更新を示すスクリーンショット。](./Media/m04-github-copilot-agent-mode-code-editor-update.png)
-
-1. エージェントがタスクを一時停止し、ターミナルでディレクトリ作成コマンドを実行するアクセス許可を求めた場合は、**[続行]** を選びます。
-
-    **[続行]** を選ぶと、GitHub Copilot は次のアクションを完了します。
-
-    - ターミナルで mkdir コマンドを実行して、UnitTests プロジェクトに **Infrastructure\JsonLoanRepository** フォルダーを作成します。
-    - **JsonLoanRepository** フォルダーに **GetLoan.cs** という名前の新しいファイルを作成します。
-
-1. 少し時間を取って、更新の内容を確認してください。
+1. 少し時間を取って、更新内容を確認しましょう。
 
     次のような更新がエディターに表示されるはずです。
 
-    - **UnitTests** プロジェクトに、**Library.Infrastructure.csproj** への参照が含まれるようになります。
     - **GetLoan.cs** ファイルは、**Infrastructure\JsonLoanRepository** フォルダーに作成されます。
+    - **UnitTests** プロジェクトに、**Library.Infrastructure.csproj** への参照が含まれるようになります。
 
 1. チャット ビューですべての変更を受け入れるには、**[保持する]** を選びます。
 
@@ -356,15 +358,11 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
         - JsonLoanRepository\
           - GetLoan.cs
 
-### 編集モードを使用して GetLoan メソッド用の単体テストを作成する
+### エージェント モードを使用して GetLoan メソッド用の単体テストを作成する
 
-演習のこのセクションでは、GitHub Copilot の編集モードを使って、**JsonLoanRepository** クラスの **GetLoan** メソッド用の単体テストを作成します。
+演習のこのセクションでは、GitHub Copilot のエージェント モードを使用して、**JsonLoanRepository** クラスの **GetLoan** メソッド用の単体テストを作成します。
 
 以下の手順に従って、演習のこのセクションを完了します。
-
-1. チャット ビューで、**[モードの設定]** ボタンを選んでから、**[編集]** を選びます。
-
-    編集モードを使って、選んだファイルを更新します。 応答は、コード エディターにコードの提案として表示されます。
 
 1. **JsonLoanRepository.cs** ファイルを開きます。
 
@@ -560,6 +558,9 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
     (Library.ApplicationCore プロジェクトの下)
 
     - LoanService.cs
+
+    (Library.ApplicationCore プロジェクトの下)
+
     - Loans.json。
 
     (Library.Infrastructure プロジェクトの下)
@@ -575,7 +576,7 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 1. **GetLoan.cs** ファイルの内容を選んでから、チャット ビューに次のプロンプトを入力します。
 
     ```plaintext
-    @workspace Update the selection to include a unit test for the `JsonLoanRepository.GetLoan` method. The unit test should test the case where a loan ID is found in the data. Use `_mockLoanRepository` to arrange the expected return loan. Use `_jsonLoanRepository` to return an actual loan. Asserts should verify that the return loan ID matches the expected loan ID. Use a loan ID that exists in the `Loans.json` file.
+    #codebase Update the selection to include a unit test for the `JsonLoanRepository.GetLoan` method. The unit test should test the case where a loan ID is found in the data. Use `_mockLoanRepository` to arrange the expected return loan. Use `_jsonLoanRepository` to return an actual loan. Asserts should verify that the return loan ID matches the expected loan ID. Use a loan ID that exists in the `Loans.json` file.
     ```
 
     このプロンプトは、GitHub Copilot に対して、**JsonLoanRepository.GetLoan** メソッドの単体テストを提案するように求めます。 単体テストでは、データに貸し出し ID が見つかったケースをテストする必要があります。 このテストでは、**_mockLoanRepository** を使って、想定される返却貸出、実際の貸出を返却するための **_jsonLoanRepository**、返却貸出 ID と想定される貸出 ID の一致を確認するためのアサートを用意する必要があります。 貸出 ID は、**Loans.json** ファイルに存在するはずです。
@@ -636,13 +637,15 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
     }
     ```
 
+    > **注**: BookItemId と PatronId の値が有効であることを確認します。
+
 1. チャット ビューで、すべての更新内容を受け入れるには、**[保持する]** を選択します。
 
     コードで **Loan** クラスが認識されない場合は、GetLoan.cs ファイルの先頭に **using Library.ApplicationCore.Entities** ステートメントがあることを確認します。 **Loan** クラスは **Library.ApplicationCore.Entities** 名前空間にあります。
 
 1. **AccelerateDevGitHubCopilot** ソリューションをビルドして、エラーがないことを確認します。
 
-1. GitHub Copilot のオートコンプリート機能を使用して、貸し出し ID が見つからない場合のテストを作成します。
+1. GitHub Copilot のゴースト テキストの候補機能を使用して、貸し出し ID が見つからない場合のテストを作成します。
 
     **GetLoan_ReturnsLoanWhenLoanIdIsFound** メソッドの後に空白行を作成します。
 
@@ -754,8 +757,8 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 ## まとめ
 
-この演習では、C# アプリケーションで GitHub Copilot を使って単体テストをより速く開発する方法を学びました。 GitHub Copilot のチャット ビューを質問モード、エージェント モード、編集モードで使いました。 質問モードを使って既存の単体テストのアプローチを調べ、エージェント モードを使ってプロジェクト フォルダーと新しいテスト クラスを作成し、編集モードを使って単体テストを作成しました。 また、GitHub Copilot のコード入力候補機能を使って単体テストを作成しました。
+この演習では、C# アプリケーションで GitHub Copilot を使って単体テストをより速く開発する方法を学びました。 GitHub Copilot のチャット ビューを質問モードとエージェント モードで使用しました。 質問モードを使用して既存の単体テストのアプローチを検討し、拡張方法を計画しました。 エージェント モードを使用して GetLoan メソッドのプロジェクト フォルダー、新しいテスト クラス、単体テストを作成しました。 また、GitHub Copilot のコード入力候補機能を使用して、追加の単体テストを作成しました。
 
 ## クリーンアップ
 
-演習が済んだので、少し時間を取って、GitHub アカウントまたは GitHub Copilot サブスクリプションに残しておきたくない変更を行っていないことを確認してください。 変更を加えた場合は、ここで元に戻します。
+演習が完了したので、少し時間を取って、GitHub アカウントまたは GitHub Copilot サブスクリプションに保持したくない変更が加えられていないか確認します。 変更を加えた場合は、ここで元に戻します。

@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot を使用してパフォーマンス プロファイリングを実装する
   description: GitHub Copilot ツールを使用して、パフォーマンスのボトルネックとコードの非効率性を特定して対処する方法について学びます。
+  duration: 30 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot を使用してパフォーマンス プロファイルを実装する
@@ -10,7 +16,7 @@ lab:
 
 この演習では、パフォーマンスが低く非効率的なコードを含む既存のプロジェクトをレビューし、コードのパフォーマンスを向上させるオプションを分析した後、コードをリファクタリングして識別された問題に対処してから、リファクタリング後のコードをテストして、機能と可読性を維持しながらコードのパフォーマンスが向上したことを確認します。 GitHub Copilot を質問モードで使い、既存のコード プロジェクトを理解して、明らかになった問題をリファクタリングするためのオプションを調べます。 GitHub Copilot をエージェント モードで使い、コードをリファクタリングしてパフォーマンスを向上させます。 元のコードとリファクタリング後のコードをテストして、変更の影響を測定します。
 
-この演習の所要時間は約**30** 分です。
+この演習の所要時間は約 **30** 分です。
 
 > **重要**:この演習を完了するには、自分の GitHub アカウントと GitHub Copilot サブスクリプションを用意する必要があります。 GitHub アカウントをお持ちでない場合は、無料の個人用アカウントに<a href="https://github.com/" target="_blank">サインアップ</a>し、GitHub Copilot Free プランを使用して演習を完了できます。 ラボ環境内から GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business、または GitHub Copilot Enterprise サブスクリプションにアクセスできる場合は、既存の GitHub Copilot サブスクリプションを使用してこの演習を完了できます。
 
@@ -24,11 +30,11 @@ lab:
 
 - ローカル PC をラボ環境として構成する方法については、ブラウザーで次のリンクを開いてください。<a href="https://go.microsoft.com/fwlink/?linkid=2320147" target="_blank">ラボ環境のリソースを構成する</a>。
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 この演習に、ホストされたラボ環境をお使いの場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーに次の URL を貼り付けてください:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーに次の URL を貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 - パッケージのダウンロードと復元のソースとして公式の NuGet.org リポジトリを使用するように .NET SDK を確実に構成するには、次の手順を実行します。
 
@@ -46,9 +52,9 @@ lab:
 
 1. ラボ環境でブラウザー ウィンドウを開きます。
 
-1. サンプル アプリ プロジェクトを含む ZIP ファイルをダウンロードするには、ブラウザーで次の URL を開きます:[GitHub Copilot ラボ - パフォーマンス プロファイルを実装する](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHCopilotEx10LabApps.zip)
+1. サンプル アプリ プロジェクトを含む ZIP ファイルをダウンロードするには、ブラウザーで次の URL を開きます: [GitHub Copilot ラボ - パフォーマンス プロファイルを実装する](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHCopilotEx10LabApps.zip)
 
-    ZIP ファイルの名前は**GHCopilotEx10LabApps.zip** です。
+    ZIP ファイルの名前は **GHCopilotEx10LabApps.zip** です。
 
 1. **GHCopilotEx10LabApps.zip** ファイルからファイルを展開します。
 
@@ -62,13 +68,13 @@ lab:
 
 1. **GHCopilotEx10LabApps** フォルダーを、Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
 
-1. Visual Studio Code で**GHCopilotEx10LabApps** フォルダーを開きます。
+1. Visual Studio Code で **GHCopilotEx10LabApps** フォルダーを開きます。
 
     次に例を示します。
 
     1. ラボ環境で Visual Studio Code を開きます。
 
-    1. Visual Studio Code の **[ファイル]** メニューで、**[フォルダーを開く]** を選択します。
+    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
 
     1. Windows デスクトップ フォルダーに移動し、**GHCopilotEx10LabApps** を選んでから、**[フォルダーの選択]** を選びます。
 
@@ -147,15 +153,15 @@ lab:
 
     - **InventoryManager.cs**: InventoryManager クラスは、在庫レベル、予約、低在庫アラートを管理します。
 
-1. **Services** フォルダーと**Configuration** フォルダーを展開します。
+1. **Services** フォルダーと **Configuration** フォルダーを展開します。
 
     これらのフォルダーには、メインのアプリケーション機能をサポートする追加のビジネス ロジックと構成設定が含まれています。
 
-1. **Program.cs** ファイルと**AppSettings.cs** ファイルを確認します。これには数分かかります。
+1. **Program.cs** ファイルと **AppSettings.cs** ファイルを確認します。これには数分かかります。
 
     Program.cs ファイルと AppSettings.cs ファイルの関係を調べます。 Program.cs ファイルにより、AppSettings 構成が初期化され、アプリケーションのサービスに挿入されて、アプリケーションの動作を一元的かつ柔軟に制御できるようなることに注意してください。 アプリケーション構成は、起動時に厳密に型指定され、検証されます。これにより、必要なすべての設定が存在し、正しく書式設定されることが保証されます。
 
-1. **EmailService.cs** ファイルと**SecurityValidationService.cs** ファイルを確認します。これには数分かかります。
+1. **EmailService.cs** ファイルと **SecurityValidationService.cs** ファイルを確認します。これには数分かかります。
 
     これらのサービスの実装を調べます。 これらのサービスにより、構成可能なタイムアウト、セキュリティ検証ルール、電子メールによる通知のワークフローを含むビジネス ロジックが提供されることに注意してください。 サービスでは、エンタープライズ開発パターンに従って、依存関係の挿入とログが使われています。
 
@@ -175,7 +181,7 @@ lab:
     - 同時操作のテスト。
     - 電子メールによる通知のシミュレーション。
 
-1. ベースライン パフォーマンス メトリックを**baseline_metrics.txt** という名前のファイルに格納します。
+1. ベースライン パフォーマンス メトリックを **baseline_metrics.txt** という名前のファイルに格納します。
 
     エクスプローラー ビューを使用して、Benchmarks フォルダーに baseline_metrics.txt という名前のテキスト ファイルを作成し、コンソール出力を baseline_metrics.txt ファイルにコピーします。
 
@@ -211,11 +217,9 @@ GitHub Copilot Chat の質問モードは、複雑なコードベースを分析
 
 そのためには、以下の手順を実行してください。
 
-1. GitHub Copilot チャット ビューを開き、**質問**モードと**GPT-4o** モデルを構成します。
+1. GitHub Copilot チャット ビューを開き、**質問**モードと **Auto** モデルを構成します。
 
     チャット ビューを開くには、Visual Studio Code ウィンドウの上部にある **[チャットの切り替え]** アイコンを選択します。
-
-    > **注**:GPT-4o モデルは優れたコード分析機能を提供し、GitHub Copilot Free プランに含まれています。 別のモデルを選択すると、得られる結果が異なる場合があります。
 
 1. エディターで開いているすべてのファイルを閉じます。
 
@@ -223,7 +227,7 @@ GitHub Copilot Chat の質問モードは、複雑なコードベースを分析
 
 1. **InventoryManager.cs**、**OrderProcessor.cs**、**ProductCatalog.cs** ファイルをチャット コンテキストに追加します。
 
-    ドラッグ アンド ドロップ操作を使って、ソリューション エクスプローラーからチャット コンテキストに**InventoryManager.cs**、**OrderProcessor.cs**、**ProductCatalog.cs** を追加します。
+    ドラッグ アンド ドロップ操作を使って、ソリューション エクスプローラーからチャット コンテキストに **InventoryManager.cs**、**OrderProcessor.cs**、**ProductCatalog.cs** を追加します。
 
     チャット コンテキストにファイルを追加することで、プロンプトを分析するときにこれらのファイルを含めるよう GitHub Copilot に指示します。これにより、分析の正確さと関連性が向上します。
 
@@ -501,7 +505,7 @@ GitHub Copilot のエージェント モードでは、プログラミング タ
     dotnet run
     ```
 
-1. 新しいパフォーマンス メトリックを**optimized_metrics.txt** という名前のファイルに保存します。
+1. 新しいパフォーマンス メトリックを **optimized_metrics.txt** という名前のファイルに保存します。
 
     エクスプローラー ビューを使用して、Benchmarks フォルダーに optimized_metrics.txt という名前のテキスト ファイルを作成し、コンソール出力を optimized_metrics.txt ファイルにコピーします。
 

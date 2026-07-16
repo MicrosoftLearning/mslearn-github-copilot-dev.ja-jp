@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Spec Kit を使用して製品機能を実装する
   description: GitHub Spec Kit のワークフロー、Visual Studio Code、GitHub Copilot を使用して、既存のアプリケーションに新機能を追加する方法について学習します。
+  duration: 75 minutes
+  level: 400
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Spec Kit を使用して製品機能を実装する
@@ -62,7 +68,7 @@ GitHub Importer を使用すると、独自の GitHub アカウントに既存�
 1. **[Import your project to GitHub]** ページで、**[Your source repository details]** のソース リポジトリに次の URL を入力します。
 
     ```plaintext
-    https://github.com/MicrosoftLearning/ContosoDashboard-SSD
+    https://github.com/MicrosoftLearning/ContosoDashboard-SSD.git
     ```
 
 1. **[新しいリポジトリの詳細]** セクションの **[所有者]** ドロップダウンで、GitHub ユーザー名を選択します。
@@ -122,13 +128,13 @@ GitHub Importer を使用すると、独自の GitHub アカウントに既存�
 1. 既存のプロジェクト内で GitHub Spec Kit を初期化するには、次のコマンドを入力します。
 
     ```powershell
-    specify init --here --ai copilot --script ps
+    specify init --here --integration copilot --script ps
     ```
 
     このコマンドでは次のコンポーネントが使用されます。
 
     - `--here` - 現在のディレクトリ (既存の ContosoDashboard プロジェクト) で GitHub Spec Kit を初期化します。
-    - `--ai copilot` - GitHub Copilot のプロジェクトを構成します。
+    - `--integration copilot` - GitHub Copilot のプロジェクトを構成します。
     - `--script ps` - PowerShell スクリプトを使用します (macOS/Linux の bash/zsh には `--script sh` を使用します)。
 
     macOS または Linux を使用している場合は、`--script ps` を `--script sh` に置き換えます。
@@ -177,6 +183,8 @@ GitHub Spec Kit は、Visual Studio Code のチャット インターフェイ�
     │   ├── agents/                 (GitHub Spec Kit executable workflows that can be triggered via commands)
     │   └── prompts/                (GitHub Spec Kit prompt files that provide detailed instructions for each of the agent workflows)
     ├── .specify/                   (GitHub Spec Kit configuration)
+    │   ├── extensions/             (GitHub Spec Kit stores installed extension packages and their resources - commands, templates, hooks, and config - that add optional capabilities beyond the core Specify workflow.)
+    │   ├── integrations/           (GitHub Spec Kit stores the project’s active AI-agent integration state and manifests so Specify can install, switch, upgrade, or uninstall agent-specific command wiring safely.)
     │   ├── memory/                 (GitHub Spec Kit stores the project constitution defining core principles and governance rules that all features must follow)
     │   ├── scripts/powershell/     (GitHub Spec Kit uses automation utilities (scripts) for creating features, setting up plans, and managing the specification workflow)
     │   └── templates/              (GitHub Spec Kit provides standardized markdown formats for specs, plans, tasks, and checklists to ensure consistent documentation across all features)
@@ -195,11 +203,11 @@ GitHub Spec Kit は、Visual Studio Code のチャット インターフェイ�
 
 1. GitHub Copilot のチャット ビューが開かれていることを確認します。
 
-    新しい言語モデルのいずれかを使用すると、応答の品質が向上する可能性があります。 このラボ演習は、GPT-5 モデルと Claude Sonnet 4.5 モデルを使用してテストされました。 この 2 つのモデル間で結果は同等でした。
+    新しい言語モデルのいずれかを使用すると、応答の品質が向上する可能性があります。 このラボ演習は元々、GPT-5 と Claude Sonnet 4.5 のモデルを使用してテストされました。 この 2 つのモデル間で結果は同等でした。
 
 1. チャット ビューで GitHub Spec Kit コマンドが使用可能かどうかを確認するには、「**/speckit**」と入力します
 
-    使用できるコマンドを示すオートコンプリートの候補が表示されます。
+    使用できるコマンドを示すオートコンプリートの候補が表示されます。 次に例を示します。
 
     - `/speckit.analyze` - 実装計画を監査します。
     - `/speckit.checklist` - 仕様の完全性を検証します。

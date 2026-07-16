@@ -2,6 +2,12 @@
 lab:
   title: 演習 - GitHub Copilot を使用して複雑な条件を簡略化する
   description: GitHub Copilot ツールを使用して、C# コードベースで複雑な条件付きロジックをリファクタリングする方法を学びます。
+  duration: 30 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot を使用して複雑な条件を簡略化する
@@ -10,7 +16,7 @@ lab:
 
 この演習では、GitHub Copilot を使用して、深い入れ子の条件付きロジックを含むコードを分析し、コード ロジックをリファクタリングしてから、リファクタリング後のコードをテストして意図したとおりに動作することを確認します。 GitHub Copilot を質問モードで使用して、コードを理解し、ロジックを簡略化するオプションを調べることができます。 GitHub Copilot をエージェント モードで使用して、複雑な条件付きロジックをより小さい、焦点を絞ったヘルパー メソッドに抽出してコードをリファクタリングし、入れ子を減らします。 複雑な条件を簡略化すると、コードの読み取り、保守、テストが簡単になります。
 
-この演習の所要時間は約**30** 分です。
+この演習の所要時間は約 **30** 分です。
 
 > **重要**:この演習を完了するには、自分の GitHub アカウントと GitHub Copilot サブスクリプションを用意する必要があります。 GitHub アカウントをお持ちでない場合は、無料の個人用アカウントに<a href="https://github.com/" target="_blank">サインアップ</a>し、GitHub Copilot Free プランを使用して演習を完了できます。 ラボ環境内から GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business、または GitHub Copilot Enterprise サブスクリプションにアクセスできる場合は、既存の GitHub Copilot サブスクリプションを使用してこの演習を完了できます。
 
@@ -24,11 +30,11 @@ lab:
 
 - ローカル PC をラボ環境として構成する方法については、ブラウザーで次のリンクを開いてください。<a href="https://go.microsoft.com/fwlink/?linkid=2320147" target="_blank">ラボ環境のリソースを構成する</a>。
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーで次のリンクを開きます: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 この演習に、ホストされたラボ環境をお使いの場合:
 
-- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーに次の URL を貼り付けてください:<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
+- Visual Studio Code で GitHub Copilot サブスクリプションを有効にする方法については、ブラウザーのサイト ナビゲーション バーに次の URL を貼り付けてください: <a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">Visual Studio Code で GitHub Copilot を有効にする</a>。
 
 - パッケージのダウンロードと復元のソースとして公式の NuGet.org リポジトリを使用するように .NET SDK を確実に構成するには、次の手順を実行します。
 
@@ -46,9 +52,9 @@ lab:
 
 1. ラボ環境でブラウザー ウィンドウを開きます。
 
-1. サンプル アプリ プロジェクトを含む zip ファイルをダウンロードするには、ブラウザーで次の URL を開きます:[GitHub Copilot ラボ - コード機能の開発](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHCopilotEx9LabApps.zip)
+1. サンプル アプリ プロジェクトを含む zip ファイルをダウンロードするには、ブラウザーで次の URL を開きます: [GitHub Copilot ラボ - コード機能の開発](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHCopilotEx9LabApps.zip)
 
-    zip ファイルの名前は**GHCopilotEx9LabApps.zip** です。
+    zip ファイルの名前は **GHCopilotEx9LabApps.zip** です。
 
 1. **GHCopilotEx9LabApps.zip** ファイルからファイルを抽出します。
 
@@ -62,13 +68,13 @@ lab:
 
 1. **GHCopilotEx9LabApps** フォルダーを、Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
 
-1. Visual Studio Code で**GHCopilotEx9LabApps** フォルダーを開きます。
+1. Visual Studio Code で **GHCopilotEx9LabApps** フォルダーを開きます。
 
     次に例を示します。
 
     1. ラボ環境で Visual Studio Code を開きます。
 
-    1. Visual Studio Code の **[ファイル]** メニューで、**[フォルダーを開く]** を選択します。
+    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
 
     1. Windows デスクトップ フォルダーに移動し、**GHCopilotEx9LabApps** を選択してから、**[フォルダーの選択]** を選択します。
 
@@ -115,7 +121,7 @@ lab:
 
 1. **ECommercePricingEngine** コード プロジェクトのビルドが成功することを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで**ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
+    たとえば、ソリューション エクスプローラー ビューで **ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
 
     "null リテラルを null 非許容参照型に変換できません" という警告が、 プロジェクトをビルドするときに表示されますが、エラーは発生しません。 この演習の目的上、この警告は無視してかまいません。
 
@@ -123,9 +129,9 @@ lab:
 
     チャット ビューがまだ開いていない場合は、Visual Studio Code ウィンドウ上部の [検索] テキスト ボックスのすぐ右側にある **[チャット]** アイコンを選択して開くことができます。
 
-1. チャット ビューで、チャット モードが **[質問]** に設定され、モデルが **[GPT-4.1]** に設定されていることを確認します。
+1. チャット モードを **[質問]** に設定し、**[Auto]** モデルを選択します。
 
-    これらの設定は、チャット ビューの左下隅に表示されます。 GitHub Copilot の**質問**モードは、一般的なコーディングに関する質問をしたり、コード関連の説明を生成したりするために使用します。 GitHub Copilot Free プランに含まれている**GPT-4.1** モデルは、コードのリファクタリングに関連したコード分析、説明、ガイダンスの用途に適しています。
+    [モードの設定] と [モデルの選択] のメニューは、チャット ビューの左下隅にあります。 GitHub Copilot の**質問**モードは、一般的なコーディングに関する質問をしたり、コード関連の説明を生成したりするために使用します。 
 
     この演習の後半で GitHub Copilot の**エージェント** モードを使用しますが、ここではコードの分析と説明のために**質問**モードを使用します。
 
@@ -153,7 +159,7 @@ lab:
 
     このメソッドは、異なる割引シナリオを処理する複数の入れ子になった条件を使用しており、複雑で読みにくくなっています。 この複雑さは、ユーザーのステータス、注文の詳細、クーポン コードに基づいて適用する必要がある、さまざまなビジネス ルールから生じるものです。
 
-1. 選択したコードを右クリックし、**[Copilot]** >**[説明]** を選択します。
+1. 選択したコードを右クリックし、**[Copilot]** > **[説明]** を選択します。
 
     CalculateFinalPrice メソッドが GitHub Copilot で分析され、コードの動作の詳細な説明が表示されます。
 
@@ -177,7 +183,7 @@ lab:
 
     時間を取って既存のコードを理解することは、この演習の後半でリファクタリングのオプションを見分けて選択するのに役立ちます。
 
-1. チャット ビューで、計算プロセスの詳細な分析を取得するには、次のプロンプトを入力します:
+1. チャット ビューで、計算プロセスの詳細な分析を取得するには、次のプロンプトを入力します: 
 
     ```plaintext
     @workspace Explain the business logic flow in the CalculateFinalPrice method. What are the different discount paths and how do they interact with each other? What are the key business rules that govern pricing calculations?
@@ -269,7 +275,7 @@ lab:
     出力には、無効な入力と悪意のある価格操作の試行に対する、基本的なセキュリティ テストが含まれていることがわかります。 これらのテストは、考えられるすべての攻撃ベクトルや運用アプリで必要なテストのレベルを表しているわけではありませんが、コードの品質とセキュリティを確保することが必要条件であることを示す役割を果たします。 **SecurityTest.cs** ファイルは ECommercePricingEngine プロジェクトの一部です。
 
     > [!NOTE]
-    > 出力のコピーは、eCommercePricingEngine フォルダーに含まれる**Output-ECommercePricingEngine.txt** ファイルにあります。 結果を比較する場合、またはサンプル データを変更する場合は、自分自身の出力ファイルを作成できます。 この演習の最後まで進んだら、出力ファイルを使用して、リファクタリング後のコードで元のコードと同じ結果が生成されることを確認します。
+    > 出力のコピーは、eCommercePricingEngine フォルダーに含まれる **Output-ECommercePricingEngine.txt** ファイルにあります。 結果を比較する場合、またはサンプル データを変更する場合は、自分自身の出力ファイルを作成できます。 この演習の最後まで進んだら、出力ファイルを使用して、リファクタリング後のコードで元のコードと同じ結果が生成されることを確認します。
 
     プロジェクトを実行するには: Visual Studio Code エディターで ECommercePricingDemo.cs ファイルを開いている場合は、エディター ウィンドウの右上隅にある [実行] ボタン (このファイルに関連付けられているプロジェクトの実行) を選択して、プロジェクトを実行できます。 ソリューション エクスプローラー ビューからプロジェクトを実行するには、**ECommercePricingEngine** を右クリックし、**[デバッグ]** を選択してから、**[新しいインスタンスの開始]** を選択します。
 
@@ -281,11 +287,11 @@ GitHub Copilot は、複雑なコードを分析し、コードのリファク�
 
 そのためには、以下の手順を実行してください。
 
-1. GitHub Copilot チャット ビューが**質問**モードで開いていて、**GPT-4.1** モデルが選択されていることを確認します。
+1. GitHub Copilot チャット ビューが**質問**モードで開かれていて、**[Auto]** モデルが選択されていることを確認します。
 
-1. ドラッグ アンド ドロップ操作を使用して、チャット コンテキストに**ECommercePricingDemo.cs** ファイルを追加します。
+1. ドラッグ アンド ドロップ操作を使用して、チャット コンテキストに **ECommercePricingDemo.cs** ファイルを追加します。
 
-    ECommercePricingDemo.cs は Visual Studio Code エディターで既に開かれていますが、チャット コンテキストに追加すると、GitHub Copilot でコード ファイル全体を分析することが促されるため、より正確な提案が得られます。 GitHub Copilot を使用するときは、プロンプトに**@workspace** または **#codebase** タグを含めた場合でも、関連するファイルをチャット コンテキストに追加することがベスト プラクティスです。
+    ECommercePricingDemo.cs は Visual Studio Code エディターで既に開かれていますが、チャット コンテキストに追加すると、GitHub Copilot でコード ファイル全体を分析することが促されるため、より正確な提案が得られます。 GitHub Copilot を使用するときは、プロンプトに **@workspace** または **#codebase** タグを含めた場合でも、関連するファイルをチャット コンテキストに追加することがベスト プラクティスです。
 
 1. 主要な割引経路に関連したコードのモジュール性を向上させるリファクタリングの機会を特定するように GitHub Copilot に求めるプロンプトを送信します。
 
@@ -441,7 +447,7 @@ GitHub Copilot には、**質問**、**編集**、**エージェント**の 3 �
 
     GitHub Copilot によって推奨された変更を受け入れる前に、必ず確認してください。 更新内容が、意図したビジネス ロジック、アプリの機能、コーディング標準に合致していることを確認します。
 
-    リファクタリング後のコードには、大幅に簡略化された**CalculateFinalPrice** メソッドが含まれているはずです。これは主に、メンバーシップ割引、クーポン割引、まとめ買い割引を管理するヘルパー メソッドへのメソッド呼び出しで構成されています。 元のメソッドの複雑さが大幅に軽減され、読みやすく保守しやすくなります。
+    リファクタリング後のコードには、大幅に簡略化された **CalculateFinalPrice** メソッドが含まれているはずです。これは主に、メンバーシップ割引、クーポン割引、まとめ買い割引を管理するヘルパー メソッドへのメソッド呼び出しで構成されています。 元のメソッドの複雑さが大幅に軽減され、読みやすく保守しやすくなります。
 
     メンバーシップ割引ヘルパー メソッドを、メンバーシップ レベルに関する複雑なロジックを処理するようにリファクタリングすることも必要です。これには各レベル (Premium、Gold、Silver、初回購入者) に対して追加のヘルパー メソッドを使用します。
 
@@ -518,7 +524,7 @@ GitHub Copilot には、**質問**、**編集**、**エージェント**の 3 �
 
 1. プロジェクトをビルドして、コンパイル エラーがないことを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで**ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
+    たとえば、ソリューション エクスプローラー ビューで **ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
 
     コンパイル エラーがある場合は、リファクタリング後のコードを確認して問題を修正します。 GitHub Copilot は、必要に応じてコンパイル エラーを解決するのに役立ちます。
 
@@ -533,7 +539,7 @@ GitHub Copilot には、**質問**、**編集**、**エージェント**の 3 �
 
 1. リファクタリング後のコードによって生成された出力を元の出力と比較するように GitHub Copilot に依頼します。
 
-    元の出力である**Output-ECommercePricingEngine.txt** は、ECommercePricingEngine フォルダーに含まれています。
+    元の出力である **Output-ECommercePricingEngine.txt** は、ECommercePricingEngine フォルダーに含まれています。
 
     2 つ目の出力ファイルを作成し、GitHub Copilot に 2 つのファイル間の違いを特定するように依頼できます。
 
