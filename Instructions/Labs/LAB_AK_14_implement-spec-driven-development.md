@@ -68,7 +68,7 @@ GitHub Importer を使用すると、独自の GitHub アカウントに既存�
 1. **[Import your project to GitHub]** ページで、**[Your source repository details]** のソース リポジトリに次の URL を入力します。
 
     ```plaintext
-    https://github.com/MicrosoftLearning/ContosoDashboard-SSD.git
+    https://github.com/MicrosoftLearning/ContosoDashboard-SSD
     ```
 
 1. **[新しいリポジトリの詳細]** セクションの **[所有者]** ドロップダウンで、GitHub ユーザー名を選択します。

@@ -74,7 +74,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 1. 現在のディレクトリで GitHub Spec Kit を初期化するには、次のコマンドを入力します。
 
     ```powershell
-    specify init --here --integration copilot --script ps
+    specify init --here --ai copilot --script ps
     ```
 
     > **注:** macOS または Linux で bash または zsh を使用している場合は、`--script ps` を `--script sh`に置き換えます。
@@ -82,7 +82,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
     このコマンドは、次のパラメーターを指定します。
 
     - `--here` - 現在のディレクトリ (既存の RSSFeedReader プロジェクト) で GitHub Spec Kit を初期化します。
-    - `--integration copilot` - AI アシスタントとして GitHub Copilot を使用するようにプロジェクトを構成します。
+    - `--ai copilot` - AI アシスタントとして GitHub Copilot を使用するようにプロジェクトを構成します。
     - `--script ps` - PowerShell スクリプトを使用することを指定します。
 
     `specify init` コマンドは、次のアクションを完了します。
@@ -121,8 +121,6 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
     │   ├── agents/                 (GitHub Spec Kit executable workflows that can be triggered via commands)
     │   └── prompts/                (GitHub Spec Kit prompt files that provide detailed instructions for each of the agent workflows)
     ├── .specify/                   (GitHub Spec Kit configuration)
-    │   ├── extensions/             (GitHub Spec Kit stores installed extension packages and their resources - commands, templates, hooks, and config - that add optional capabilities beyond the core Specify workflow.)
-    │   ├── integrations/           (GitHub Spec Kit stores the project’s active AI-agent integration state and manifests so Specify can install, switch, upgrade, or uninstall agent-specific command wiring safely.)
     │   ├── memory/                 (GitHub Spec Kit stores the project constitution defining core principles and governance rules that all features must follow)
     │   ├── scripts/powershell/     (GitHub Spec Kit uses automation utilities (scripts) for creating features, setting up plans, and managing the specification workflow)
     │   └── templates/              (GitHub Spec Kit provides standardized markdown formats for specs, plans, tasks, and checklists to ensure consistent documentation across all features)
@@ -135,7 +133,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 
 1. チャット ビューで GitHub Spec Kit コマンドが使用可能かどうかを確認するには、「**/speckit**」と入力します
 
-    使用できるコマンドを示すオートコンプリートの候補が表示されます。 次に例を示します。
+    使用できるコマンドを示すオートコンプリートの候補が表示されます。
 
     - `/speckit.analyze` - 実装計画を監査します。
     - `/speckit.checklist` - 仕様の完全性を検証します。
