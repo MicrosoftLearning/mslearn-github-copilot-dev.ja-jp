@@ -22,7 +22,16 @@ GitHub Spec Kit は、仕様と GitHub Copilot などの AI コーディング �
 
 ## 開始する前に
 
-ラボ環境には次のリソースが必要です。Git 2.48 以降、.NET SDK 8.0 以降、C# 開発キットおよび GitHub Copilot Chat の拡張機能を含む Visual Studio Code、SQL Server LocalDB、Python 3.11 以降、uv パッケージ マネージャー、Specify CLI、GitHub Copilot が有効な GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
+- SQL Server LocalDB。
+- Python 3.11 以降。
+- uv パッケージ マネージャー
+- CLI を指定する
 
 ラボ環境を構成する方法については、ブラウザーで次のリンクを開いてください: <a href="https://go.microsoft.com/fwlink/?linkid=2345907" target="_blank">GitHub Spec Kit のラボ環境を構成する</a>。
 
@@ -68,7 +77,7 @@ GitHub Importer を使用すると、独自の GitHub アカウントに既存�
 1. **[Import your project to GitHub]** ページで、**[Your source repository details]** のソース リポジトリに次の URL を入力します。
 
     ```plaintext
-    https://github.com/MicrosoftLearning/ContosoDashboard-SSD
+    https://github.com/MicrosoftLearning/ContosoDashboard-SSD.git
     ```
 
 1. **[新しいリポジトリの詳細]** セクションの **[所有者]** ドロップダウンで、GitHub ユーザー名を選択します。
@@ -426,7 +435,7 @@ GitHub Spec Kit では、constitution.md ファイルを使用して、ContosoDa
 
 そのためには、以下の手順を実行してください。
 
-1. Visual Studio Code のエクスプローラー ビューで、**.github/agents** フォルダー内にある **speckit.specify.agent.md** ファイルを開きます。
+1. Visual Studio Code のエクスプローラー ビューで、**.github/agents** フォルダー下にある **speckit.specify.agent.md** ファイルを開きます。
 
 1. 少し時間を取って **speckit.specify.agent.md** ファイルを確認します。
 
@@ -590,7 +599,7 @@ GitHub Spec Kit では、constitution.md ファイルを使用して、ContosoDa
 
 そのためには、以下の手順を実行してください。
 
-1. Visual Studio Code のエクスプローラー ビューで、**.github/agents** フォルダー内にある **speckit.plan.agent.md** ファイルを開きます。
+1. Visual Studio Code のエクスプローラー ビューで、**.github/agents** フォルダー下にある **speckit.plan.agent.md** ファイルを開きます。
 
 1. 少し時間を取って **speckit.plan.agent.md** ファイルをレビューします。
 
@@ -653,7 +662,7 @@ tasks.md ファイルでは、技術計画を具体的で実用的な実装手�
 
 そのためには、以下の手順を実行してください。
 
-1. Visual Studio Code のエクスプローラー ビューで、**.github/agents** フォルダー内にある **speckit.tasks.agent.md** ファイルを開きます。
+1. Visual Studio Code のエクスプローラー ビューで、**.github/agents** フォルダー下にある **speckit.tasks.agent.md** ファイルを開きます。
 
 1. 少し時間を取って **speckit.tasks.agent.md** ファイルをレビューします。
 

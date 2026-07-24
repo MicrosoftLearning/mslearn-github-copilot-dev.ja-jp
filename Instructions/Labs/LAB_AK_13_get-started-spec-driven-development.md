@@ -22,7 +22,16 @@ GitHub Spec Kit は、仕様と GitHub Copilot などの AI コーディング �
 
 ## 開始する前に
 
-ラボ環境には次のリソースが必要です。Git 2.48 以降、.NET SDK 8.0 以降、C# 開発キットおよび GitHub Copilot Chat の拡張機能を含む Visual Studio Code、Python 3.11 以降、uv パッケージ マネージャー、Specify CLI、GitHub Copilot が有効な GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
+- SQL Server LocalDB。
+- Python 3.11 以降。
+- uv パッケージ マネージャー
+- CLI を指定する
 
 ラボ環境を構成する方法については、ブラウザーで次のリンクを開いてください: <a href="https://go.microsoft.com/fwlink/?linkid=2345907" target="_blank">GitHub Spec Kit のラボ環境を構成する</a>。
 
@@ -74,7 +83,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 1. 現在のディレクトリで GitHub Spec Kit を初期化するには、次のコマンドを入力します。
 
     ```powershell
-    specify init --here --ai copilot --script ps
+    specify init --here --integration copilot --script ps
     ```
 
     > **注:** macOS または Linux で bash または zsh を使用している場合は、`--script ps` を `--script sh`に置き換えます。
@@ -82,7 +91,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
     このコマンドは、次のパラメーターを指定します。
 
     - `--here` - 現在のディレクトリ (既存の RSSFeedReader プロジェクト) で GitHub Spec Kit を初期化します。
-    - `--ai copilot` - AI アシスタントとして GitHub Copilot を使用するようにプロジェクトを構成します。
+    - `--integration copilot` - AI アシスタントとして GitHub Copilot を使用するようにプロジェクトを構成します。
     - `--script ps` - PowerShell スクリプトを使用することを指定します。
 
     `specify init` コマンドは、次のアクションを完了します。
@@ -121,6 +130,8 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
     │   ├── agents/                 (GitHub Spec Kit executable workflows that can be triggered via commands)
     │   └── prompts/                (GitHub Spec Kit prompt files that provide detailed instructions for each of the agent workflows)
     ├── .specify/                   (GitHub Spec Kit configuration)
+    │   ├── extensions/             (GitHub Spec Kit stores installed extension packages and their resources - commands, templates, hooks, and config - that add optional capabilities beyond the core Specify workflow.)
+    │   ├── integrations/           (GitHub Spec Kit stores the project’s active AI-agent integration state and manifests so Specify can install, switch, upgrade, or uninstall agent-specific command wiring safely.)
     │   ├── memory/                 (GitHub Spec Kit stores the project constitution defining core principles and governance rules that all features must follow)
     │   ├── scripts/powershell/     (GitHub Spec Kit uses automation utilities (scripts) for creating features, setting up plans, and managing the specification workflow)
     │   └── templates/              (GitHub Spec Kit provides standardized markdown formats for specs, plans, tasks, and checklists to ensure consistent documentation across all features)
@@ -133,7 +144,7 @@ Specify CLI は、プロジェクト フォルダー内の GitHub Spec Kit を�
 
 1. チャット ビューで GitHub Spec Kit コマンドが使用可能かどうかを確認するには、「**/speckit**」と入力します
 
-    使用できるコマンドを示すオートコンプリートの候補が表示されます。
+    使用できるコマンドを示すオートコンプリートの候補が表示されます。 次に例を示します。
 
     - `/speckit.analyze` - 実装計画を監査します。
     - `/speckit.checklist` - 仕様の完全性を検証します。
@@ -200,15 +211,21 @@ GitHub Spec Kit には、constitution.md ファイルの作成と保守に役立
 
 /speckit.constitution ワークフローでは、テキスト入力、ファイル入力、コードベースを使用して、constitution.md ファイルに含めるポリシー、標準、要件、ガイドラインを収集します。 詳細な入力を提供すると、より正確で包括的な規約を生成するのに役立ちます。
 
-このタスクでは、RSSFeedReader プロジェクトの利害関係者のドキュメントをダウンロードし、GitHub Spec Kit コマンドとの関係を評価し、その利害関係者のドキュメントを使用して constitution.md ファイルを生成します。
+このタスクでは、RSSFeedReader プロジェクトの利害関係者のドキュメントを取得し、GitHub Spec Kit コマンドとの関係を評価し、その利害関係者のドキュメントを使用して constitution.md ファイルを生成します。
+
+利害関係者のドキュメントは `mslearn-github-copilot-dev` トレーニング リポジトリの `LabFiles\13-spec-driven-development\StakeholderDocuments` フォルダー下に提供されています。 そのフォルダーを RSSFeedReader プロジェクトにコピーして、`/speckit.constitution` コマンドでファイルを参照できるようにします。
 
 そのためには、以下の手順を実行してください。
 
-1. 利害関係者ドキュメントをダウンロードするには、ブラウザーで次のリンクを開きます。[RSSFeedReader - 利害関係者ドキュメント](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHSpecKitEx13StakeholderDocuments.zip)。
+1. 新しい Visual Studio Code ウィンドウを開き、ウェルカム ページで **[Git リポジトリのクローン...]** を選択します (または **Ctrl + Shift + P** キーを使用してコマンドパレットから **Git: Clone** を実行します)。
 
-1. ダウンロードした ZIP ファイルが格納されているフォルダーを開きます。
+1. 次の URL を入力してリポジトリを適切な場所 (例: `C:\learn-github-copilot`) にクローンします。
 
-1. ダウンロードした ZIP ファイルの内容を一時フォルダーに抽出し、ファイルをコピーして、RSSFeedReader プロジェクトのルート フォルダーに貼り付けます。
+    ```plaintext
+    https://github.com/MicrosoftLearning/mslearn-github-copilot-dev.git
+    ```
+
+1. エクスプローラーを使用して、クローンしたリポジトリ内の `LabFiles\13-spec-driven-development` フォルダーに移動し、**StakeholderDocuments** フォルダーをコピーして、RSSFeedReader プロジェクトのルート フォルダーに貼り付けます。
 
     更新された RSSFeedReader プロジェクトは、次の例のようになります。
 
@@ -272,16 +289,16 @@ GitHub Spec Kit には、constitution.md ファイルの作成と保守に役立
 
 1. 更新されたすべてのファイルへの変更を承認するには、[チャット] ビューで **[保持]** ボタンを選択します。
 
-1. 更新されたファイルを保存して閉じます。
+1.  更新されたファイルを保存して閉じます。
 
 1. 更新されたファイルを Git リポジトリにコミットしてプッシュします。
 
     次に例を示します。
 
     1. Visual Studio Code の [ソース管理] ビューを開きます。
-    1. "利害関係者の要件を使用して規約を更新します" などのコミット メッセージを入力します。
-    1. 変更をステージしてコミットしまう。
-    1. 変更を Git リポジトリにプッシュします。
+    2. "利害関係者の要件を使用して規約を更新します" などのコミット メッセージを入力します。
+    3. 変更をステージしてコミットしまう。
+    4. 変更を Git リポジトリにプッシュします。
 
     ブラウザーで GitHub リポジトリを確認して、コミットを検証できます。 これで、constitution.md ファイルがコミット メッセージと共に表示されます。
 

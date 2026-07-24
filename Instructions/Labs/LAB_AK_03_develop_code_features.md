@@ -20,7 +20,12 @@ GitHub Copilot のコード補完機能と対話型チャット機能により�
 
 ## 開始する前に
 
-ラボ環境には次のものが必要です: Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 
 この演習のラボ環境としてローカル PC を使用している場合:
 
@@ -89,39 +94,25 @@ GitHub Copilot のコード補完機能と対話型チャット機能により�
 
 ## Visual Studio Code で図書館アプリケーションを設定する
 
-既存のアプリケーションをダウンロードし、コード ファイルを展開した後、Visual Studio Code でソリューションを開く必要があります。
+トレーニング リポジトリをクローンし、Visual Studio Code で図書館ソリューションを開く必要があります。
 
 図書館アプリケーションを設定するには、次の手順に従います。
 
-1. ラボ環境でブラウザー ウィンドウを開きます。
+> **注**: 以前の演習で既に `mslearn-github-copilot-dev` リポジトリをクローンした場合は、以下のクローン手順をスキップしてください。 クローンしたリポジトリを Visual Studio Code で開き、検証手順に進みます。
 
-1. 図書館アプリケーションを含む ZIP ファイルをダウンロードするには、次の URL をブラウザーのアドレス バーに貼り付けます。[GitHub Copilot ラボ - コード機能の開発](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/AZ2007LabAppM3.zip)
+1. 新しい Visual Studio Code ウィンドウを開きます。
 
-    ZIP ファイルの名前は **AZ2007LabAppM3.zip** です。
+1. ウェルカム ページで、**[Git リポジトリのクローン...]** を選択し (または **Ctrl + Shift + P** キーでコマンド パレットを開き、**Git: Clone** を実行し)、次の URL を入力します。
 
-1. **AZ2007LabAppM3.zip** ファイルからファイルを展開してください。
+    ```plaintext
+    https://github.com/MicrosoftLearning/mslearn-github-copilot-dev.git
+    ```
 
-    次に例を示します。
+1. ファイル選択ダイアログが表示されたら、リポジトリを保持するための新しいフォルダーを適切な場所 (例: `learn-github-copilot`) に作成し、そのフォルダーを選択して、**[リポジトリの保存先として選択]** をクリックします。
 
-    1. ラボ環境のダウンロード フォルダーに移動します。
+1. クローンが完了したら、Visual Studio Code で **[開く]** を選択して、クローンしたリポジトリを開きます。
 
-    1. **AZ2007LabAppM3.zip** を右クリックし、**[すべて展開]** を選択します。
-
-    1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
-
-1. 展開されたファイル フォルダーを開き、**AccelerateDevGHCopilot** フォルダーを Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
-
-1. Visual Studio Code で **AccelerateDevGHCopilot** フォルダーを開きます。
-
-    次に例を示します。
-
-    1. ラボ環境で Visual Studio Code を開きます。
-
-    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
-
-    1. Windows デスクトップ フォルダーに移動し、**AccelerateDevGHCopilot** を選択してから、**[フォルダーの選択]** を選択します。
-
-1. Visual Studio Code のソリューション エクスプローラー ビューで、次のソリューション構造を確認します:
+1. Visual Studio Code のエクスプローラー ビューで、`LabFiles\03-develop-code-features\AccelerateDevGHCopilot` フォルダーに移動し、次のソリューション構造を確認します。
 
     - AccelerateDevGHCopilot\
         - src\
@@ -133,7 +124,7 @@ GitHub Copilot のコード補完機能と対話型チャット機能により�
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
+    たとえば、エクスプローラー ビューで **LabFiles\03-develop-code-features\AccelerateDevGHCopilot\src\Library.Console\Library.Console.csproj** を右クリックし、**[ビルド]** を選択します。
 
     警告はいくつか表示されますが、エラーは報告されないはずです。
 
@@ -246,7 +237,7 @@ GitHub Copilot には、新しいコード機能を開発するためのオプ�
 
 以下の手順に従って、演習のこのセクションを完了します。
 
-1. [ソリューション エクスプローラー] ビューを開きます。
+1. エクスプローラー ビューを開きます。
 
 1. **Library.Console** プロジェクトを展開します。
 
@@ -777,15 +768,15 @@ GitHub Copilot のチャット ビューには、インライン チャットで
     
     ```
 
-1. Visual Studio Code のソリューション エクスプローラー ビューを開きます。
+1. Visual Studio Code のエクスプローラー ビューを開きます。
 
 1. ソリューションをビルドし、コードの更新によってエラーが発生していないことを確認します。
 
     警告メッセージが表示されますが、エラーは発生しません。
 
-    ソリューション エクスプローラー ビューを使用してソリューションをビルドするには、**AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
+    エクスプローラー ビューを使用してソリューションをビルドするには、**AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
 
-## "book availability" の更新内容をリポジトリのメイン ブランチにマージする
+## "書籍貸出状況" の更新をリポジトリのメイン ブランチにマージする
 
 コードをリポジトリのメイン ブランチにマージする前にテストすることが重要です。 テストにより、コードが意図したとおりに動作し、新しい問題が発生していないことを確認します。 この演習では、手動テストを使って、"書籍貸出状況" 機能が意図したとおりに機能することを確認します。
 
@@ -937,7 +928,7 @@ GitHub Copilot のチャット ビューには、インライン チャットで
 
 ## まとめ
 
-この演習では、GitHub Copilot を使用して C# アプリケーションの新しいコード機能を開発する方法を学びました。 GitHub Copilot のインライン チャットとチャット ビューを使用して新しいブランチで機能を開発し、コードをテストして、変更をリポジトリのメイン ブランチにマージしました。 また、GitHub Copilot を使用して、コミット メッセージと pull request の概要も生成しました。
+この演習では、GitHub Copilot を使用して C# アプリケーションの新しいコード機能を開発する方法を学びました。 Visual Studio Code 内からプライベート GitHub リポジトリにプロジェクトを公開し、機能ブランチを作成し、インライン チャット、質問モード、エージェント モードを使用して "書籍の在庫" 機能を実装しました。 変更をテストし、GitHub Copilot を使用してコミット メッセージと pull request の要約を生成してから、機能ブランチをメインに統合しました。
 
 ## クリーンアップ
 

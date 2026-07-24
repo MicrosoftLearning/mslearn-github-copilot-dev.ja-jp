@@ -4,6 +4,10 @@ lab:
   description: GitHub Copilot SDK を使用して AI エージェントを既存のアプリケーションに統合し、タスクを自動化し、機能を強化する方法について学びます。
   level: 300
   duration: 60 minutes
+  islab: true
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot SDK を使用して AI エージェントを既存のアプリに統合する
@@ -21,9 +25,9 @@ GitHub Copilot SDK は、GitHub Copilot CLI の基盤となっているエンジ
 ラボ環境には次のリソースが必要です。
 
 - Git 2.48 以降。
-- .NET SDK バージョン 8.0 以降。
+- .NET SDK バージョン 9.0 以降。
 - GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
-- C# 開発キットおよび GitHub Copilot Chat の拡張機能を含む Visual Studio Code。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 - GitHub Copilot CLI がインストールされ、お使いの GitHub アカウントで認証済みです。
 
 ラボ環境を構成する方法については、ブラウザーで次のリンクを開いてください: 「<a href="https://go.microsoft.com/fwlink/?linkid=2352210" target="_blank">GitHub Copilot SDK ラボ環境を構成する</a>」。
@@ -128,7 +132,7 @@ AI カスタマー サポート エージェントを開発する前に、既存
 
 1. 少し時間を取って、プロジェクト構造を確認してください。
 
-    Visual Studio Code のエクスプローラー ビューでプロジェクト フォルダーを展開します。 次の例のようなフォルダー構造が表示されます。
+    Visual Studio Code のエクスプローラー ビューを使用して、プロジェクト フォルダーを展開します。 次の例のようなフォルダー構造が表示されます。
 
     ```plaintext
     github-copilot-sdk-starter-app (root)

@@ -2,6 +2,11 @@
 lab:
   title: 準備 - GitHub Copilot 演習用にラボ環境を構成する
   description: GitHub Copilot 演習を開始する前に、ラボの要件を確認し、リソースを構成します。
+  duration: 15 minutes
+  level: 200
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot 演習用にラボ環境を構成する
@@ -50,6 +55,6 @@ lab:
 
     GitHub アカウントの設定/プロファイル ページを開き、GitHub Copilot サブスクリプションへのアクセス権が得られたことを確認します。 トレーニングに使用できる GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business または GitHub Copilot Enterprise のアクティブなサブスクリプションをお持ちの場合は、GitHub Copilot 演習を完了するために既存の GitHub Copilot サブスクリプションを使用できます。
 
-    個別の GitHub アカウントを持っているが、GitHub Copilot サブスクリプションがない場合は、トレーニング演習中に Visual Studio Code で GitHub Copilot Free プランを設定できます。
+    個別の GitHub アカウントはあるが、GitHub Copilot サブスクリプションがない場合は、トレーニング演習中に GitHub の設定ページまたは Visual Studio Code から GitHub Copilot Free プランを設定できます。
 
-    > **重要**:GitHub Copilot Free プラン は、GitHub Copilot の制限付きバージョンであり、1 か月あたり最大 2,000 個のコード補完と 50 個のチャットまたは Premium リクエストが可能です。 トレーニング演習以外で GitHub Copilot Free プランを使用すると、トレーニングを完了する前にプランのリソース制限を超える可能性があります。 GitHub Copilot Free プランは、GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business または GitHub Copilot Enterprise サブスクリプションでは使用できません。
+    > **重要**: GitHub Copilot Free は、学習および評価を目的とした限定バージョンの GitHub Copilot です。 これには、1 か月あたり最大 2,000 件のコード補完と、Copilot Chat やその他の AI 搭載機能への制限付きアクセスが含まれます。 トレーニング演習以外で GitHub Copilot Free を使用すると、コースを完了する前に使用制限に達する可能性があります。 GitHub Copilot の課金および使用量の制限は 2026 年 6 月 1 日に変更され、現在は Premium 要求ではなく使用量に基づきます。 使用制限や含まれる機能はプランによって異なる場合があり、時間の経過と共に変化する可能性もあります。

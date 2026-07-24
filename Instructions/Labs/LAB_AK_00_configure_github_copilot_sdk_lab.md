@@ -2,6 +2,11 @@
 lab:
   title: 準備 - GitHub Copilot SDK ラボ環境を構成する
   description: ラボの要件を確認し、GitHub Copilot SDK の演習向けにリソースを構成します。
+  duration: 30 minutes
+  level: 200
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot SDK ラボ環境を構成する
@@ -11,9 +16,9 @@ GitHub Copilot SDK ラボの演習を開始する前に、開発環境に必要�
 ラボ環境には次のリソースが必要です。
 
 - Git バージョン 2.48 以降。
-- .NET SDK バージョン 8.0 以降。
+- .NET SDK バージョン 9.0 以降。
 - GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
-- C# 開発キットおよび GitHub Copilot Chat の拡張機能を含む Visual Studio Code。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 - GitHub Copilot CLI がインストールされ、お使いの GitHub アカウントで認証済みです。
 
 ## Git、.NET、Visual Studio Code、GitHub のリソースをインストールする
@@ -94,7 +99,7 @@ GitHub Copilot SDK ラボの演習では、Visual Studio Code の GitHub Copilot
 
 1. Visual Studio Code 環境で GitHub Copilot Chat にアクセスできることを確認します。
 
-    GitHub Copilot Chat 拡張機能は、Visual Studio Code の [拡張機能] ビューを使用してインストールできます。
+    GitHub Copilot Chat は、Visual Studio Code バージョン 1.116 以降用の組み込み拡張機能です。 VS Code で、**[表示]**  >  **[チャット]** の順に移動するか、右下のツール バーにある GitHub Copilot アイコンを選択します。
 
 ## アプリケーションの依存関係をインストールする
 

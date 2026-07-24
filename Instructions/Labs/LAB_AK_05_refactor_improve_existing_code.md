@@ -20,7 +20,12 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 
 ## 開始する前に
 
-ラボ環境には次のものが必要です: Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 
 この演習のラボ環境としてローカル PC を使用している場合:
 
@@ -63,44 +68,29 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 この演習には、次のタスクが含まれています。
 
 1. Visual Studio Code で図書館アプリケーションを設定します。
-1. 質問モードと編集モードでチャット ビューを使用してコードを分析し、リファクターします。
-1. インライン チャットおよび編集モードとエージェント モードのチャット ビューを使用してコードをリファクタリングします。
+1. 質問モードとエージェント モードでチャット ビューを使用してコードを分析し、リファクターします。
 
 ## Visual Studio Code で図書館アプリケーションを設定する
 
-既存のアプリケーションをダウンロードし、コード ファイルを展開した後、Visual Studio Code でソリューションを開く必要があります。
+トレーニング リポジトリをクローンし、Visual Studio Code で図書館ソリューションを開く必要があります。
 
 図書館アプリケーションを設定するには、次の手順に従います。
 
-1. ラボ環境でブラウザー ウィンドウを開きます。
+> **注**: 以前の演習で既に `mslearn-github-copilot-dev` リポジトリをクローンした場合は、以下のクローン手順をスキップしてください。 クローンしたリポジトリを Visual Studio Code で開き、検証手順に進みます。
 
-1. 図書館アプリケーションを含む ZIP ファイルをダウンロードするには、次の URL をブラウザーのアドレス バーに貼り付けます。[GitHub Copilot ラボ - 既存コードのリファクタリング](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/AZ2007LabAppM5.zip)
+1. 新しい Visual Studio Code ウィンドウを開きます。
 
-    zip ファイルの名前は **AZ2007LabAppM5.zip** です。
+1. ウェルカム ページで、**[Git リポジトリのクローン...]** を選択し (または **Ctrl + Shift + P** キーでコマンド パレットを開き、**Git: Clone** を実行し)、次の URL を入力します。
 
-1. **AZ2007LabAppM5.zip** ファイルからファイルを抽出します。
+    ```plaintext
+    https://github.com/MicrosoftLearning/mslearn-github-copilot-dev.git
+    ```
 
-    次に例を示します。
+1. ファイル選択ダイアログが表示されたら、リポジトリを保持するための新しいフォルダーを適切な場所 (例: `learn-github-copilot`) に作成し、そのフォルダーを選択して、**[リポジトリの保存先として選択]** をクリックします。
 
-    1. ラボ環境のダウンロード フォルダーに移動します。
+1. クローンが完了したら、Visual Studio Code で **[開く]** を選択して、クローンしたリポジトリを開きます。
 
-    1. **AZ2007LabAppM5.zip** を右クリックし、**[すべて抽出]** を選択します。
-
-    1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
-
-1. 展開されたファイル フォルダーを開き、**AccelerateDevGHCopilot** フォルダーを Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
-
-1. Visual Studio Code で **AccelerateDevGHCopilot** フォルダーを開きます。
-
-    次に例を示します。
-
-    1. ラボ環境で Visual Studio Code を開きます。
-
-    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
-
-    1. Windows デスクトップ フォルダーに移動し、**AccelerateDevGHCopilot** を選択してから、**[フォルダーの選択]** を選択します。
-
-1. Visual Studio Code のソリューション エクスプローラー ビューで、次のソリューション構造を確認します:
+1. Visual Studio Code のエクスプローラー ビューで、`LabFiles\05-refactor-improve-existing-code\AccelerateDevGHCopilot` フォルダーに移動し、次のソリューション構造を確認します。
 
     - AccelerateDevGHCopilot\
         - src\
@@ -112,11 +102,11 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
+    たとえば、エクスプローラー ビューで **LabFiles\05-refactor-improve-existing-code\AccelerateDevGHCopilot\src\Library.Console\Library.Console.csproj** を右クリックし、**[ビルド]** を選択します。
 
     警告はいくつか表示されますが、エラーは報告されないはずです。
 
-## 質問モードと編集モードのチャット ビューを使用して、コードを分析およびリファクタリングする
+## 質問モードとエージェント モードでチャット ビューを使用してコードを分析し、リファクターする
 
 リフレクションは、実行時にオブジェクトを検査および操作できる強力なコーディング機能です。 ただし、リフレクションには時間がかかる可能性があり、リフレクションに関連する潜在的なセキュリティ リスクを考慮する必要があります。
 
@@ -137,7 +127,7 @@ GitHub Copilot のチャット ビューには、3 つのモード (**質問**�
 
 以下の手順に従って、演習のこのセクションを完了します。
 
-1. ソリューション エクスプローラー ビューで、**Library.ApplicationCore** フォルダーを展開してから、**Enums** フォルダーを展開します。
+1. エクスプローラー ビューで、**Library.ApplicationCore** フォルダーを展開し、次に **Enums** フォルダーを展開します。
 
 1. EnumHelper.cs ファイルを開き、既存のコードを確認します。
 
@@ -464,7 +454,7 @@ JsonData クラスには、次のデータ アクセス メソッドが含まれ
 
 1. チャット ビューが開いており、[エージェントの設定] ドロップダウン メニューで **[エージェント]** モードが選択されていることを確認します。
 
-1. ソリューション エクスプローラー ビューで、**Library.Infrastructure** プロジェクトを展開し、**Data** フォルダーを展開します。
+1. エクスプローラー ビューで、**Library.Infrastructure** プロジェクトを展開し、次に **Data** フォルダーを展開します。
 
 1. JsonData.cs ファイルを開きます。
 
@@ -1040,7 +1030,7 @@ JsonLoanRepository クラスには、**GetLoan** および **UpdateLoan** デー
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
+    たとえば、エクスプローラー ビューで、**AccelerateDevGHCopilot** を右クリックし、次に **[ビルド]** を選択します。
 
     警告はいくつか表示されますが、エラーは発生しないはずです。
 
@@ -1088,7 +1078,7 @@ JsonLoanRepository クラスには、**GetLoan** および **UpdateLoan** デー
 
 ## まとめ
 
-この演習では、GitHub Copilot を使用してコードをリファクタリングする方法を学習しました。 編集モードのチャット ビューを使用して、**EnumHelper** クラスをリファクタリングし、リフレクションを静的ディクショナリに置き換えました。 また、インライン チャットと編集モードを使用して、**JsonData** および **JsonLoanRepository** クラスをリファクタリングし、foreach ループを LINQ クエリで置き換えました。 最後に、エージェント モードを使用して **JsonPatronRepository** クラスをリファクタリングし、foreach ループを LINQ クエリで置き換えました。
+この演習では、GitHub Copilot を使用してコードをリファクタリングする方法を学習しました。 質問モードのチャット ビューを使用して、**EnumHelper** クラスを分析し、リフレクションを静的ディクショナリに置き換える方法を調べました。 その後、エージェント モードを使用してリファクタリングを適用しました。 また、エージェント モードでチャット ビューを使用して、**JsonData** および **JsonLoanRepository** クラスをリファクターし、foreach ループを LINQ クエリで置き換えました。 最後に、エージェント モードを使用して **JsonPatronRepository** クラスをリファクターし、foreach ループを LINQ クエリで置き換えました。
 
 ## クリーンアップ
 

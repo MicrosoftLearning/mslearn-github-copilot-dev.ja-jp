@@ -20,7 +20,12 @@ GitHub Copilot を支える大規模言語モデルは、さまざまなコー�
 
 ## 開始する前に
 
-ラボ環境には次のものが必要です: Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 
 この演習のラボ環境としてローカル PC を使用している場合:
 
@@ -58,39 +63,25 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 ## Visual Studio Code で図書館アプリケーションを設定する
 
-既存のアプリケーションをダウンロードし、コード ファイルを展開した後、Visual Studio Code でソリューションを開く必要があります。
+トレーニング リポジトリをクローンし、Visual Studio Code で図書館ソリューションを開く必要があります。
 
 図書館アプリケーションを設定するには、次の手順に従います。
 
-1. ラボ環境でブラウザー ウィンドウを開きます。
+> **注**: 以前の演習で既に `mslearn-github-copilot-dev` リポジトリをクローンした場合は、以下のクローン手順をスキップしてください。 クローンしたリポジトリを Visual Studio Code で開き、検証手順に進みます。
 
-1. 図書館アプリケーションを含む ZIP ファイルをダウンロードするには、次の URL をブラウザーのアドレス バーに貼り付けます。[GitHub Copilot ラボ - 単体テストの開発](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/AZ2007LabAppM4.zip)
+1. 新しい Visual Studio Code ウィンドウを開きます。
 
-    ZIP ファイルの名前は **AZ2007LabAppM4.zip** です。
+1. ウェルカム ページで、**[Git リポジトリのクローン...]** を選択し (または **Ctrl + Shift + P** キーでコマンド パレットを開き、**Git: Clone** を実行し)、次の URL を入力します。
 
-1. **AZ2007LabAppM4.zip** ファイルからファイルを展開します。
+    ```plaintext
+    https://github.com/MicrosoftLearning/mslearn-github-copilot-dev.git
+    ```
 
-    次に例を示します。
+1. ファイル選択ダイアログが表示されたら、リポジトリを保持するための新しいフォルダーを適切な場所 (例: `learn-github-copilot`) に作成し、そのフォルダーを選択して、**[リポジトリの保存先として選択]** をクリックします。
 
-    1. ラボ環境のダウンロード フォルダーに移動します。
+1. クローンが完了したら、Visual Studio Code で **[開く]** を選択して、クローンしたリポジトリを開きます。
 
-    1. **AZ2007LabAppM4.zip** を右クリックして、**[すべて展開]** を選びます。
-
-    1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
-
-1. 展開されたファイル フォルダーを開き、**AccelerateDevGHCopilot** フォルダーを Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
-
-1. Visual Studio Code で **AccelerateDevGHCopilot** フォルダーを開きます。
-
-    次に例を示します。
-
-    1. ラボ環境で Visual Studio Code を開きます。
-
-    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
-
-    1. Windows デスクトップ フォルダーに移動し、**AccelerateDevGHCopilot** を選択してから、**[フォルダーの選択]** を選択します。
-
-1. Visual Studio Code のソリューション エクスプローラー ビューで、次のソリューション構造を確認します:
+1. Visual Studio Code のエクスプローラー ビューで、`LabFiles\04-develop-unit-tests-xunit\AccelerateDevGHCopilot` フォルダーに移動し、次のソリューション構造を確認します。
 
     - AccelerateDevGHCopilot\
         - src\
@@ -102,7 +93,7 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 1. ソリューションが正常にビルドされていることを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで **AccelerateDevGHCopilot** を右クリックし、**[ビルド]** を選択します。
+    たとえば、エクスプローラー ビューで **LabFiles\04-develop-unit-tests-xunit\AccelerateDevGHCopilot\src\Library.Console\Library.Console.csproj** を右クリックし、**[ビルド]** を選択します。
 
     警告はいくつか表示されますが、エラーは報告されないはずです。
 
@@ -112,7 +103,7 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 以下の手順に従って、演習のこのセクションを完了します。
 
-1. ソリューション エクスプローラー ビューで **UnitTests** プロジェクトを展開します。
+1. エクスプローラー ビューで **UnitTests** プロジェクトを展開します。
 
     既存のコードベースには、次のフォルダー構造を実装する UnitTests プロジェクトが含まれています。
 
@@ -349,7 +340,7 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 1. チャット ビューですべての変更を受け入れるには、**[保持する]** を選びます。
 
-1. ソリューション エクスプローラー ビューで、**Infrastructure\JsonLoanRepository** フォルダー構造を展開します。
+1. エクスプローラー ビューで、**Infrastructure\JsonLoanRepository** フォルダー構造を展開します。
 
     次のフォルダー構造が表示されます:
 
@@ -757,7 +748,7 @@ UnitTests という名前の単体テスト プロジェクトを含む図書館
 
 ## まとめ
 
-この演習では、C# アプリケーションで GitHub Copilot を使って単体テストをより速く開発する方法を学びました。 GitHub Copilot のチャット ビューを質問モード、エージェント モード、編集モードで使いました。 質問モードを使って既存の単体テストのアプローチを調べ、エージェント モードを使ってプロジェクト フォルダーと新しいテスト クラスを作成し、編集モードを使って単体テストを作成しました。 また、GitHub Copilot のコード入力候補機能を使って単体テストを作成しました。
+この演習では、C# アプリケーションで GitHub Copilot を使って単体テストをより速く開発する方法を学びました。 GitHub Copilot のチャット ビューを質問モードとエージェント モードで使用しました。 質問モードを使用して既存の単体テストのアプローチを検討し、拡張方法を計画しました。 エージェント モードを使用して GetLoan メソッドのプロジェクト フォルダー、新しいテスト クラス、単体テストを作成しました。 また、GitHub Copilot のコード入力候補機能を使用して、追加の単体テストを作成しました。
 
 ## クリーンアップ
 

@@ -22,7 +22,12 @@ lab:
 
 ## 開始する前に
 
-ラボ環境には次のリソースが必要です。Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 
 この演習のラボ環境としてローカル PC を使用している場合:
 
@@ -252,7 +257,7 @@ ContosoOrderProcessor アプリケーションは、eコマース注文処理ワ
 
     GitHub Copilot が有効になっていることは、Visual Studio Code ウィンドウの右下隅にある [Copilot] アイコンを選ぶか、チャット ビューを開いてチャット機能がアクティブであることを調べて、確認できます。
 
-1. Visual Studio Code のエクスプローラー ビューを使用して ContosoOrderProcessor フォルダーを展開し、少し時間をかけてプロジェクトの構造を確認します。
+1. Visual Studio Code のエクスプローラー ビューを使用して ContosoOrderProcessor フォルダーを展開し、少し時間をかけてプロジェクト構造を確認します。
 
     ContosoOrderProcessor アプリケーションは、シンプルな階層化アーキテクチャを採用しています。 これには、次のファイルとフォルダーが含まれています。
 
@@ -309,7 +314,7 @@ ContosoOrderProcessor アプリケーションは、注文処理ワークフロ�
 
 そのためには、以下の手順を実行してください。
 
-1. Visual Studio Code のエクスプローラー ビューを使って、プロジェクトのルートに **setup-secrets.ps1** という名前のファイルを作成します。
+1. Visual Studio Code のエクスプローラー ビューを使用して、プロジェクトのルートに **setup-secrets.ps1** という名前のファイルを作成します。
 
     このスクリプト ファイルを使って、現在の PowerShell セッション用に環境変数を設定します。
 
@@ -420,7 +425,7 @@ ContosoOrderProcessor アプリケーションは、注文処理ワークフロ�
 
 1. **OriginalConsoleOutput.txt** という名前のファイルをプロジェクトのルートに追加します。
 
-    エクスプローラー ビューでファイルを右クリックし、**[新しいファイル]** を選択し、**OriginalConsoleOutput.txt** と名前を付けて、ファイルを作成できます。
+    このファイルを作成するには、エクスプローラー ビューで右クリックして **[新しいファイル]** を選択し、**OriginalConsoleOutput.txt** という名前を付けます。
 
 1. コンソール出力を **OriginalConsoleOutput.txt** ファイルにコピーします。
 
@@ -655,7 +660,7 @@ GitHub Copilot のエージェント モードは、ハードコーディング�
 
 1. コンソール出力を、プロジェクトのルートにある **RemediatedConsoleOutput.txt** という名前のファイルに保存します。
 
-    このファイルを作成するには、エクスプローラー ビューで右クリックして **[新しいファイル]** を選び、**RemediatedConsoleOutput.txt** という名前を付けてから、コンソール出力をそのファイルにコピーします。
+    このファイルを作成するには、エクスプローラー ビューで右クリックして **[新しいファイル]** を選択し、**RemediatedConsoleOutput.txt** という名前を付けて、コンソール出力をそのファイルにコピーします。
 
 1. **OriginalConsoleOutput.txt** と **RemediatedConsoleOutput.txt** ファイルを比べて、シークレット スキャンのアラートを修復した後もアプリケーションの動作が変わっていないことを確認します。
 

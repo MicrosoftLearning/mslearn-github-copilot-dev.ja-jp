@@ -22,7 +22,12 @@ lab:
 
 ## 開始する前に
 
-ラボ環境には次のものが必要です: Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 
 ### ラボ環境を構成する
 
@@ -46,41 +51,27 @@ lab:
 
     ```
 
-### サンプル コード プロジェクトをダウンロードする
+### サンプル プロジェクトをクローンする
 
-サンプル プロジェクトをダウンロードして Visual Studio Code で開くには、次の手順に従います。
+次の手順に従って、トレーニング リポジトリをクローンし、Visual Studio Code でサンプル プロジェクトを開きます。
 
-1. ラボ環境でブラウザー ウィンドウを開きます。
+> **注**: 以前の演習で既に `mslearn-github-copilot-dev` リポジトリをクローンした場合は、以下のクローン手順をスキップしてください。 クローンしたリポジトリを Visual Studio Code で開き、検証手順に進みます。
 
-1. サンプル アプリ プロジェクトを含む zip ファイルをダウンロードするには、ブラウザーで次の URL を開きます: [GitHub Copilot ラボ - コード機能の開発](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHCopilotEx9LabApps.zip)
+1. 新しい Visual Studio Code ウィンドウを開きます。
 
-    zip ファイルの名前は **GHCopilotEx9LabApps.zip** です。
+1. ウェルカム ページで、**[Git リポジトリのクローン...]** を選択し (または **Ctrl + Shift + P** キーでコマンド パレットを開き、**Git: Clone** を実行し)、次の URL を入力します。
 
-1. **GHCopilotEx9LabApps.zip** ファイルからファイルを抽出します。
+    ```plaintext
+    https://github.com/MicrosoftLearning/mslearn-github-copilot-dev.git
+    ```
 
-    次に例を示します。
+1. ファイル選択ダイアログが表示されたら、リポジトリを保持するための新しいフォルダーを適切な場所 (例: `learn-github-copilot`) に作成し、そのフォルダーを選択して、**[リポジトリの保存先として選択]** をクリックします。
 
-    1. ラボ環境のダウンロード フォルダーに移動します。
+1. クローンが完了したら、Visual Studio Code で **[開く]** を選択して、クローンしたリポジトリを開きます。
 
-    1. **GHCopilotEx9LabApps.zip** を右クリックし、**[すべて展開]** を選択します。
+1. Visual Studio Code のエクスプローラー ビューで、`LabFiles\09-simplify-complex-conditionals` フォルダーに移動し、次のプロジェクト構造を確認します。
 
-    1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
-
-1. **GHCopilotEx9LabApps** フォルダーを、Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
-
-1. Visual Studio Code で **GHCopilotEx9LabApps** フォルダーを開きます。
-
-    次に例を示します。
-
-    1. ラボ環境で Visual Studio Code を開きます。
-
-    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
-
-    1. Windows デスクトップ フォルダーに移動し、**GHCopilotEx9LabApps** を選択してから、**[フォルダーの選択]** を選択します。
-
-1. Visual Studio Code のソリューション エクスプローラー ビューで、次のプロジェクト構造を確認します。
-
-    - GHCopilotEx9LabApps\
+    - 09-simplify-complex-conditionals\
         - ECommercePricingEngine\
             - Dependencies\
             - ECommercePricingDemo.cs
@@ -121,7 +112,7 @@ lab:
 
 1. **ECommercePricingEngine** コード プロジェクトのビルドが成功することを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで **ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
+    たとえば、エクスプローラー ビューで **ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
 
     "null リテラルを null 非許容参照型に変換できません" という警告が、 プロジェクトをビルドするときに表示されますが、エラーは発生しません。 この演習の目的上、この警告は無視してかまいません。
 
@@ -277,7 +268,7 @@ lab:
     > [!NOTE]
     > 出力のコピーは、eCommercePricingEngine フォルダーに含まれる **Output-ECommercePricingEngine.txt** ファイルにあります。 結果を比較する場合、またはサンプル データを変更する場合は、自分自身の出力ファイルを作成できます。 この演習の最後まで進んだら、出力ファイルを使用して、リファクタリング後のコードで元のコードと同じ結果が生成されることを確認します。
 
-    プロジェクトを実行するには: Visual Studio Code エディターで ECommercePricingDemo.cs ファイルを開いている場合は、エディター ウィンドウの右上隅にある [実行] ボタン (このファイルに関連付けられているプロジェクトの実行) を選択して、プロジェクトを実行できます。 ソリューション エクスプローラー ビューからプロジェクトを実行するには、**ECommercePricingEngine** を右クリックし、**[デバッグ]** を選択してから、**[新しいインスタンスの開始]** を選択します。
+    プロジェクトを実行するには: Visual Studio Code エディターで ECommercePricingDemo.cs ファイルを開いている場合は、エディター ウィンドウの右上隅にある [実行] ボタン (このファイルに関連付けられているプロジェクトの実行) を選択して、プロジェクトを実行できます。 エクスプローラー ビューからプロジェクトを実行するには、**ECommercePricingEngine** を右クリックし、**[デバッグ]**、**[新しいインスタンスの開始]** の順に選択します。
 
 ### GitHub Copilot を使用して、eコマース価格設定コードでのリファクタリングの機会を特定する
 
@@ -524,13 +515,13 @@ GitHub Copilot には、**質問**、**編集**、**エージェント**の 3 �
 
 1. プロジェクトをビルドして、コンパイル エラーがないことを確認します。
 
-    たとえば、ソリューション エクスプローラー ビューで **ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
+    たとえば、エクスプローラー ビューで **ECommercePricingEngine** を右クリックし、**[ビルド]** を選択します。
 
     コンパイル エラーがある場合は、リファクタリング後のコードを確認して問題を修正します。 GitHub Copilot は、必要に応じてコンパイル エラーを解決するのに役立ちます。
 
 1. アプリケーションを実行して、リファクタリング後の価格設定ロジックをテストします。
 
-    Visual Studio Code エディターで ECommercePricingDemo.cs ファイルを開いている場合は、エディター ウィンドウの右上隅にある [実行] ボタン (このファイルに関連付けられているプロジェクトの実行) を選択して、プロジェクトを実行できます。 ソリューション エクスプローラー ビューからプロジェクトを実行するには、**ECommercePricingEngine** を右クリックし、**[デバッグ]** を選択してから、**[新しいインスタンスの開始]** を選択します。
+    Visual Studio Code エディターで ECommercePricingDemo.cs ファイルを開いている場合は、エディター ウィンドウの右上隅にある [実行] ボタン (このファイルに関連付けられているプロジェクトの実行) を選択して、プロジェクトを実行できます。 エクスプローラー ビューからプロジェクトを実行するには、**ECommercePricingEngine** を右クリックし、**[デバッグ]**、**[新しいインスタンスの開始]** の順に選択します。
 
     アプリケーションがエラーなく実行され、さまざまなテスト シナリオの価格計算が表示されるはずです。
 

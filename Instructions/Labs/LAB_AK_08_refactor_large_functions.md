@@ -22,7 +22,12 @@ lab:
 
 ## 開始する前に
 
-ラボ環境には次のリソースが必要です。Git 2.48 以降、.NET SDK 9.0 以降、C# 開発キット拡張機能をインストールした Visual Studio Code、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
+
+- Git 2.48 以降。
+- .NET SDK バージョン 9.0 以降。
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- C# 開発キット拡張機能を含む Visual Studio Code (バージョン 1.116 以降)。
 
 ### ラボ環境を構成する
 
@@ -46,41 +51,27 @@ lab:
 
     ```
 
-### サンプル コード プロジェクトをダウンロードする
+### サンプル プロジェクトをクローンする
 
-次の手順のようにして、サンプル プロジェクトをダウンロードし、Visual Studio Code でそれを開きます。
+次の手順に従って、トレーニング リポジトリをクローンし、Visual Studio Code でサンプル プロジェクトを開きます。
 
-1. ラボ環境でブラウザー ウィンドウを開きます。
+> **注**: 以前の演習で既に `mslearn-github-copilot-dev` リポジトリをクローンした場合は、以下のクローン手順をスキップしてください。 クローンしたリポジトリを Visual Studio Code で開き、検証手順に進みます。
 
-1. サンプル アプリ プロジェクトを含む ZIP ファイルをダウンロードするには、ブラウザーで次の URL を開きます: [GitHub Copilot ラボ - 大きな関数をリファクタリングする](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/GHCopilotEx8LabApps.zip)
+1. 新しい Visual Studio Code ウィンドウを開きます。
 
-    ZIP ファイルの名前は **GHCopilotEx8LabApps.zip** です。
+1. ウェルカム ページで、**[Git リポジトリのクローン...]** を選択し (または **Ctrl + Shift + P** キーでコマンド パレットを開き、**Git: Clone** を実行し)、次の URL を入力します。
 
-1. **GHCopilotEx8LabApps.zip** ファイルからファイルを展開します。
+    ```plaintext
+    https://github.com/MicrosoftLearning/mslearn-github-copilot-dev.git
+    ```
 
-    次に例を示します。
+1. ファイル選択ダイアログが表示されたら、リポジトリを保持するための新しいフォルダーを適切な場所 (例: `learn-github-copilot`) に作成し、そのフォルダーを選択して、**[リポジトリの保存先として選択]** をクリックします。
 
-    1. ラボ環境のダウンロード フォルダーに移動します。
+1. クローンが完了したら、Visual Studio Code で **[開く]** を選択して、クローンしたリポジトリを開きます。
 
-    1. **GHCopilotEx8LabApps.zip** を右クリックして、**[すべて展開]** を選びます。
+1. Visual Studio Code のエクスプローラー ビューで、`LabFiles\08-refactor-large-functions` フォルダーに移動し、次のプロジェクト構造を確認します。
 
-    1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
-
-1. **GHCopilotEx8LabApps** フォルダーを、Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
-
-1. Visual Studio Code で **GHCopilotEx8LabApps** フォルダーを開きます。
-
-    次に例を示します。
-
-    1. ラボ環境で Visual Studio Code を開きます。
-
-    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
-
-    1. Windows デスクトップ フォルダーに移動し、**GHCopilotEx8LabApps** を選んでから、**[フォルダーの選択]** を選びます。
-
-1. Visual Studio Code のソリューション エクスプローラー ビューで、次のプロジェクト構造を確認します。
-
-    - GHCopilotEx8LabApps\
+    - 08-refactor-large-functions\
         - ECommerceOrderProcessing\
             - src\
                 - ECommerce.ApplicationCore\
@@ -143,7 +134,7 @@ lab:
 
     > **注**:GitHub Copilot の応答は、選んだモデルによって異なる場合があります。 このラボ演習を行うときは、指定されたモデルを使うことをお勧めします。 違いを確認したい場合は、別のモデルで演習を繰り返すことができます。
 
-1. ソリューション エクスプローラー ビューを使って、**OrderProcessor.cs** ファイルを見つけます。
+1. エクスプローラー ビューを使用して、**OrderProcessor.cs** ファイルを見つけます。
 
     **OrderProcessor.cs** ファイルは **src/ECommerce.ApplicationCore/Services** フォルダーにあります。
 
@@ -169,7 +160,7 @@ lab:
 
     アプリケーションを実行するには、いくつかのオプションがあります。 次に例を示します。
 
-    ソリューション エクスプローラー ビューで **ECommerce.Console** プロジェクトを右クリックし、**[デバッグ]** を選んでから、**[新しいインスタンスの開始]** を選びます。 または、**Program.cs** ファイルを Visual Studio Code で開いている場合は、エディターの上にある実行ボタンを選択できます。
+    エクスプローラー ビューで **ECommerce.Console** プロジェクトを右クリックし、**[デバッグ]**、**[新しいインスタンスの開始]** の順に選択します。 または、**Program.cs** ファイルを Visual Studio Code で開いている場合は、エディターの上にある実行ボタンを選択できます。
 
     ターミナルで **src/ECommerce.Console** フォルダーに移動し、次の .NET CLI コマンドを入力することもできます。
 
@@ -210,7 +201,7 @@ GitHub Copilot Chat の質問モードは、複雑なコードを分析し、大
 
 1. OrderProcessor.cs ファイルをチャット コンテキストに追加します。
 
-    ドラッグ アンド ドロップ操作を使って、ソリューション エクスプローラーからチャット コンテキストに **src/ECommerce.ApplicationCore/Services/OrderProcessor.cs** ファイルを追加します。 チャット コンテキストにファイルを追加すると、プロンプトを分析するときにそのファイルを含めるよう GitHub Copilot に指示され、分析の精度が向上します。
+    ドラッグ アンド ドロップ操作を使用して、**src/ECommerce.ApplicationCore/Services/OrderProcessor.cs** ファイルをエクスプローラーからチャット コンテキストに追加します。 チャット コンテキストにファイルを追加すると、プロンプトを分析するときにそのファイルを含めるよう GitHub Copilot に指示され、分析の精度が向上します。
 
 1. ProcessOrder メソッドでリファクタリングの機会を分析するよう GitHub Copilot に指示します。
 

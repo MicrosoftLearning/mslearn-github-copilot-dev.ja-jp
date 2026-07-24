@@ -20,9 +20,14 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 
 ## 開始する前に
 
-ラボ環境には次のものが必要です。Git 2.48 以降、Python 3.10 以降、Visual Studio Code と Microsoft が提供する Python 拡張機能、GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+ラボ環境には次のリソースが必要です。
 
-この演習のラボ環境として、ローカル PC をお使いの場合:
+- Git 2.48 以降。
+- Python 3.10 以降
+- GitHub Copilot が有効になっている GitHub アカウントへのアクセス。
+- VS Code 用 Python 拡張機能がインストールされている Visual Studio Code (バージョン 1.116 移行)
+
+この演習のラボ環境としてローカル PC を使用している場合:
 
 - ローカル PC をラボ環境として構成する方法については、ブラウザーで次のリンクを開いてください: <a href="https://microsoftlearning.github.io/mslearn-github-copilot-dev/Instructions/Labs/LAB_AK_00_configure_lab_environment_py.html" target="_blank">ラボ環境のリソースを構成する</a>。
 
@@ -68,43 +73,29 @@ GitHub Copilot を使用すると、コードベース全体を評価し、コ�
 
 ## Visual Studio Code で図書館アプリケーションを設定する
 
-既存のアプリケーションをダウンロードし、コード ファイルを展開した後、Visual Studio Code でプロジェクトを開く必要があります。
+トレーニング リポジトリをクローンし、Visual Studio Code で図書館プロジェクトを開く必要があります。
 
 図書館アプリケーションを設定するには、次の手順に従います。
 
-1. ラボ環境でブラウザー ウィンドウを開きます。
+> **注**: 以前の演習で既に `mslearn-github-copilot-dev` リポジトリをクローンした場合は、以下のクローン手順をスキップしてください。 クローンしたリポジトリを Visual Studio Code で開き、検証手順に進みます。
 
-1. 図書館アプリケーションを含む ZIP ファイルをダウンロードするには、次の URL をブラウザーのアドレス バーに貼り付けます。[GitHub Copilot ラボ - 既存のコードをリファクターする](https://github.com/MicrosoftLearning/mslearn-github-copilot-dev/raw/refs/heads/main/DownloadableCodeProjects/Downloads/AZ2007LabAppM5Python.zip)
+1. 新しい Visual Studio Code ウィンドウを開きます。
 
-    ZIP ファイルの名前は **AZ2007LabAppM5Python.zip** です。
+1. ウェルカム ページで、**[Git リポジトリのクローン...]** を選択し (または **Ctrl + Shift + P** キーでコマンド パレットを開き、**Git: Clone** を実行し)、次の URL を入力します。
 
-1. **AZ2007LabAppM5Python.zip** ファイルからファイルを展開します。
+    ```plaintext
+    https://github.com/MicrosoftLearning/mslearn-github-copilot-dev.git
+    ```
 
-    次に例を示します。
+1. ファイル選択ダイアログが表示されたら、リポジトリを保持するための新しいフォルダーを適切な場所 (例: `learn-github-copilot`) に作成し、そのフォルダーを選択して、**[リポジトリの保存先として選択]** をクリックします。
 
-    1. ラボ環境のダウンロード フォルダーに移動します。
+1. クローンが完了したら、Visual Studio Code で **[開く]** を選択して、クローンしたリポジトリを開きます。
 
-    1. **AZ2007LabAppM5Python.zip** を右クリックし、**[すべて展開]** を選択します。
-
-    1. **[完了時に展開されたファイルを表示する]** を選んでから、**[展開]** を選びます。
-
-1. 展開されたファイル フォルダーを開き、**AccelerateDevGHCopilot** フォルダーを Windows デスクトップ フォルダーなどのアクセスしやすい場所にコピーします。
-
-1. Visual Studio Code で **AccelerateDevGHCopilot** フォルダーを開きます。
-
-    次に例を示します。
-
-    1. ラボ環境で Visual Studio Code を開きます。
-
-    1. Visual Studio Code の **[ファイル]** メニューで、 **[フォルダーを開く]** を選択します。
-
-    1. Windows デスクトップ フォルダーに移動し、**AccelerateDevGHCopilot** を選んでから、**[フォルダーの選択]** を選びます。
-
-1. Visual Studio Code のエクスプローラー ビューで、次のプロジェクト構造を確認します。
+1. Visual Studio Code のエクスプローラー ビューで、`LabFiles/05-python-refactor-improve-existing-code/AccelerateDevGHCopilot` フォルダーに移動し、次のプロジェクト構造を確認します。
 
     - AccelerateDevGHCopilot/library   ├── application_core   ├── console   ├── infrastructure   └── tests
 
-1. 次のセクションでテストを実行して、初期コードが正常に実行されることを確認します。 前のラボに慣れている場合は、必要に応じてターミナルの **\library** フォルダーから **`python console\main.py`** を使用してアプリケーションを実行します。
+1. 次のセクションでテストを実行して、初期コードが正常に実行されることを確認します。 以前のラボで慣れている場合は、必要に応じて、ターミナルで **`python console/main.py`** を使用して、**LabFiles/05-python-refactor-improve-existing-code/AccelerateDevGHCopilot/library** フォルダーからアプリケーションを実行してください。
 
 ### Pytest を有効にする
 

@@ -2,6 +2,11 @@
 lab:
   title: 準備 - GitHub Copilot 演習用にラボ環境を構成する (Python)
   description: GitHub Copilot 演習を開始する前に、ラボの要件を確認し、リソースを構成します。
+  duration: 20 minutes
+  level: 200
+  primarytopics:
+    - GitHub
+    - Visual Studio Code
 ---
 
 # GitHub Copilot 演習用にラボ環境を構成する
@@ -50,6 +55,6 @@ lab:
 
     GitHub アカウントの設定/プロファイル ページを開き、GitHub Copilot サブスクリプションへのアクセス権が得られたことを確認します。 トレーニングに使用できる GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business または GitHub Copilot Enterprise のアクティブなサブスクリプションをお持ちの場合は、GitHub Copilot 演習を完了するために既存の GitHub Copilot サブスクリプションを使用できます。
 
-    個別の GitHub アカウントを持っているが、GitHub Copilot サブスクリプションがない場合は、トレーニング演習中に Visual Studio Code で GitHub Copilot Free プランを設定できます。
+    個別の GitHub アカウントはあるが、GitHub Copilot サブスクリプションがない場合は、トレーニング演習中に GitHub の設定ページまたは Visual Studio Code から GitHub Copilot Free プランを設定できます。
 
     > **重要**:GitHub Copilot Free プラン は、GitHub Copilot の制限付きバージョンであり、1 か月あたり最大 2,000 個のコード補完と 50 個のチャットまたは Premium リクエストが可能です。 トレーニング演習以外で GitHub Copilot Free プランを使用すると、トレーニングを完了する前にプランのリソース制限を超える可能性があります。 GitHub Copilot Free プランは、GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business または GitHub Copilot Enterprise サブスクリプションでは使用できません。
