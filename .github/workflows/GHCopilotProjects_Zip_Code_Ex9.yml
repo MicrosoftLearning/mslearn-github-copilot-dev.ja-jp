@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
     - name: Create GHCopilotEx9 SampleApps zip
       run: | 
         # Ensure Downloads directory exists
@@ -73,7 +73,7 @@ jobs:
         
         echo "Successfully created GHCopilotEx9LabApps.zip"
     - name: Commit and push
-      uses: Endbug/add-and-commit@v7
+      uses: Endbug/add-and-commit@8c12ff729a98cfbcd3fe38b49f55eceb98a5ec02 # v7.5.0
       with:
         add: '["DownloadableCodeProjects/Downloads/GHCopilotEx9LabApps.zip"]'
         message: 'Updating Zip with sample app source files'
